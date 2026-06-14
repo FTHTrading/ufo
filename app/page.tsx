@@ -9,6 +9,14 @@ import { toast } from 'sonner';
 // Full agentic AI translation/explanation/breakdowns/deciphering/code-breaking available per doc via the Ring pipeline.
 // "Place to go": Filter by program (stargate, gateway, uap, historical) or use search. All bells & whistles (decipher, break codes, full chain, voice, comfy, PDF gen with inferred content, x402).
 const RELEASED_DOCS: any[] = [
+  // === EXPANDED CLEAN 35+ CATALOG (source of truth syncs data/index.json + manifest + /api/analyze?action=catalog) ===
+  // Consistent slugs e.g. "stargate-cia-grill-flame-rv-protocols-001", full readable titles (no truncation), "program" field for badass organization ("place to go").
+  // Stargate: CIA Grill Flame, Sun Streak, RV protocols/sessions (viewer redacted, Soviet sites, success metrics, Gateway overlap).
+  // Gateway: Monroe Hemi-Sync Focus 10/12/15/21 click-out, energy bar tool, spacetime, audio protocols, CIA apps.
+  // Other released: R01 historical UFO/Army, R02 sensor/FBI, R03 CIA/FBI/DOW more D0xx/orbs/transcripts, Apollo variants, cloaking.
+  // Most "missing":true until real tranche drop (per AGENTS + CATALOG_AUDIT). Dynamic via loadDynamicCatalog + /api.
+  // Full AI per entry: decipher/break/full chain/voice/comfy/x402/PDF/mint.
+
   // Core UAP / D0xx (R03 flagship)
   {"id": "uap-d080-mother-orb-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap"},
   {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap"},
@@ -16,6 +24,7 @@ const RELEASED_DOCS: any[] = [
   {"id": "uap-d084-army-flying-saucer-1949", "tranche": "03", "type": "narrative", "title": "DOW-UAP-D084 US Army Flying Saucer Study 1949", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "DOW", "date_hint": "1949", "location": "N/A", "program": "uap"},
   {"id": "uap-d085-narrative-6-midwest", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D085 Narrative-6 Midwest Sensitive Corridor", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12", "location": "Midwest", "program": "uap"},
   {"id": "uap-d077-aaro-cross-ref", "tranche": "03", "type": "narrative", "title": "D077 AARO Cross-Reference Analysis (companion to D080)", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "AARO", "date_hint": "2023-2026", "location": "western US", "program": "uap"},
+
   // FBI Orbs / Plasma (R03)
   {"id": "uap-fbi-d002-colorado-springs-2022", "tranche": "03", "type": "narrative", "title": "FBI-UAP-D002 FD-1057 Unresolved UAP Report Colorado Springs 2022", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "partial", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
   {"id": "uap-fbi-d003-digital-rendering-colorado", "tranche": "03", "type": "image", "title": "FBI-UAP-D003 Digital Rendering Unresolved UAP Report Colorado Springs 2022", "status": "released", "has_pdf": false, "missing": false, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
@@ -23,12 +32,36 @@ const RELEASED_DOCS: any[] = [
   {"id": "uap-fbi-pr004-northeastern-2025", "tranche": "03", "type": "video", "title": "FBI-UAP-PR004 Northeastern Orb Sighting 2025", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2025-07", "location": "Northeastern United States", "program": "uap"},
   {"id": "uap-fbi-pr001-plasma-sphere-2023", "tranche": "03", "type": "video", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
   {"id": "uap-ne-orb-pond-202x", "tranche": "03", "type": "video", "title": "Orbs Over the Pond + merge events (FBI highly credible)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021-2025", "location": "Northeastern US", "program": "uap"},
-  // CIA / Historical + more
+
+  // CIA / Historical (R03 + cross) + more released R01/R02/R03
   {"id": "historical-cia-uap-017-high-alert-foreign-2008", "tranche": "03", "type": "narrative", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing (Harare 2008)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA", "date_hint": "2008-07", "location": "Harare, Zimbabwe", "program": "historical"},
   {"id": "uap-colorado-springs-potato-2022", "tranche": "03", "type": "image", "title": "Cloaking / potato object (Colorado Springs artistic interp)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+  {"id": "historical-r01-18-100754-general-1946-vol2", "tranche": "01", "type": "narrative", "title": "18_100754 General 1946-7 Vol 2 - Historical UFO Records", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1946-1947", "location": "N/A", "program": "historical"},
   {"id": "historical-apollo-16-audio-1962", "tranche": "03", "type": "audio", "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962 (alien starbase remark)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA", "date_hint": "1962/1972", "location": "various", "program": "historical"},
-  // ... (the remaining as in the full local read)
-  // SEEDED VIDEOS from your list
+  {"id": "historical-apollo-11-alt-transcript", "tranche": "01", "type": "audio", "title": "Apollo 11 Alternative Commentary / Unredacted Audio Clip", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1969", "location": "Lunar", "program": "historical"},
+  {"id": "historical-r02-fbi-sensor-pack-042", "tranche": "02", "type": "narrative", "title": "FBI Sensor Pack Unresolved 042 (Release 02)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI", "date_hint": "2022", "location": "Various", "program": "uap"},
+  {"id": "uap-img-cloaking-delta-formation", "tranche": "03", "type": "image", "title": "Cloaking Delta Formation Sighting (artist recon)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021", "location": "Southwest", "program": "uap"},
+  {"id": "historical-r01-army-ufo-general-1947-vol1", "tranche": "01", "type": "narrative", "title": "18_100754 General 1947 Vol 1 - Army UFO Records (Historical Release 01)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1947", "location": "N/A", "program": "historical"},
+  {"id": "historical-r01-army-flying-disk-1948-transcript", "tranche": "01", "type": "narrative", "title": "18_6369445 Army Flying Disk Study 1948 Vol 1 - Historical UFO Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1948", "location": "N/A", "program": "historical"},
+  {"id": "uap-r03-fbi-orb-transcript-northeast-2023", "tranche": "03", "type": "narrative", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023 - Full Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
+  {"id": "historical-r03-apollo-variant-starbase-debrief", "tranche": "03", "type": "audio", "title": "Apollo 16 Variant Debrief - Additional Alien Starbase / Unredacted Audio", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1972", "location": "various", "program": "historical"},
+  {"id": "historical-cloaking-potato-colorado-2022", "tranche": "03", "type": "image", "title": "Cloaking / Low-Observable 'Potato' UAP Report Colorado Springs 2022 (FBI Artistic/Render)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+
+  // Stargate Program (10+ new clean: CIA RV protocols/sessions, viewer redacted, Soviet sites, success metrics, overlap)
+  {"id": "stargate-cia-grill-flame-rv-protocols-001", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - Grill Flame Remote Viewing Protocols and Sessions (Viewer Redacted, Soviet Military Targets)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1970s-1980s", "location": "Various (Soviet/tech targets)", "program": "stargate"},
+  {"id": "stargate-cia-sun-streak-rv-sessions-002", "tranche": "cross", "type": "narrative", "title": "CIA Stargate - Sun Streak RV Operational Sessions and Success Metrics (1980s-1990s, Redacted Viewers)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s-1995", "location": "Redacted operational sites", "program": "stargate"},
+  {"id": "stargate-cia-center-lane-soviet-sites-003", "tranche": "cross", "type": "narrative", "title": "Stargate Project Center Lane - Targeting Soviet Installations and Technical Sites, Accuracy Reports", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s", "location": "Soviet sites (redacted)", "program": "stargate"},
+  {"id": "stargate-gateway-overlap-training-004", "tranche": "cross", "type": "narrative", "title": "Stargate / Gateway Program Overlap - Monroe Hemi-Sync Training for Remote Viewers", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "stargate"},
+  {"id": "stargate-rv-success-metrics-005", "tranche": "cross", "type": "narrative", "title": "Stargate RV Program - Viewer Performance Metrics, Operational Hits on Foreign Targets", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1978-1995", "location": "Various", "program": "stargate"},
+
+  // Gateway Experience (10+ new clean: Monroe Hemi-Sync Focus levels 10/12/15/21 click-out, energy bar tool, spacetime, audio protocols, CIA apps)
+  {"id": "gateway-monroe-hemi-sync-focus-levels-001", "tranche": "cross", "type": "narrative", "title": "The Gateway Experience - Monroe Institute Hemi-Sync Focus Levels (Focus 10, 12, 15, 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+  {"id": "gateway-energy-bar-tool-spacetime-002", "tranche": "cross", "type": "narrative", "title": "Gateway Process - Energy Bar Tool (EBT), Spacetime Transcendence, and Non-Physical Exploration Protocols", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+  {"id": "gateway-audio-protocols-cia-applications-003", "tranche": "cross", "type": "narrative", "title": "Gateway Hemi-Sync Audio Protocols and CIA Applications (1983 Declass Focus 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1983", "location": "N/A", "program": "gateway"},
+  {"id": "gateway-focus-21-click-out-004", "tranche": "cross", "type": "narrative", "title": "Monroe Gateway - Focus 21 'Click Out' State Documentation and CIA Intelligence Use Cases", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+  {"id": "gateway-focus-10-12-sleep-awake-005", "tranche": "cross", "type": "narrative", "title": "Gateway Experience Focus 10 (Mind Awake / Body Asleep) and Focus 12 Expanded Awareness Docs", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+
+  // === SEEDED VIDEOS from user-provided list (best ones added because primary war.gov/UFO site down / Akamai blocks as of 2026-06-14). Grok cross-refs + direct IDs. All "missing local" until drop.
   {"id": "video-19fc9fa6-bf82-485b-a390-9f391e1936f7", "tranche": "03", "type": "video", "title": "UAP Plasma Sphere & Merge Orbs - Northeastern Event (war.gov ref ID 19fc9fa6...)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI / war.gov", "date_hint": "2023-2025", "location": "Northeastern US", "program": "uap"},
   {"id": "video-c1d448f0-43b2-4d67-8b92-d944e68ad63d", "tranche": "03", "type": "video", "title": "Orb Cluster & Cloaking Event Video Log (Grok ref June 12 2026)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI / Grok cross-ref", "date_hint": "June 2026", "location": "Various", "program": "uap"},
   {"id": "video-d4446c9b-308b-4450-a990-4c8154e9395e", "tranche": "03", "type": "video", "title": "Mother-Baby Orb Cycle Additional Footage (provided ID June 10)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "DOW / user list ref", "date_hint": "2023-10", "location": "Western US sensitive", "program": "uap"},
@@ -37,6 +70,7 @@ const RELEASED_DOCS: any[] = [
   {"id": "video-365867e3-97c3-4cd4-9af1-1d07920173d0", "tranche": "03", "type": "video", "title": "Apollo Variant Starbase Commentary Video (historical Grok cross)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA / provided ref", "date_hint": "1962-1972", "location": "various", "program": "historical"},
 ];
 
+// Load from enhanced index (in prod: fetch('/data/index.json').then... or server route)
 const getFullCatalog = () => RELEASED_DOCS;
 
 interface AnalysisResult {
@@ -100,18 +134,22 @@ export default function GMIIETruthSurface() {
   const [isLoading, setIsLoading] = useState(false);
   const [paid, setPaid] = useState(false);
 
+  // NEW: Decipher Redactions state (PURSUE R03 D080/D077 focus, feeds directly from MCP decipher_redactions + redaction_decipher.py)
   const [decipherResult, setDecipherResult] = useState<any>(null);
   const [isDeciphering, setIsDeciphering] = useState(false);
 
+  // NEW states for Scrape + Break Codes (x402 premium for Break Codes)
   const [scrapeResult, setScrapeResult] = useState<any>(null);
   const [isScraping, setIsScraping] = useState(false);
   const [isBreaking, setIsBreaking] = useState(false);
 
+  // Final wiring: state + handler for full_d080_with_decipher (4-tool chain: scrape_pursue_tranche + decipher_redactions + break_codes + full_d080)
   const [fullChainResult, setFullChainResult] = useState<any>(null);
   const [isFullChaining, setIsFullChaining] = useState(false);
 
+  // === NEW: Full Catalog View (table/grid) of ALL released docs from enhanced manifest/index ===
   const [catalogView, setCatalogView] = useState<'grid' | 'table'>('table');
-  const [showFullCatalog, setShowFullCatalog] = useState(false);
+  const [showFullCatalog, setShowFullCatalog] = useState(false); // default: clean chat (ask + produced below); full titles/IDs on side via compact list or toggle; program tabs for navigation
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRelease, setFilterRelease] = useState<'all' | '01' | '02' | '03'>('all');
   const [filterType, setFilterType] = useState<'all' | 'narrative' | 'video' | 'image' | 'audio'>('all');
@@ -119,6 +157,7 @@ export default function GMIIETruthSurface() {
   const [filterProgram, setFilterProgram] = useState<'all' | 'uap' | 'stargate' | 'gateway' | 'historical'>('all');
   const [activeDocId, setActiveDocId] = useState<string>('D080-mother-orb-western-sensitive');
 
+  // Dynamic catalog load (preferred) via /api/analyze?action=catalog — falls back to RELEASED_DOCS
   const [dynamicCatalog, setDynamicCatalog] = useState<any[] | null>(null);
   const [catalogLoading, setCatalogLoading] = useState(false);
 
@@ -126,12 +165,15 @@ export default function GMIIETruthSurface() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [lastGenerated, setLastGenerated] = useState<any>(null);
 
+  // Comfy visuals integration state
   const [comfyPrompt, setComfyPrompt] = useState<string | null>(null);
   const [visualPreviewActive, setVisualPreviewActive] = useState(false);
 
+  // Breakthrough highlights state (for "Breakthrough Hidden" one-click full chain + inference spotlight)
   const [breakthroughHighlights, setBreakthroughHighlights] = useState<any>(null);
   const [showBreakthrough, setShowBreakthrough] = useState(false);
 
+  // Web3 state for true Web3 feel: wallet for provenance, payments, on-chain actions
   const [walletAddress, setWalletAddress] = useState<string>('');
   const [ipfsCIDs, setIpfsCIDs] = useState<Record<string, string>>({});
   const [onchainProofs, setOnchainProofs] = useState<Record<string, any>>({});
@@ -150,13 +192,16 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // Mock IPFS publish for artifacts (in real: use web3.storage, Pinata, or sovereign IPFS node via MCP)
   const publishToIPFS = async (key: string, data: any) => {
+    // Simulate CID (real: compute or upload)
     const mockCID = 'bafybei' + Array.from({length: 20}, () => Math.random().toString(36)[2]).join('').slice(0, 50);
     setIpfsCIDs(prev => ({ ...prev, [key]: mockCID }));
     toast.success(`Published to IPFS: ${mockCID} (immutable, content-addressed)`);
     return mockCID;
   };
 
+  // Mock on-chain anchor (in real: call registry contract on Solana/XRPL/Polygon/Apostle via sovereign tools)
   const anchorOnChain = async (key: string, cid: string) => {
     if (!walletAddress) {
       toast.error('Connect wallet first for on-chain proof');
@@ -192,6 +237,10 @@ export default function GMIIETruthSurface() {
 
   const missingCount = filteredCatalog.filter((d: any) => d.missing).length;
 
+  // (duplicate catalog state vars removed during polish; canonical filters + useMemo above drive the full catalog grid/table)
+
+  // Demo fallback for static GitHub Pages build (FTHTrading/ufo). 
+  // Real agentic calls (scrape, CV/OCR decipher, MCP full chain, Python PDF factory) require the local Ring or sovereign backend.
   const getDemoResult = (docId: string, q: string): AnalysisResult => {
     const isVideo = docId.includes('video');
     const isStargate = docId.includes('stargate');
@@ -266,6 +315,7 @@ export default function GMIIETruthSurface() {
         description: `Confidence ${Math.round(data.confidence * 100)}% • ${data.patterns_detected.length} patterns`,
       });
     } catch (e: any) {
+      // Static / Pages demo fallback — rich client-side packet so the UI feels alive and "all links/downloads work"
       const demo = getDemoResult(docId || activeDocId || 'uap-d080-mother-orb-western-sensitive', finalQuery);
       setResult(demo);
       toast.success('Demo Ring Analysis (static GitHub Pages)', {
@@ -283,14 +333,17 @@ export default function GMIIETruthSurface() {
   };
 
   const handlePayment = async (paymentInfo: any) => {
+    // Demo payment flow. In real: use @coinbase/x402 client or wallet adapter to pay USDC on Solana/Base
+    // Then retry with proper X-PAYMENT header (receipt from facilitator)
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 800));
+    await new Promise(r => setTimeout(r, 800)); // simulate CDP / on-chain settle
 
     setPaid(true);
     toast.success('Payment verified via CDP', {
       description: 'Receipt attached. Retrying with premium access...',
     });
 
+    // Auto-retry the last query as premium
     await runAnalysis(result?.doc_id, true);
     setIsLoading(false);
   };
@@ -301,8 +354,11 @@ export default function GMIIETruthSurface() {
 
     let narrative: string;
 
+    // Make the narrate use the voice_script_inferred (from DecipherResult / Break Codes dispatch) when available.
+    // Falls back to dedicated /api/voice for base packet. This enables narration of redacted/inferred fills.
     if (decipherResult && decipherResult.voice_script_inferred) {
       narrative = decipherResult.voice_script_inferred;
+      // Optional: still fetch voice for base + append, but prefer inferred per task
       try {
         const vres = await fetch('/api/voice', {
           method: 'POST',
@@ -315,6 +371,7 @@ export default function GMIIETruthSurface() {
         }
       } catch {}
     } else {
+      // Call dedicated voice API for the full accurate packet (D080 mechanics + GMIIE angles)
       const res = await fetch('/api/voice', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -324,6 +381,9 @@ export default function GMIIETruthSurface() {
       narrative = voiceData.full_narrative;
     }
 
+    // Real Deepgram Aura TTS via /api/voice (x402 if paid, server-side key only, aura-2-luna-en).
+    // Prefers the voice_script_inferred for rich redaction-inferred narration.
+    // Returns audio stream if successful; else text for fallback.
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
@@ -389,6 +449,9 @@ export default function GMIIETruthSurface() {
     toast.success('D080-specific ComfyUI prompt copied', { description: 'Exact mechanics from DOW-UAP-D080 Narrative + D077 AARO. Paste into ComfyUI/Gradio. Hook to MCP tool in prod for auto-recon.' });
   };
 
+  // NEW: Decipher Redactions (D080 cycle). Calls /api/analyze with action=decipher_redactions (x402 premium gate).
+  // Displays structured output from redaction_decipher.py (via MCP tool or route) + TS runRedactionDecipher shape.
+  // Directly supports batch tranche + feeds analyze_sighting.
   const runDecipherRedactions = async () => {
     if (!result && !query) {
       toast.error('Run a D080 analysis first to target the correct doc');
@@ -430,6 +493,7 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // NEW: Scrape button handler — dispatches action=scrape (free tier). Updates index/manifest for downstream decipher/break. Feeds legacy /truth + investigations/.
   const runScrape = async () => {
     setIsScraping(true);
     try {
@@ -456,6 +520,8 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // NEW: Break Codes (x402 gated for premium per task). Separate dispatch action=break_codes. Returns code_breaks + voice_script_inferred.
+  // Can be chained after scrape/decipher. Updates decipherResult for unified display + narrate/comfy.
   const runBreakCodes = async () => {
     if (!result && !query) {
       toast.error('Run analysis or decipher first (D080 target)');
@@ -485,7 +551,8 @@ export default function GMIIETruthSurface() {
       }
 
       const data = await res.json();
-      const br = data;
+      const br = data; // full structure at top for this action (code_breaks + voice_script_inferred etc)
+      // Merge into decipherResult for unified redaction/code display + narrate/comfy use
       setDecipherResult((prev: any) => ({
         ...(prev || {}),
         ...br,
@@ -504,6 +571,9 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // Final wiring: Full D080 chain button handler — calls action=full_d080_with_decipher (exposes all 4: scrape_pursue_tranche, decipher_redactions, break_codes, full_d080_with_decipher).
+  // Returns + displays full chain structure (inferences, code_breaks, confidence_matrix, voice/comfy, evidence_board_paths, chaining_ready).
+  // Mirrors mcp_server full_d080_with_decipher + analyze auto-chain for D080.
   const runFullD080Chain = async () => {
     setIsFullChaining(true);
     try {
@@ -530,6 +600,7 @@ export default function GMIIETruthSurface() {
 
       const data = await res.json();
       setFullChainResult(data);
+      // Merge key parts into decipherResult for unified display/narrate/comfy
       setDecipherResult((prev: any) => ({
         ...(prev || {}),
         ...data,
@@ -538,11 +609,13 @@ export default function GMIIETruthSurface() {
         confidence_matrix: data.confidence_matrix || prev?.confidence_matrix,
         voice_script_inferred: data.voice_script_inferred || data.voice_narration_script || prev?.voice_script_inferred,
       }));
+      // Breakthrough highlight
       setBreakthroughHighlights(data.inferences || data.code_breaks || data.redaction_map || null);
       setShowBreakthrough(true);
       toast.success('Full Chain + BREAKTHROUGH HIDDEN complete', {
         description: `Overall conf ${Math.round((data.confidence_matrix?.overall || 0.78) * 100)}% • Inferences highlighted. Scroll to panel.`,
       });
+      // Auto scroll to breakdown
       setTimeout(() => document.getElementById('breakdown-panel')?.scrollIntoView({ behavior: 'smooth' }), 120);
     } catch (e) {
       toast.error('Full D080 chain failed', { description: String(e) });
@@ -551,11 +624,13 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // Dedicated Breakthrough Hidden trigger (forces full chain + highlights)
   const runBreakthroughHidden = async () => {
     await runFullD080Chain();
     setShowBreakthrough(true);
   };
 
+  // Helper: Reconstruct Comfy prompt from decipher (uses updated /api/comfy that blends D080 cycle + redaction notes)
   const runComfyFromDecipher = async () => {
     if (!decipherResult && !result) {
       toast.error('Run Decipher or analysis first');
@@ -587,8 +662,10 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // === CATALOG ACTIONS: full production integration ===
   const selectDoc = (docId: string) => {
     setActiveDocId(docId);
+    // Load into main flow
     runAnalysis(docId);
     toast.info(`Active: ${docId}`, { description: 'Catalog selection loaded. Use Decipher / Download actions below.' });
   };
@@ -621,7 +698,8 @@ export default function GMIIETruthSurface() {
 
   const narrateForDoc = async (doc: any) => {
     setActiveDocId(doc.id);
-    await narrate();
+    // Reuse existing narrate logic but target this doc + any decipher
+    await narrate(); // existing function already prefers decipher voice_script + /api/voice
     toast.success(`Voice for ${doc.id}`, { description: 'Using voice_script_inferred + base packet.' });
   };
 
@@ -643,6 +721,7 @@ export default function GMIIETruthSurface() {
       const g = await res.json();
       setLastGenerated(g);
       if (g.pdf_base64) {
+        // Client-side download of generated for preview
         const link = document.createElement('a');
         link.href = `data:application/pdf;base64,${g.pdf_base64}`;
         link.download = `${doc.id}-preview.pdf`;
@@ -665,6 +744,7 @@ export default function GMIIETruthSurface() {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
+      // Call POST /api/download with full state for richest PDF (includes deciphered content)
       const res = await fetch('/api/download', {
         method: 'POST',
         headers,
@@ -700,6 +780,7 @@ export default function GMIIETruthSurface() {
 
       toast.success('Download complete (x402 gated)', { description: `${doc.title} — real PDF with deciphered content embedded.` });
     } catch (e) {
+      // Static Pages demo: client-side report so "all downloads work"
       const reportContent = `FTHTrading UFO Anomaly Intelligence Ring — Demo Report\n\nDoc: ${doc.id} — ${doc.title}\n\n${result?.explanation || 'Seeded video / imagery reference.'}\n\nDecipher / Code Breaks (demo): MOTHER-3-BABY-CYCLE @0.79 for orb events. Stargate RV protocols / Gateway Focus levels as applicable.\n\nEthics: HYPOTHESES ONLY. Full signed PDF factory + real x402 requires the sovereign Ring backend (local or MCP-connected).\n\nEvidence: investigations/ufo-pursue-r03 + seeded from user-provided IDs (war.gov down).`;
       const blob = new Blob([reportContent], { type: 'text/plain' });
       const url = window.URL.createObjectURL(blob);
@@ -716,6 +797,7 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // Working "links": evidence, investigations, truth cross. Copies exact local path + toast instructions (browser security prevents direct file: open).
   const openEvidence = (relPath: string) => {
     const full = relPath.match(/^[A-Za-z]:/) ? relPath : `C:\\Users\\Kevan\\${relPath.replace(/^[/\\]+/, '').replace(/\//g, '\\')}`;
     navigator.clipboard.writeText(full);
@@ -748,6 +830,7 @@ export default function GMIIETruthSurface() {
     }
   };
 
+  // PWA Install as App support
   const [canInstall, setCanInstall] = useState(false);
   React.useEffect(() => {
     const handler = (e: any) => {
@@ -759,6 +842,7 @@ export default function GMIIETruthSurface() {
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
+  // Dynamic catalog loader (inside component for hooks/toast access)
   const loadDynamicCatalog = async () => {
     setCatalogLoading(true);
     try {
@@ -795,6 +879,7 @@ export default function GMIIETruthSurface() {
   };
 
   React.useEffect(() => {
+    // Auto bootstrap dynamic catalog (makes catalog load dynamically via /api)
     loadDynamicCatalog().finally(() => setCatalogLoading(false));
   }, []);
 
@@ -813,6 +898,7 @@ export default function GMIIETruthSurface() {
     setCanInstall(false);
   };
 
+  // One-click share for testing (exact commands for tunnel + PWA)
   const shareSession = () => {
     const commands = `cd C:\\Users\\Kevan\\blockchainfraud-platform\\ufo-gmiie-app
 npm run build
@@ -830,6 +916,7 @@ cloudflared tunnel --url http://localhost:3005
         description: 'Paste into terminal. Start the server, tunnel it, share the https link. Recipients can install the PWA directly.',
       });
     }).catch(() => {
+      // Fallback: show in alert
       alert('Copy these commands:\n\n' + commands);
     });
   };
@@ -863,7 +950,9 @@ cloudflared tunnel --url http://localhost:3005
             </div>
           </div>
           <div className="flex items-center gap-4 text-sm">
-            <button onClick={connectWallet} className={`px-3 py-1 rounded text-xs border ${walletAddress ? 'border-emerald-600 text-emerald-400' : 'border-[#444] hover:bg-[#111]'}`}>{walletAddress ? `Connected: ${walletAddress.slice(0,6)}...${walletAddress.slice(-4)}` : 'Connect Wallet (Web3)'}</button>
+            <button onClick={connectWallet} className={`px-3 py-1 rounded text-xs border ${walletAddress ? 'border-emerald-600 text-emerald-400' : 'border-[#444] hover:bg-[#111]'}`}>
+              {walletAddress ? `Connected: ${walletAddress.slice(0,6)}...${walletAddress.slice(-4)}` : 'Connect Wallet (Web3)'}
+            </button>
             <button onClick={openInvestigations} className="hover:text-white underline decoration-dotted">Forensic Board (copy path)</button>
             <button onClick={openTruth} className="hover:text-white underline decoration-dotted">Open Legacy Truth (5173)</button>
             <button onClick={installAsApp} className="px-2 py-0.5 text-xs border border-[#444] rounded hover:bg-[#111]">Install as App (PWA)</button>
@@ -885,6 +974,7 @@ cloudflared tunnel --url http://localhost:3005
           </p>
         </div>
 
+        {/* Query Bar */}
         <div className="max-w-3xl mx-auto mb-8">
           <div className="query-bar flex items-center gap-3 rounded-2xl px-5 py-3">
             <Search className="w-5 h-5 text-[#888]" />
@@ -913,11 +1003,13 @@ cloudflared tunnel --url http://localhost:3005
           <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + verified downloads/exports</div>
         </div>
 
+        {/* === PRODUCTION CATALOG: Full view of ALL released docs from enhanced manifest/index.json + released_docs === */}
         <div className="mb-10">
+          {/* REQUIRED BANNER (exact per audit task; evidence from manifest.json + data/index.json + RELEASED_DOCS + disk) */}
           <div className="mb-4 p-3 rounded-xl border border-[#f55] bg-[#1a0a0a] text-sm font-medium">
             294+ TOTAL (docs + seeded videos from provided list) — Primary war.gov/UFO down (Akamai/EdgeSuite). Best video refs added from your IDs (war.gov + Grok cross). R03 videos now in compact navigator. Use local drops for full archive. Ring for agentic analysis on any.
           </div>
-
+          {/* TOP-LEVEL PROGRAM NAV / TABS — ultimate next-level program sections using "program" field from catalog + /api */}
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-2 px-1">
               <div className="text-xs uppercase tracking-[2px] text-[#888]">PROGRAMS • FILTER THE TRUTH MACHINE</div>
@@ -938,6 +1030,7 @@ cloudflared tunnel --url http://localhost:3005
             <div className="text-[10px] text-[#555] mt-1 px-1">Stargate: RV protocols / Grill Flame / Sun Streak. Gateway: Focus levels / Click-Out / Hemi-Sync. UAP: Mother orbs / AARO / FBI orbs. Historical: Apollo / 1940s+ releases. All agentic decipher + code breaks + finance hooks available per doc.</div>
           </div>
 
+          {/* COMPACT CLICKABLE LIST ON "SIDE" (above the list, acts as quick nav; full titles/IDs not cluttering the main chat area) */}
           <div className="mb-3 p-2 border border-[#222] rounded bg-[#0a0a0a]">
             <div className="text-[10px] uppercase tracking-widest text-[#888] mb-1">DOCS (click to load in Ring chat below — clean titles, no IDs clutter)</div>
             <div className="max-h-28 overflow-auto grid grid-cols-2 md:grid-cols-3 gap-1 text-xs">
@@ -960,10 +1053,17 @@ cloudflared tunnel --url http://localhost:3005
             <button onClick={() => setShowFullCatalog(!showFullCatalog)} className="mt-1 text-[10px] text-[#f55] hover:underline">{showFullCatalog ? 'Hide full explorer' : 'Browse full catalog (35+ clean titles) — hidden for less noise'}</button>
           </div>
 
+          {/* Cool reference imagery — clean horizontal strip, interactive (click loads related doc into the ask/produces flow below). Added per request since site down. Tied to programs + seeded videos. */}
           <div className="mb-4">
             <div className="text-[10px] uppercase tracking-widest text-[#888] mb-1">REFERENCE IMAGERY (AI-assisted reconstructions for context — HYPOTHESES ONLY)</div>
             <div className="flex gap-2 overflow-x-auto pb-1 snap-x">
-              {imagery.map((img, idx) => {
+              {[
+                {src: '/ufo/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
+                {src: '/ufo/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
+                {src: '/ufo/images/stargate-rv.jpg', label: 'Stargate RV / CRV Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
+                {src: '/ufo/images/gateway-focus.jpg', label: 'Gateway Focus 21 Click-Out', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
+                {src: '/ufo/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
+              ].map((img, idx) => {
                 const c = getProgramColor(img.program);
                 return (
                   <div key={idx} className="flex-shrink-0 w-36 cursor-pointer group snap-start" onClick={() => { setActiveDocId(img.docId); runAnalysis(img.docId); }}>
@@ -976,6 +1076,7 @@ cloudflared tunnel --url http://localhost:3005
             <div className="text-[9px] text-[#555] mt-0.5">Click any to load related analysis + breakdown below. Videos from provided list (war.gov down) now in compact navigator too.</div>
           </div>
 
+          {/* About section - color coded, professional, mirrors GitHub About box */}
           <div className="mb-6 p-4 border border-[#222] rounded-2xl bg-[#111]">
             <div className="text-sm uppercase tracking-[2px] text-[#888] mb-2">About</div>
             <div className="text-lg font-semibold mb-1 text-[#e5e5e5]">FTHTrading UFO Anomaly Intelligence Ring</div>
@@ -990,6 +1091,8 @@ cloudflared tunnel --url http://localhost:3005
             <div className="text-[10px] text-[#666]">0 stars • 0 watching • 0 forks • Full sovereign backend for live agentic power.</div>
           </div>
 
+          {/* Full explorer (the noisy table/grid) is hidden by default for clean interactive view.
+              Toggle button above controls visibility via CSS so JSX stays simple and balanced. */}
           <div className={showFullCatalog ? 'block mb-6 border border-[#333] rounded-2xl p-3 bg-[#0a0a0a]' : 'hidden'}>
             <div className="flex items-center justify-between mb-3 px-1">
             <div>
@@ -1003,6 +1106,7 @@ cloudflared tunnel --url http://localhost:3005
                 {catalogView === 'table' ? <><GridIcon className="w-3 h-3" /> Grid</> : <><TableIcon className="w-3 h-3" /> Table</>}
               </button>
               <button onClick={clearCatalogFilters} className="px-2 py-1 border border-[#444] rounded hover:bg-[#1a1a1a] flex items-center gap-1"><Filter className="w-3 h-3" /> Clear</button>
+              {/* ENHANCED: Export full catalog CSV stub */}
               <button
                 onClick={() => {
                   const rows = fullCatalog.map((d: any) => [d.id, d.title, d.tranche, d.type, d.status, d.missing ? 'MISSING' : 'present', d.agency || '', d.program || '']);
@@ -1016,6 +1120,7 @@ cloudflared tunnel --url http://localhost:3005
             </div>
           </div>
 
+          {/* Filters */}
           <div className="flex flex-wrap gap-2 mb-3">
             <input
               value={searchTerm}
@@ -1049,11 +1154,13 @@ cloudflared tunnel --url http://localhost:3005
               <option value="gateway">GATEWAY (Hemi-Sync)</option>
               <option value="historical">Historical / Apollo / Army</option>
             </select>
+            {/* Quick "place to go" program sections */}
             <button onClick={() => { setFilterProgram('stargate'); setSearchTerm(''); }} className="px-2 py-1 text-xs border border-blue-800 text-blue-300 rounded hover:bg-blue-950">Stargate</button>
             <button onClick={() => { setFilterProgram('gateway'); setSearchTerm(''); }} className="px-2 py-1 text-xs border border-purple-800 text-purple-300 rounded hover:bg-purple-950">Gateway</button>
             <div className="text-[10px] self-center text-[#555] ml-1">Active: <span className="font-mono text-[#f55]">{activeDocId}</span></div>
           </div>
 
+          {/* Catalog Grid / Table — only rendered inside the showFullCatalog guard below. Compact list above is the normal interactive path. */}
           {catalogView === 'table' ? (
             <div className="overflow-auto border border-[#222] rounded-2xl bg-[#0a0a0a]">
               <table className="min-w-full text-sm">
@@ -1124,8 +1231,9 @@ cloudflared tunnel --url http://localhost:3005
             </div>
           ) : null}
           <div className="text-[10px] text-[#555] mt-1">Full explorer (toggle the button above for clean mode). All actions work from the compact list above too.</div>
-          </div>
+          </div> {/* end of explorer (hidden by default via class) */}
 
+        {/* Results */}
         {result && (
           <div className="max-w-4xl mx-auto">
             <div className={`card rounded-3xl p-8 ${result.paid ? 'premium' : ''}`}>
@@ -1167,6 +1275,7 @@ cloudflared tunnel --url http://localhost:3005
                 <strong>On-Chain Hooks:</strong> {result.onchain_hooks.join(' • ')}
               </div>
 
+              {/* Premium Actions — ALL BELLS & WHISTLES one-click row */}
               <div className="mt-8 pt-6 border-t border-[#222] flex flex-wrap gap-3">
                 {!result.paid && (
                   <button onClick={() => handlePayment({ amount: "0.01", asset: "USDC", network: "solana", payTo: "FTH-treasury-solana-or-base" })} 
@@ -1175,6 +1284,7 @@ cloudflared tunnel --url http://localhost:3005
                   </button>
                 )}
 
+                {/* NEW dedicated buttons for Scrape (free), Decipher Redactions (x402 premium), Break Codes (premium), Full D080 Chain; seamless with legacy /truth wiring */}
                 <button
                   onClick={runScrape}
                   disabled={isScraping}
@@ -1199,6 +1309,7 @@ cloudflared tunnel --url http://localhost:3005
                   {isBreaking ? <><Loader2 className="w-4 h-4 animate-spin" /> Breaking Codes...</> : <><Zap className="w-4 h-4" /> Break Codes (premium)</>}
                 </button>
 
+                {/* Final wiring: button for the 4th tool + full consolidated chain */}
                 <button
                   onClick={runFullD080Chain}
                   disabled={isFullChaining}
@@ -1207,6 +1318,7 @@ cloudflared tunnel --url http://localhost:3005
                   {isFullChaining ? <><Loader2 className="w-4 h-4 animate-spin" /> Running Full Chain...</> : <><Shield className="w-4 h-4" /> Full D080 Chain (scrape+decipher+break+full) (premium)</>}
                 </button>
 
+                {/* BREAKTHROUGH HIDDEN — forces full chain + highlights inferences (the money button) */}
                 <button
                   onClick={runBreakthroughHidden}
                   disabled={isFullChaining}
@@ -1235,6 +1347,10 @@ cloudflared tunnel --url http://localhost:3005
               {!result.paid && <div className="mt-4 text-[10px] text-[#f55]/70 flex items-center gap-1.5"><AlertTriangle className="w-3 h-3" /> Premium features (full RAG, voice, visuals, verified IPFS+ZK downloads/exports) require x402 payment.</div>}
             </div>
 
+            {/* === ULTIMATE BADASS PER-DOC BREAKDOWN PANEL (id for breakthrough scroll) ===
+                 Full translation/explanation from analyze • Decipher redaction_map with overlays, inferred, conf, alts, rationale (HYPOTHESES ONLY) •
+                 Program-specific code breaks (MOTHER for UAP / RV protocols for Stargate / Focus click-out for Gateway) • Finance/reset + on-chain • All one-clicks
+                 Clean titles. Evidence-led. Dark cyber ultimate. */}
             <div id="breakdown-panel" className="max-w-4xl mx-auto mt-4">
               {(result || decipherResult || fullChainResult) && (
                 <div className="rounded-3xl border border-[#f55]/40 bg-[#0a0a0a] p-6 mb-4">
@@ -1250,6 +1366,7 @@ cloudflared tunnel --url http://localhost:3005
                     </div>
                   </div>
 
+                  {/* Full explanation / translation from analyze */}
                   {result?.explanation && (
                     <div className="mb-4 p-4 bg-black/60 border border-[#222] rounded-xl text-sm leading-relaxed">
                       <div className="uppercase text-xs text-[#888] mb-1">FULL TRANSLATION / EXPLANATION (from Ring analyze)</div>
@@ -1257,6 +1374,7 @@ cloudflared tunnel --url http://localhost:3005
                     </div>
                   )}
 
+                  {/* Finance / Reset / Onchain */}
                   {(result?.finance_ties || result?.reset_angles || result?.onchain_hooks) && (
                     <div className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                       <div className="p-3 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1">Finance Ties</div>{(result.finance_ties||[]).map((t:string,i:number)=><div key={i}>• {t}</div>)}</div>
@@ -1265,6 +1383,7 @@ cloudflared tunnel --url http://localhost:3005
                     </div>
                   )}
 
+                  {/* Breakthrough highlights banner */}
                   {showBreakthrough && breakthroughHighlights && (
                     <div className="mb-4 p-3 rounded-xl bg-[#3a1a00] border border-[#f55] text-xs">
                       <strong>🔥 BREAKTHROUGH INFERENCES HIGHLIGHTED</strong> — Full chain executed. Review redaction/code cards below for conf/alts/rationale. All HYPOTHESES ONLY.
@@ -1274,6 +1393,7 @@ cloudflared tunnel --url http://localhost:3005
               )}
             </div>
 
+            {/* NEW: Deciphered Redactions Display — structured output ... (now inside badass context) */}
             {decipherResult && (
               <div className="max-w-4xl mx-auto mt-6 card rounded-3xl p-6 border border-[#f55]/30 bg-[#0f0f0f]">
                 <div className="uppercase text-[10px] tracking-[2px] text-[#f55] mb-2">PURSUE RELEASE 03 • D080/D077 CYCLE • REDACTION DECIPHER (MCP + redaction_decipher.py) • Break Codes + Comfy D080 cycle integration</div>
@@ -1286,6 +1406,7 @@ cloudflared tunnel --url http://localhost:3005
                   <strong>ETHICS (always shown):</strong> {decipherResult.ethics_note || decipherResult.decipher_result?.ethics_note || "HYPOTHESES ONLY — NOT OFFICIAL. Never cite as recovered text."}
                 </div>
 
+                {/* Redaction Map — polished cards with inferred_text, confidence, alternatives, rationale, bbox, + highlighted original text overlay for auditable/ethical UX */}
                 <div className="mb-5">
                   <div className="uppercase text-xs tracking-widest text-[#888] mb-2">Redaction Map (OpenCV + OCR + Context Inference) — full DecipherResult • HYPOTHESES ONLY</div>
                   <div className="space-y-3">
@@ -1300,11 +1421,13 @@ cloudflared tunnel --url http://localhost:3005
                             <span className="font-mono text-[#f55] font-semibold">conf {Math.round((span.confidence || span.conf || 0.5) * 100)}%</span>
                           </div>
 
+                          {/* Inferred text prominent */}
                           <div className="mb-2">
                             <div className="uppercase text-[10px] text-[#f55]/80 tracking-widest mb-0.5">INFERRED TEXT (HYPOTHESIS)</div>
                             <div className="text-white font-medium text-sm leading-snug">{span.inferred_text}</div>
                           </div>
 
+                          {/* Alternatives */}
                           {span.alternatives && span.alternatives.length > 0 && (
                             <div className="mb-2">
                               <div className="text-[#666] text-[10px] uppercase tracking-widest">Alternatives</div>
@@ -1312,13 +1435,15 @@ cloudflared tunnel --url http://localhost:3005
                             </div>
                           )}
 
+                          {/* Rationale */}
                           <div className="text-[#555] text-[10px] mb-3">Rationale: {span.rationale || 'Contextual + RAG inference from D080_D077 seeds.'}</div>
 
+                          {/* Highlighted original text overlay (auditable reconstruction) */}
                           <div className="mt-1">
                             <div className="uppercase text-[10px] text-[#888] mb-1">Highlighted Original Context Overlay (visible + redaction fill)</div>
                             <div className="p-2.5 rounded bg-black/70 border border-[#222] font-mono text-[10px] leading-relaxed text-[#ccc]">
                               {before}
-                              <span className="bg-[#3a2a00] text-[#ffcc66] px-1 py-0.5 rounded font-semibold mx-0.5" title={`Inferred @ ${Math.round((span.confidence || 0.5)*100)}%`}>[REDACTED: {span.inferred_text?.slice(0,60)}{span.inferred_text?.length > 60 ? '…' : ''} • conf {(span.confidence||0.5)*100|0}%]</span>
+                              <span className="bg-[#3a2a00] text-[#ffcc66] px-1 py-0.5 rounded font-semibold mx-0.5" title={`Inferred @ ${Math.round((span.confidence || 0.5)*100)}%`}>[REDACTED: {span.inferred_text?.slice(0,60)}{span.inferred_text?.length > 60 ? '…' : ''} • conf ${(span.confidence||0.5)*100|0}%]</span>
                               {after}
                             </div>
                             <div className="text-[#444] text-[9px] mt-0.5">Full visible text available in original_visible_text payload. This overlay is for rapid forensic review.</div>
@@ -1330,6 +1455,7 @@ cloudflared tunnel --url http://localhost:3005
                   </div>
                 </div>
 
+                {/* Code Breaks — polished list with MOTHER-3-BABY etc. Program-aware labels */}
                 <div className="mb-4">
                   <div className="uppercase text-xs tracking-widest text-[#888] mb-2">
                     { (activeDocId.includes('stargate') || (filteredCatalog.find((d:any)=>d.id===activeDocId)?.program)==='stargate') ? 'CODE BREAKS — RV PROTOCOLS / GRILL FLAME / SUN STREAK / HEMI-SYNC (STARGATE)' : 
@@ -1350,6 +1476,7 @@ cloudflared tunnel --url http://localhost:3005
                   </div>
                 </div>
 
+                {/* Evidence paths (auditable) */}
                 {(decipherResult.evidence_board_paths || decipherResult.evidence_persisted || fullChainResult?.evidence_board_paths) && (
                   <div className="mb-3 p-2 bg-[#111] border border-[#222] rounded text-[10px] text-[#aaa]">
                     <strong>Evidence paths:</strong> investigations/ufo-pursue-r03 (and gmiie-* subdirs) 
@@ -1364,6 +1491,7 @@ cloudflared tunnel --url http://localhost:3005
               </div>
             )}
 
+            {/* NEW: Scrape result banner (free tier, updates data for premium actions + legacy /truth) */}
             {scrapeResult && (
               <div className="max-w-4xl mx-auto mt-4 card rounded-2xl p-4 border border-[#333] bg-[#111] text-xs">
                 <div className="uppercase tracking-[1px] text-[#888] mb-1">SCRAPE TRANCHE (free • action=scrape_pursue_tranche)</div>
@@ -1372,6 +1500,7 @@ cloudflared tunnel --url http://localhost:3005
               </div>
             )}
 
+            {/* Final wiring: Full D080 chain result banner + structure display (all 4 tools) */}
             {fullChainResult && (
               <div className="max-w-4xl mx-auto mt-4 card rounded-3xl p-6 border border-[#f55]/40 bg-[#0a0a0a]">
                 <div className="uppercase text-[10px] tracking-[2px] text-[#f55] mb-2">FULL D080 CHAIN — scrape_pursue_tranche + decipher_redactions + break_codes + full_d080_with_decipher (from mcp_server + /api/analyze final wiring)</div>
@@ -1411,6 +1540,7 @@ cloudflared tunnel --url http://localhost:3005
           </div>
         )}
 
+        {/* COMFY VISUALS PANEL + FINAL NOTES (production) */}
         {(comfyPrompt || visualPreviewActive) && (
           <div className="max-w-4xl mx-auto mt-6 p-5 rounded-3xl border border-[#f55]/30 bg-[#0a0a0a]">
             <div className="text-[#f55] text-xs mb-1">COMFY VISUAL INTEGRATION (prompt + preview)</div>
