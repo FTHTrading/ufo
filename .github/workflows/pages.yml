@@ -18,9 +18,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # Removed cache: 'npm' to avoid requiring lockfile for this demo setup
       - uses: actions/configure-pages@v4
-      - run: npm ci
+      - run: npm install
       - run: npm run build
         env:
           NODE_ENV: production
