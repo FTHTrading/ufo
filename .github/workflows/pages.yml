@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          # Removed cache: 'npm' to avoid requiring lockfile for this demo setup
+          # cache removed to not require package-lock.json
       - uses: actions/configure-pages@v4
       - run: npm install
       - run: npm run build
@@ -36,4 +36,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-# After push or Run workflow, site deploys. Activate in repo Settings > Pages > Source: GitHub Actions.
+# 1-click: Use 'Run workflow' in Actions tab, or push to main. Activate Pages in repo Settings > Pages > Source = GitHub Actions.
