@@ -521,7 +521,7 @@ export default function GMIIETruthSurface() {
   };
 
   // NEW: Break Codes (x402 gated for premium per task). Separate dispatch action=break_codes. Returns code_breaks + voice_script_inferred.
-  // Can be chained after scrape/decipher. Updates decipherResult for unified display + narrate/comfy.
+  // Can be chained after scrape/decipher. Updates decipherResult for unified display + narrate/comfy use
   const runBreakCodes = async () => {
     if (!result && !query) {
       toast.error('Run analysis or decipher first (D080 target)');
@@ -931,7 +931,7 @@ cloudflared tunnel --url http://localhost:3005
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#ddd]">
-      <header className="border-b border-[#222] bg-black/80 backdrop-blur sticky top-0 z-50">
+      <header className="border-b border-[#222] bg=black/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Shield className="w-6 h-6 text-[#f55]" />
@@ -958,7 +958,7 @@ cloudflared tunnel --url http://localhost:3005
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#111] border border-[#222] text-xs mb-4">
             <Zap className="w-3.5 h-3.5 text-[#f55]" /> AGENTIC • x402 POWERED • ON-CHAIN PERMANENT
           </div>
-          <h1 className="text-6xl font-semibold tracking-tighter mb-3 cyber-text">FTHTrading UFO Truth Surface — gov site down, we build our own.</h1>
+          <h1 className="text-6xl font-semibold tracking-tighter mb-3 cyber-text">FTHTrading UFO Truth Surface - gov site down, we build our own.</h1>
           <p className="max-w-2xl mx-auto text-xl text-[#aaa]">
             Natural language access to every PURSUE tranche. Mother orbs, sensitive sites, finance/reset implications. 
             Free basic. Premium agentic unlocks via USDC micropayments on Solana/Base.
@@ -1049,11 +1049,11 @@ cloudflared tunnel --url http://localhost:3005
             <div className="text-[10px] uppercase tracking-widest text-[#888] mb-1">REFERENCE IMAGERY (AI-assisted reconstructions for context — HYPOTHESES ONLY)</div>
             <div className="flex gap-2 overflow-x-auto pb-1 snap-x">
               {[
-                {src: '/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
-                {src: '/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
-                {src: '/images/stargate-rv.jpg', label: 'Stargate RV / CRV Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
-                {src: '/images/gateway-focus.jpg', label: 'Gateway Focus 21 Click-Out', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
-                {src: '/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
+                {src: '/ufo/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
+                {src: '/ufo/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
+                {src: '/ufo/images/stargate-rv.jpg', label: 'Stargate RV / CRV Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
+                {src: '/ufo/images/gateway-focus.jpg', label: 'Gateway Focus 21 Click-Out', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
+                {src: '/ufo/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
               ].map((img, idx) => {
                 const c = getProgramColor(img.program);
                 return (
@@ -1232,7 +1232,7 @@ cloudflared tunnel --url http://localhost:3005
                 <div>
                   <div className="text-xs uppercase tracking-[2px] text-[#f55]">RING ANALYSIS • {result.doc_id}</div>
                   <div className="text-xl font-semibold">{result.title}</div>
-                  {result.location_tag && <div className="text-sm text-[#888]">{result.location_tag}</div>}
+                  {result.location_tag && <div className="text-sm text-[#888]">{result.location_tag}</div>
                 </div>
                 <div className="text-right text-xs">
                   <div className="font-mono">CONF {Math.round(result.confidence*100)}%</div>
@@ -1304,7 +1304,7 @@ cloudflared tunnel --url http://localhost:3005
         )}
 
         <div className="max-w-3xl mx-auto mt-10 text-[11px] text-[#666] text-center">
-          Polished: Full catalog table+grid of ALL docs from enhanced manifest/index (released_docs). Filters (release, type, status), search, missing indicators. Status + actions: View Analysis, Decipher (premium), Generate PDF (/api/generate), Download x402 gated (/api/download — generates PDF embedding deciphered if not present). Comfy visuals + voice integrated per-item. Real deciphered content access. TROPTIONS mint UI removed. Production x402 flows + new endpoints. Calls ufo APIs + generate/download. Canonical /truth at adk_build/legacy-vault-protocol.
+          Polished: Full catalog table+grid of ALL docs from enhanced manifest/index (released_docs). Filters (release, type, status), search, missing indicators. Status + actions: View Analysis, Decipher (premium), Generate PDF (/api/generate), Download x402 gated (/api/download - generates PDF embedding deciphered if not present). Comfy visuals + voice integrated per-item. Real deciphered content access. TROPTIONS mint UI removed. Production x402 flows + new endpoints. Calls ufo APIs + generate/download. Canonical /truth at adk_build/legacy-vault-protocol.</div>
         </div>
       </div>
     </div>
