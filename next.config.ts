@@ -2,11 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/ufo',
-  assetPrefix: '/ufo/',
+  basePath: process.env.NODE_ENV === 'production' ? '/ufo' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/ufo/' : '',
   images: {
     unoptimized: true,
   },
-  // For GitHub Pages project site
 };
 export default nextConfig;
