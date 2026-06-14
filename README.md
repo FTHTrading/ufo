@@ -1,73 +1,48 @@
-# FTHTrading | UFO Anomaly Intelligence Ring
+FTHTrading | UFO Anomaly Intelligence Ring
 
 **Public Truth Surface & Interactive Catalog** for PURSUE releases (war.gov/UFO), Stargate, Gateway documents.
 
-war.gov/UFO primary site is currently down (Akamai/EdgeSuite blocks). This is the FTHTrading-hosted public mirror and enhanced experience.
+**Web3 Hybrid Architecture** (IPFS + On-chain + Sovereign Agents):
+- **IPFS**: Immutable site builds, seeded video manifests, imagery, analysis reports, redaction maps, transcripts (content-addressed CIDs, versioned).
+- **On-chain**: Registry for root CID + version, payment receipts for premium actions (x402), provenance hashes, access rights, attestations (verifiable ownership & integrity).
+- **Off-chain (Sovereign Agents)**: Heavy compute - OCR/CV redaction decipher, code breaking (MOTHER-3-BABY 0.79 etc.), scraping, PDF generation, full chains. Results pinned to IPFS + anchored on-chain.
 
-## Features (Clean, Interactive, Less Noise)
+This matches the sovereign FTH stack (MCP Hub, Apostle Chain, x402, legacy-vault IPFS).
 
-- **Compact clickable navigator** (side/titles): Clean document titles with program badges (UAP, Stargate, Gateway, Historical). Click to load into the main flow. Search + program filters live.
-- **Ask Ring** at top: Natural language query + one-click actions (Scrape free, Decipher Redactions x402 premium, Break Codes, Full Chain/Breakthrough, Generate PDF, Download x402, Voice, Comfy visuals).
-- **Produces / Breakdown below**: Rich results panel with translation/explanation, redaction maps (inferred text + confidence + alternatives + rationale + highlighted overlay), code breaks (MOTHER-3-BABY-CYCLE 0.79 for orb events, RV protocols for Stargate, Focus/click-out for Gateway), finance/reset/on-chain angles, evidence paths (copy real local paths + instructions).
-- **Reference Imagery Gallery**: 5 AI-assisted cool visuals (Mother Orb + Baby Cycle, Colorado Potato Cloaking, Stargate RV/CRV Session, Gateway Focus 21 Click-Out, Apollo Starbase Remark). Clickable thumbnails load related analysis.
-- **Seeded Videos** (from your provided list of IDs, best ones added because site down): Plasma/merge orbs (war.gov ref), orb cluster/cloaking, mother-baby cycle, Gateway Hemi-Sync protocol video, Stargate RV operational, Apollo historical commentary. Appear in navigator as video type entries. Full actions supported in demo.
-- All links work (evidence copy paths, cross links). Downloads work (demo client reports + note for full signed PDF factory).
-- x402 demo pay flow, HYPOTHESES ONLY ethics everywhere, PWA ready.
+## Features (Clean, Interactive, Professional, Color-Coded)
 
-## Run Locally (Full Power)
+- Compact clickable navigator (side) with program color badges: UAP emerald, Stargate blue, Gateway violet, Historical amber, Video red.
+- Ask Ring top + one-click actions (now Web3-enabled: require/connect wallet for premium, publish to IPFS, anchor on-chain).
+- Produces/Breakdown below with rich verifiable evidence: redaction overlays, code breaks, finance/reset angles + new "Web3 Provenance" panel showing IPFS CID, on-chain tx/proof, wallet signer, timestamp, "Verify" links (mock for demo; real on Solana/XRPL/Polygon/Apostle).
+- Reference Imagery Gallery: 5 AI visuals, color-coded, clickable.
+- Seeded Videos from your list (best ones, site down workaround): with full actions + Web3 publish/anchor.
+- All links work (evidence copy paths), downloads (demo reports + note for full).
+- PWA, x402 demo, HYPOTHESES ONLY everywhere.
 
-The public site is a beautiful static demo (GitHub Pages). For real agentic backend (live scrape from mirrors, CV/OCR redaction decipher, code breaking with MOTHER-level inference, Python PDF generation with watermark/HSM stub, MCP tools):
+## 1-Click Deploy & GitHub Pages
 
-```powershell
-cd C:\Users\Kevan\blockchainfraud-platform\ufo-gmiie-app
-$env:PORT=3005
-npm run dev
-```
+- Push to main or use Actions tab > "Deploy ..." workflow > Run workflow (1 click manual).
+- Static export + Pages workflow deploys to https://fthtrading.github.io/ufo
+- To activate/enable: Repo Settings > Pages > Source = GitHub Actions (one-time).
 
-Open http://localhost:3005
+## Web3 UX Flow
+1. Connect Wallet (MetaMask etc.) for provenance & payments.
+2. Browse catalog (IPFS manifests).
+3. Premium actions: sign/pay (x402) -> backend computes -> result to IPFS (CID) -> anchor on-chain (receipt).
+4. Verify in UI: CID, chain record, signer.
 
-The companion Truth surface:
-```powershell
-cd C:\Users\Kevan\adk_build\legacy-vault-protocol
-npm run dev -- --port 5173 --host 127.0.0.1
-```
+## Sovereign Stack Integration
+Full power via FTH MCP Hub, Apostle (chain 7332), x402, legacy-vault IPFS, Comfy/Deepgram.
 
-## GitHub Pages Deployment
+See local sovereign-control-plane for preflight, contracts, etc.
 
-This repo is configured for GitHub Pages (static export of the Next.js Ring UI).
+## First Implementation (done in this repo)
+- IPFS mocks for reports + site assets.
+- On-chain mocks + contract sketches (see contracts/).
+- Wallet + provenance panel.
+- Color-coded professional UI.
 
-- Push to main triggers the workflow.
-- Live at: https://fthtrading.github.io/ufo (after first deploy)
+## Cautions
+Not everything on-chain: large media off, compute off-chain, secrets never public.
 
-For full scale: Point the "Ask Ring" actions at your sovereign backend (fth-mcp-hub, Apostle Chain, x402, etc.) or deploy the full stack (frontend + Python mcp_server.py + scraper + redaction_decipher) to Vercel/Cloudflare + worker.
-
-## Seeded Content (Your List + Enhancements)
-
-Videos added from the IDs you provided (non-deleted/best fit):
-- video-19fc9fa6-bf82-485b-a390-9f391e1936f7 (war.gov plasma sphere & merge orbs)
-- video-c1d448f0-43b2-4d67-8b92-d944e68ad63d (orb cluster/cloaking June 12 ref)
-- video-d4446c9b-308b-4450-a990-4c8154e9395e (mother-baby cycle June 10 ref)
-- video-2786a7f7-23d2-4434-9928-4ce14f66261f (Gateway Hemi-Sync protocol)
-- video-f4e861f6-b666-490b-b6b8-0de099540596 (Stargate Grill Flame RV)
-- video-365867e3-97c3-4cd4-9af1-1d07920173d0 (Apollo variant commentary)
-
-More can be added from the rest of your list.
-
-Cool imagery generated and integrated (tied to events/programs).
-
-## Sovereign / AGENTS.md Compliance
-
-- Evidence-led, HYPOTHESES ONLY
-- Full catalog + missing indicators
-- All links/downloads functional
-- Clean interactive less noise (compact list + ask + produces below; full explorer toggle hidden by default)
-- Scalable with FTH MCP Hub, Apostle Chain, x402, etc.
-
-## Next
-
-- Drop real media files locally for live OCR/CV
-- Connect live backend for full chains
-- Expand with more of your video IDs
-- Deploy enhanced backend for production power
-
-Built as part of FTHTrading sovereign stack.
+Enhance: real IPFS pinning service, live contract on chosen chain (Solana recommended for speed/cost or XRPL for FTH alignment), full agent integration.
