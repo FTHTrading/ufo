@@ -23,6 +23,14 @@ jobs:
       - run: npm run build
         env:
           NODE_ENV: production
+      - name: Add .nojekyll (for Pages static sites with _next) and debug out contents
+        run: |
+          touch ./out/.nojekyll
+          ls -la ./out || true
+          echo "=== index.html locations ==="
+          find ./out -name index.html | head -5 || true
+          echo "=== top level files ==="
+          find ./out -maxdepth 2 -type f | head -50 || true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
