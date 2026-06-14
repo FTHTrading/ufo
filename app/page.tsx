@@ -931,7 +931,7 @@ cloudflared tunnel --url http://localhost:3005
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#ddd]">
-      <header className="border-b border-[#222] bg=black/80 backdrop-blur sticky top-0 z-50">
+      <header className="border-b border-[#222] bg-black/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Shield className="w-6 h-6 text-[#f55]" />
