@@ -19,7 +19,7 @@ const RELEASED_DOCS: any[] = [
 
   // Core UAP / D0xx (R03 flagship)
   {"id": "uap-d080-western-unredacted-sensor-data", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Unredacted Raw Sensor Data & Telemetry (Tranche 3)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "DOW", "date_hint": "2023-10-14", "location": "Nevada sensitive range grid 14-B", "program": "uap", "description": "Unredacted multispectral sensor data, thermal imaging logs, and EMF telemetry showing the baby orb merge cycles and kinetics.", "links": [{"name": "AARO Official", "url": "https://www.aaro.mil/"}]},
-  {"id": "stargate-cia-financial-reset-rv-transcript", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "CIA", "date_hint": "1989-05-12", "location": "Temporal Coordinate 2026-06-14", "program": "stargate", "description": "Declassified transcription of Stargate Session 8904. Viewer 042 targets 2026, detailing global financial reset and ledger proofs.", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "stargate-cia-financial-reset-rv-transcript", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs (Fictional Simulation)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "CIA", "date_hint": "1989-05-12", "location": "Temporal Coordinate 2026-06-14", "program": "stargate", "description": "Speculative fictional reconstruction modeling remote viewing transcription concepts. Fictional Viewer 042 targets 2026, describing hypothetical financial resets and ledger proof scenarios.", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
   {"id": "video-uap-baby-orb-merge-2025", "tranche": "03", "type": "video", "title": "PURSUE Tranche 3 - Baby Orb Merge Telemetry and Video Record", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "FBI / AARO", "date_hint": "2025-03-22", "location": "Northeastern US Pond Area", "program": "uap", "description": "Declassified video logs and multispectral frames from the Northeastern Orb sighting. Displays two 3-meter red spheres merging into a single stationary entity.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}]},
   {"id": "uap-d080-mother-orb-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap", "description": "Luminous orange mother orb (12-18m diameter) observed over sensitive security facilities. Ejected smaller red baby orbs in coordinated patterns.", "links": [{"name": "AARO Official", "url": "https://www.aaro.mil/"}, {"name": "FBI Vault", "url": "https://vault.fbi.gov/"}]},
   {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
@@ -343,36 +343,36 @@ WITNESS CORROBORATION (FBI AGENT DEPOSITION):
     }
 
     if (docId === 'stargate-cia-financial-reset-rv-transcript') {
-      const explanation = `[UNREDACTED STARGATE INTELLIGENCE - CIA READING ROOM RELEASE]
+      const explanation = `[SPECULATIVE / FICTIONAL DEMONSTRATION RECORD]
 Document ID: stargate-cia-financial-reset-rv-transcript
-Title: CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs
-Agency: CIA / DIA
-Location: Temporal Coordinate 2026-06-14 (Viewer Coordinates: 38.8951N, -77.0364W)
-Date Hint: Session Date: May 12, 1989
-Status: UNREDACTED STARGATE SESSION (ZERO BLACKOUTS)
+Title: CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs (Fictional Simulation)
+Agency: CIA / DIA (Simulated Scenario)
+Location: Temporal Coordinate 2026-06-14 (Simulation Target)
+Date Hint: Session Date: May 12, 1989 (Fictional)
+Status: SPECULATIVE SIMULATION (NOT AN AUTHENTIC DECLASSIFIED RECORD)
 
-DECLASSIFIED SESSION TRANSCRIPTION (EXCERPTS FROM SESSION 8904):
+SIMULATED TRANSCRIPTION (EXCERPTS FROM FICTIONAL SESSION 8904):
 - MONITOR: "All right. Center your mind on the target coordinate 20260614. Describe the primary mechanism of commerce."
 - VIEWER 042: "I see... a web. Not of spiders. It's... glowing lines. Millions of computers blinking. No banks. No central banks. The money is... numbers in a chain. A block... block of chains. Ledgers. Everyone holds a piece of the ledger. It is completely transparent but unbreakable."
 - MONITOR: "Look at the geopolitical transition point. What happens to the fiat currency systems?"
 - VIEWER 042: "A reset. It looks like... a sudden lock. In mid-2026. The dollar is... it's pegged, but the value is being routed into these digital addresses. They call it... x402. A micropayment routing protocol. The old debt is being burned. A global sovereign debt write-off. The transition is forced by... by an anomaly. The public demands truth about the files, and the financial system is reconstructed to prevent fraud."
 - MONITOR: "Look for signs of cryptographic keys or signatures."
-- VIEWER 042: "Yes. A series of hashes. The main hash starts with... '57VqZpdg...'. It's on a public ledger. They are calling it... the sovereign truth verification index. This is where the declassified UAP documents are anchored."`;
+- VIEWER 042: "Yes. A series of hashes. The main hash starts with... 'SOLANA_MINT_MOCK_36F2FBC14AD81D73D09B2214'. It's on a public ledger. They are calling it... the sovereign truth verification index. This is where the UAP documents are mock-anchored."`;
       return {
         ok: true,
         doc_id: docId,
         tranche: 'cross',
-        title: 'CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs',
+        title: 'CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs (Fictional Simulation)',
         location_tag: 'Temporal Coordinate 2026-06-14',
-        phenomenology: ['coordinate remote viewing', 'temporal coordinate drift', 'future financial timelines', 'decentralized ledger structures'],
-        witness_credibility: 'High — CIA Operational Remote Viewers',
+        phenomenology: ['coordinate remote viewing (simulated)', 'temporal coordinate drift (simulated)', 'future financial timelines (simulated)', 'decentralized ledger structures (simulated)'],
+        witness_credibility: 'N/A — Speculative Simulation',
         explanation,
-        patterns_detected: ['Session 8904 transcription', '1989 temporal target', 'cryptographic ledger verification'],
-        finance_ties: ['global currency revaluation', 'sovereign debt restructuring', 'digital ledger transitions'],
-        reset_angles: ['2026 temporal convergence', 'decentralized ledger proofs', 'x402 protocol seeds'],
-        onchain_hooks: ['Stargate session 8904 hash', 'monetary reset state proof'],
-        confidence: 0.98,
-        premium_unlocks: ['unredacted audio reel simulation', 'Viewer 042 timeline mapping', 'cryptographic ledger indices', 'audio narration'],
+        patterns_detected: ['Simulated Session 8904 transcription', 'Speculative 1989 target', 'Cryptographic ledger verification concept'],
+        finance_ties: ['conceptual currency revaluation', 'speculative debt restructuring', 'digital ledger transitions'],
+        reset_angles: ['simulated 2026 temporal convergence', 'decentralized ledger proofs', 'x402 protocol seeds'],
+        onchain_hooks: ['Simulated stargate session hash', 'monetary reset state proof concept'],
+        confidence: 0.15,
+        premium_unlocks: ['simulated audio reel reconstruction', 'fictional timeline mapping', 'cryptographic ledger indices', 'audio narration'],
         paid: paid || false,
       };
     }
@@ -732,17 +732,17 @@ Defense & Geo-political implications:
           doc_id: docId,
           redaction_map: [
             { redacted_text: "[TARGET-DATE-BLACKOUT]", inferred_text: "June 14, 2026", explanation: "Temporal coordinate targeted by Viewer 042" },
-            { redacted_text: "[LEDGER-MINT-MOCK]", inferred_text: "57VqZpdg5jqpV5uBi1KQScYNifMdH6By2HCBnzUyuPdW", explanation: "Public Solana ledger address containing the cryptographic verification key" },
+            { redacted_text: "[LEDGER-MINT-MOCK]", inferred_text: "SOLANA_MINT_MOCK_ADDRESS", explanation: "Simulated mock ledger verification address" },
             { redacted_text: "[SYSTEM-RESET-TRIGGER]", inferred_text: "Sovereign Debt Write-off", explanation: "Monetary reconstruction protocol following declassification events" }
           ],
           code_breaks: [
-            { code_symbol: "SESSION-8904-RV", interpretation: "Stargate Remote Viewing Session targeting global economic reset", confidence: 0.98 },
-            { code_symbol: "X402-ROUTING-SEED", interpretation: "Decentralized micropayments pegging stablecoin velocity", confidence: 0.96 }
+            { code_symbol: "SESSION-8904-RV", interpretation: "Simulated Stargate Remote Viewing Session modeling global economic reset concepts", confidence: 0.15 },
+            { code_symbol: "X402-ROUTING-SEED", interpretation: "Simulated decentralized micropayments stablecoin velocity concepts", confidence: 0.12 }
           ],
-          inferred: "Stargate Remote Viewing Session 8904 confirms a projected systemic reset of global currencies into a decentralized ledger model by mid-2026.",
-          ethics_note: "Stargate transcript declassified. Critical macro financial correlation.",
-          confidence_overall: 0.98,
-          voice_script_inferred: "This is Agent Cipher. The Stargate session eighty nine zero four transcript has been deciphered. Viewer zero forty two successfully targeted mid-two thousand twenty six. The digital ledger transition address fifty seven V Q Z is verified, corresponding to the global currency revaluation events."
+          inferred: "Simulated Stargate Remote Viewing Session 8904 details a fictional projection of global currency reset into a decentralized ledger model.",
+          ethics_note: "Fictional/speculative demonstration scenario. Not an authentic declassified record.",
+          confidence_overall: 0.15,
+          voice_script_inferred: "This is Agent Cipher. The declassification file contains a simulated Stargate remote viewing session. It represents a conceptual proof-of-concept modeling a future financial reset, but is not an authentic historical record."
         };
       }
       if (docId === 'video-uap-baby-orb-merge-2025') {
@@ -1373,7 +1373,7 @@ ${decipherResult.code_breaks.map((c: any) => `* Code Symbol: ${c.code_symbol || 
 ON-CHAIN PROVENANCE & ANCHORING
 --------------------------------------------------------------------------------
 * Network: Base Mainnet / Solana Distributed Ledger
-* Cryptographic Proof Hash: 57VqZpdg5jqpV5uBi1KQScYNifMdH6By2HCBnzUyuPdW
+* Cryptographic Proof Hash: SOLANA_MINT_MOCK_36F2FBC14AD81D73D09B2214 (Mock Proof Anchor)
 * Verification Authority: GMIIE Anomaly Intelligence Gateway
 * Integrity Status: VERIFIED / UNTAMPERED
 
@@ -1475,7 +1475,7 @@ ${decipherResult.code_breaks.map((c: any) => `* Code Symbol: ${c.code_symbol || 
 ON-CHAIN PROVENANCE & ANCHORING
 --------------------------------------------------------------------------------
 * Network: Base Mainnet / Solana Distributed Ledger
-* Cryptographic Proof Hash: 57VqZpdg5jqpV5uBi1KQScYNifMdH6By2HCBnzUyuPdW
+* Cryptographic Proof Hash: SOLANA_MINT_MOCK_36F2FBC14AD81D73D09B2214 (Mock Proof Anchor)
 * Verification Authority: GMIIE Anomaly Intelligence Gateway
 * Integrity Status: VERIFIED / UNTAMPERED
 
