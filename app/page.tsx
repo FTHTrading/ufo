@@ -235,17 +235,7 @@ export default function GMIIETruthSurface() {
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
 
   const connectWallet = async () => {
-    if ((window as any).ethereum) {
-      try {
-        const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
-        setWalletAddress(accounts[0]);
-        toast.success('Wallet connected for Web3 actions & provenance');
-      } catch (e) {
-        toast.error('Wallet connection failed. Use MetaMask or compatible.');
-      }
-    } else {
-      setIsWalletModalOpen(true);
-    }
+    setIsWalletModalOpen(true);
   };
 
   // Mock IPFS publish for artifacts (in real: use web3.storage, Pinata, or sovereign IPFS node via MCP)
@@ -306,27 +296,47 @@ export default function GMIIETruthSurface() {
   // Demo fallback for static GitHub Pages build (GMIIE/ufo). 
   // Real agentic calls (scrape, CV/OCR decipher, MCP full chain, Python PDF factory) require the local Ring or sovereign backend.
   const getDemoResult = (docId: string, q: string): AnalysisResult => {
-    const isVideo = docId.includes('video');
-    const isStargate = docId.includes('stargate');
-    const isGateway = docId.includes('gateway');
+    const doc = fullCatalog.find((d: any) => d.id === docId) || fullCatalog[0] || {
+      id: docId,
+      title: 'UFO Event Demo',
+      tranche: '03',
+      location: 'western sensitive site',
+      description: 'Luminous orange mother orb producing red baby orbs.',
+      program: 'uap',
+      agency: 'DOW'
+    };
+    const isVideo = docId.includes('video') || doc.type === 'video';
+    const isStargate = docId.includes('stargate') || doc.program === 'stargate';
+    const isGateway = docId.includes('gateway') || doc.program === 'gateway';
+    const confidence = doc.program === 'stargate' ? 0.78 : (doc.program === 'gateway' ? 0.79 : (doc.id === 'uap-d080-mother-orb-western' ? 0.85 : 0.72));
+    
+    const explanation = `[SOVEREIGN DEMO MODE - DECLASSIFIED PORTAL]
+Analysis of declassified record: "${doc.title}".
+Location of Sighting/Activity: ${doc.location || 'N/A'}. 
+Date hint: ${doc.date_hint || 'N/A'}.
+Agency involved: ${doc.agency || 'N/A'}.
+
+Summary & Intelligence Details:
+${doc.description}
+
+Defense & Geo-political implications:
+- ${isStargate ? 'Remote viewer intelligence capabilities and foreign threat target acquisition.' : (isGateway ? 'Human consciousness expansion, binaural brain synchronization, and spacetime transcendence exploration.' : 'Advanced anomalous propulsion, propulsion signature logging, and national security facility airspace defense.')}
+- On-chain proof anchored to Base mainnet.`;
+
     const base = {
       ok: true,
-      doc_id: docId,
-      tranche: '03',
-      title: isVideo ? 'Seeded Video Reference (site down)' : (isStargate ? 'Stargate RV Protocol Demo' : (isGateway ? 'Gateway Experience Demo' : 'UFO Event Demo')),
-      location_tag: isStargate ? 'Redacted Soviet/tech targets' : (isGateway ? 'Monroe Institute non-physical' : 'Western sensitive site'),
+      doc_id: doc.id,
+      tranche: doc.tranche || '03',
+      title: doc.title,
+      location_tag: doc.location || (isStargate ? 'Redacted Soviet/tech targets' : (isGateway ? 'Monroe Institute non-physical' : 'Western sensitive site')),
       phenomenology: isVideo ? ['plasma merge', 'orb cycle'] : (isStargate ? ['CRV stages', 'viewer redacted'] : (isGateway ? ['Focus 21 click-out', 'energy bar'] : ['mother orb', 'baby orbs'])),
       witness_credibility: 'High — federal / historical',
-      explanation: isVideo 
-        ? `Demo analysis for provided video ID ref. Bright orbs, plasma events, cloaking. Finance/reset angles: swarm tech implications for defense contractors and macro fear catalysts. (Full real scrape + decipher requires local Ring.)`
-        : (isStargate 
-          ? `Demo: CRV protocols, viewer performance metrics on foreign targets, overlap with Gateway Hemi-Sync training. On-chain hooks for verified session logs.`
-          : `Demo packet for ${docId}. Luminous orange mother orb producing red baby orbs. AARO unresolved. Stablecoin / CBDC surveillance rails and great reset catalyst angles. x402 premium unlocks full DecipherResult with MOTHER-3-BABY-CYCLE 0.79 code break.`),
-      patterns_detected: isVideo ? ['plasma sphere', 'merge event'] : (isStargate ? ['RV success metrics', 'redacted viewers'] : ['mother-baby replication', 'sensitive site']),
+      explanation: explanation,
+      patterns_detected: isVideo ? ['plasma sphere', 'merge event'] : (isStargate ? ['RV success metrics', 'redacted viewers'] : (isGateway ? ['Hemi-Sync', 'focus levels'] : ['mother-baby replication', 'sensitive site'])),
       finance_ties: ['defense contractor exposure', 'stablecoin surveillance implications'],
       reset_angles: ['macro fear catalyst', 'on-chain verification rails'],
       onchain_hooks: ['x402 premium receipt', 'evidence anchor via sovereign gateways'],
-      confidence: isStargate ? 0.78 : (isGateway ? 0.79 : 0.72),
+      confidence: confidence,
       premium_unlocks: ['full decipher redaction map', 'code breaks with 0.79 MOTHER', 'signed PDF with watermark', 'voice narration', 'IPFS anchor'],
       paid: paid || false,
     };
@@ -354,11 +364,11 @@ export default function GMIIETruthSurface() {
         targetDocId = 'uap-d080-mother-orb-western';
       }
       setActiveDocId(targetDocId);
+      setIsDrawerOpen(false); // Do not open drawer for search box input to keep it inline
     } else {
       setActiveDocId(targetDocId);
+      setIsDrawerOpen(true);
     }
-
-    setIsDrawerOpen(true); // Open the drawer immediately so they see the result inline
 
     const finalQuery = targetDocId 
       ? `Analyze ${targetDocId} in detail with market, stablecoin, defense contractor, and GMIIE reset implications` 
@@ -371,6 +381,23 @@ export default function GMIIETruthSurface() {
 
       if (paid || forcePremium) {
         headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
+      }
+
+      // Check if running on static pages domain to bypass network calls
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+
+      if (isStaticDemo) {
+        await new Promise(r => setTimeout(r, 600)); // nice loading delay
+        const demo = getDemoResult(targetDocId || 'uap-d080-mother-orb-western', finalQuery);
+        setResult(demo);
+        toast.success('Ring Analysis Complete', {
+          description: `Confidence ${Math.round(demo.confidence * 100)}% • ${demo.patterns_detected.length} patterns`,
+        });
+        setIsLoading(false);
+        return;
       }
 
       const res = await fetch('/api/analyze', {
@@ -557,6 +584,13 @@ export default function GMIIETruthSurface() {
     const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     
     try {
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+      if (isStaticDemo) {
+        throw new Error('Sovereign Demo Mode');
+      }
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -654,6 +688,13 @@ export default function GMIIETruthSurface() {
     setIsScraping(true);
     const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+      if (isStaticDemo) {
+        throw new Error('Sovereign Demo Mode');
+      }
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -698,6 +739,13 @@ export default function GMIIETruthSurface() {
     setIsBreaking(true);
     const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+      if (isStaticDemo) {
+        throw new Error('Sovereign Demo Mode');
+      }
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -775,6 +823,13 @@ export default function GMIIETruthSurface() {
     setIsFullChaining(true);
     const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+      if (isStaticDemo) {
+        throw new Error('Sovereign Demo Mode');
+      }
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -900,7 +955,14 @@ export default function GMIIETruthSurface() {
         toast.success('Comfy prompt (D080 + redaction notes) copied', { description: c.title });
       }
     } catch (e) {
-      toast.error('Comfy reconstruct failed', { description: String(e) });
+      const targetDoc = result?.doc_id || decipherResult?.doc_id || 'D080-mother-orb-western-sensitive';
+      const mockPrompt = `Photorealistic bright luminous orange "mother orb" from declassified DOW-UAP-D080 record, cinematic, low observable, 8k. Context: ${decipherResult?.inferred || 'unresolved sensor anomaly'}`;
+      setComfyPrompt(mockPrompt);
+      setVisualPreviewActive(true);
+      navigator.clipboard.writeText(mockPrompt);
+      toast.success('Comfy prompt generated (simulated demo)', {
+        description: 'Exact prompt copied to clipboard. Paste into ComfyUI.'
+      });
     }
   };
 
@@ -934,7 +996,13 @@ export default function GMIIETruthSurface() {
         toast.success('Comfy visual prompt ready (integrated D080 cycle + catalog redaction)', { description: doc.title });
       }
     } catch (e) {
-      toast.error('Comfy for doc failed', { description: String(e) });
+      const mockPrompt = `Photorealistic reconstruction of ${doc.title} declassified event, detailed sensor anomalies, cinematic 8k. Context: ${doc.description}`;
+      setComfyPrompt(mockPrompt);
+      setVisualPreviewActive(true);
+      navigator.clipboard.writeText(mockPrompt);
+      toast.success('Comfy prompt generated (simulated demo)', {
+        description: 'Exact prompt copied to clipboard. Paste into ComfyUI.'
+      });
     }
   };
 
@@ -973,7 +1041,21 @@ export default function GMIIETruthSurface() {
       }
       toast.success('PDF generated', { description: `${doc.id} • ${g.pdf_size || '?'} bytes. Ready for x402 download.` });
     } catch (e) {
-      toast.error('Generate PDF failed', { description: String(e) });
+      const mockPdfB64 = "JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1R5cGUgL1BhZ2VKL1BhcmVudCAyIDAgUgovTWVkaWFCb3ggWzAgMCA1OTUgODQyXQovQ29udGVudHMgNCAwIFIKL1Jlc291cmNlcyA8PAovRm9udCA8PAovRjEgPj4KPj4KPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0xlbmd0aCA1Ngo+PgpzdHJlYW0KQlQgL0YxIDEyIFRmIDUwIDcwMCBUZCAoR01JSUUgVUZPIFRSVVRIIFNVUkZBQ0UgLSBERSNMQVNTSUZJRUQgT1JCIFJlcG9ydCkgVGogRVQKZW5kc3RyZWFtCmVuZG9iago0IDAgb2JqCjw8Ci9UeXBlIC9Gb250Ci9TdWJ0eXBlIC9UeXBlMQovQmFzZUZvbnQgL0hlbHZldGljYQo+PgplbmRvYmoKeHJlZgowIDUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMDAwNTggMDAwMDAgbiAKMDAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDAyMjQgMDAwMDAgbiAKMDAwMDAwMDMzNiAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9TaXplIDUKL1Jvb3QgMSAwIFIKPj4Kc3RhcnR4cmVmCjQyOQolJUVPRgo=";
+      const mockGen = {
+        pdf_base64: mockPdfB64,
+        pdf_size: 382,
+        doc_id: doc.id,
+        sha256: "36f2fbc14ad81d73d09b22141bff90e8c894ff24a49c95d985a73a382e212480"
+      };
+      setLastGenerated(mockGen);
+      const link = document.createElement('a');
+      link.href = `data:application/pdf;base64,${mockPdfB64}`;
+      link.download = `${doc.id}-preview-demo.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      toast.success('PDF generated (simulated demo)', { description: `${doc.id} • 382 bytes. Ready for download.` });
     } finally {
       setIsGenerating(false);
     }
@@ -1046,7 +1128,14 @@ export default function GMIIETruthSurface() {
     toast.success('Evidence path copied', { description: `${full} — open in Explorer / code / terminal: start "" "${full}"` });
   };
   const openInvestigations = () => openEvidence('investigations\\ufo-pursue-r03');
-  const openTruth = () => window.open('http://localhost:5173/truth', '_blank');
+  const openTruth = () => {
+    const isStaticDemo = typeof window !== 'undefined' && (
+      window.location.hostname.includes('github.io') || 
+      window.location.hostname.includes('xxxiii.io')
+    );
+    const target = isStaticDemo ? 'https://legacychain.app/truth' : 'http://localhost:3000/truth';
+    window.open(target, '_blank');
+  };
 
   const vaultTransferForDoc = async (doc: any) => {
     setIsDownloading(true);
@@ -1115,7 +1204,11 @@ export default function GMIIETruthSurface() {
           return;
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      toast.info('Static Demo Catalog Active', {
+        description: 'Using offline pre-seeded catalog (35+ files). Real-time JSON API sync runs in sovereign/local mode.',
+      });
+    }
     setDynamicCatalog(null);
     setCatalogLoading(false);
   };
@@ -1299,6 +1392,77 @@ cloudflared tunnel --url http://localhost:3005
             </button>
           </div>
           <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + validation.</div>
+          
+          {isLoading && (
+            <div className="mt-4 p-6 border border-[#f55]/20 bg-black/40 rounded-3xl animate-pulse flex flex-col items-center justify-center text-center">
+              <Loader2 className="w-6 h-6 animate-spin text-[#f55] mb-2" />
+              <div className="text-xs font-mono text-[#f55] uppercase tracking-wider">Analyzing PURSUE Tranches via Ring...</div>
+              <div className="text-[10px] text-[#555] mt-1 font-mono">ESTABLISHING ZERO-KNOWLEDGE PROVENANCE BOUNDARY</div>
+            </div>
+          )}
+
+          {result && !isLoading && (
+            <div className="mt-4 p-6 border border-[#f55]/30 bg-[#0d0d0d]/80 backdrop-blur-md rounded-3xl animate-fade-in text-xs leading-relaxed space-y-4">
+              <div className="flex items-start justify-between border-b border-[#222] pb-3">
+                <div>
+                  <div className="text-[9px] uppercase tracking-[3px] text-[#f55] font-mono">Query Result Panel</div>
+                  <h3 className="text-sm font-bold text-white mt-1">{result.title}</h3>
+                </div>
+                <div className="text-right">
+                  <span className="text-[9px] uppercase tracking-wider text-[#666] font-mono text-right block">Confidence</span>
+                  <div className="text-base font-mono text-emerald-400 font-bold">{Math.round(result.confidence * 100)}%</div>
+                </div>
+              </div>
+              
+              <div className="text-[#bbb] whitespace-pre-wrap font-sans text-xs leading-relaxed">
+                {result.explanation}
+              </div>
+
+              {/* Matched seeded docs */}
+              <div className="border-t border-[#222] pt-3">
+                <div className="text-[9px] uppercase tracking-wider text-[#666] mb-2 font-mono">Referenced Intelligence Packets</div>
+                <div className="flex flex-wrap gap-2">
+                  {fullCatalog.filter((d: any) => d.id === result.doc_id || d.program === (result.doc_id.includes('stargate') ? 'stargate' : result.doc_id.includes('gateway') ? 'gateway' : 'uap')).slice(0, 3).map((doc: any) => {
+                    const c = getProgramColor(doc.program);
+                    return (
+                      <button
+                        key={doc.id}
+                        onClick={() => {
+                          setActiveDocId(doc.id);
+                          setIsDrawerOpen(true);
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#222] bg-[#111]/40 hover:bg-[#222]/60 text-[10px] text-white transition text-left"
+                      >
+                        <span className={`w-1.5 h-1.5 rounded-full ${c.text.replace('text-', 'bg-')}`} />
+                        <div>
+                          <span className="font-semibold text-white block">{doc.title}</span>
+                          <span className="text-[8px] text-[#555] font-mono">{doc.id}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-2 border-t border-[#222] pt-3">
+                <button
+                  onClick={() => {
+                    setActiveDocId(result.doc_id);
+                    setIsDrawerOpen(true);
+                  }}
+                  className="px-3 py-1.5 rounded-lg border border-[#f55]/50 text-[#f55] hover:bg-[#f55]/10 text-[10px] font-semibold transition"
+                >
+                  Open Deep Agentic Workspace
+                </button>
+                <button
+                  onClick={() => setResult(null)}
+                  className="px-3 py-1.5 rounded-lg bg-[#222] border border-[#333] text-white hover:bg-[#333] text-[10px] font-semibold transition"
+                >
+                  Clear Results
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Declassified Timeline Component */}
@@ -1811,7 +1975,16 @@ cloudflared tunnel --url http://localhost:3005
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredCatalog.map((doc: any) => {
+                      {filteredCatalog.length === 0 ? (
+                        <tr>
+                          <td colSpan={6} className="text-center py-8 text-[#666] font-mono text-xs">
+                            <AlertTriangle className="w-5 h-5 mx-auto mb-2 text-[#f55]/70" />
+                            No documents match the active filters. 
+                            <button onClick={clearCatalogFilters} className="ml-1 text-[#f55] underline hover:text-white transition">Clear filters</button>
+                          </td>
+                        </tr>
+                      ) : (
+                        filteredCatalog.map((doc: any) => {
                         const isVideo = doc.type === 'video';
                         const c = getProgramColor(doc.program);
                         return (
@@ -1843,13 +2016,20 @@ cloudflared tunnel --url http://localhost:3005
                             </td>
                           </tr>
                         );
-                      })}
+                      }))}
                     </tbody>
                   </table>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {filteredCatalog.map((doc: any) => {
+                  {filteredCatalog.length === 0 ? (
+                    <div className="col-span-full text-center py-8 text-[#666] border border-dashed border-[#222] rounded-2xl font-mono text-xs">
+                      <AlertTriangle className="w-5 h-5 mx-auto mb-2 text-[#f55]/70" />
+                      No documents match the active filters.
+                      <button onClick={clearCatalogFilters} className="ml-1 text-[#f55] underline hover:text-white transition">Clear filters</button>
+                    </div>
+                  ) : (
+                    filteredCatalog.map((doc: any) => {
                     const c = getProgramColor(doc.program);
                     return (
                       <div key={doc.id} className={`p-4 rounded-2xl border bg-black/40 flex flex-col justify-between ${activeDocId === doc.id ? 'border-[#f55]' : 'border-[#222]'}`}>
@@ -1877,7 +2057,7 @@ cloudflared tunnel --url http://localhost:3005
                         </div>
                       </div>
                     );
-                  })}
+                  }))}
                 </div>
               )}
             </div>
@@ -2277,6 +2457,23 @@ cloudflared tunnel --url http://localhost:3005
               </div>
 
               <div className="space-y-3">
+                {typeof window !== 'undefined' && (window as any).ethereum && (
+                  <button
+                    onClick={async () => {
+                      try {
+                        const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+                        setWalletAddress(accounts[0]);
+                        setIsWalletModalOpen(false);
+                        toast.success('Wallet connected via MetaMask');
+                      } catch (e) {
+                        toast.error('MetaMask connection failed');
+                      }
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-emerald-600 bg-emerald-950/20 hover:bg-emerald-950/40 text-emerald-400 font-semibold text-xs transition flex items-center justify-center gap-2"
+                  >
+                    Connect via MetaMask (Detected)
+                  </button>
+                )}
                 <a
                   href="https://metamask.io"
                   target="_blank"
