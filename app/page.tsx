@@ -467,12 +467,14 @@ Defense & Geo-political implications:
     // Auto-detect target doc based on query input if no docId is specified
     if (!targetDocId) {
       const q = query.toLowerCase();
-      if (q.includes('unredacted') || q.includes('d080 unredacted') || q.includes('raw sensor') || q.includes('telemetry')) {
+      if (q.includes('d080 unredacted') || q.includes('unredacted sensor') || q.includes('raw sensor') || (q.includes('d080') && q.includes('unredacted')) || q.includes('telemetry')) {
         targetDocId = 'uap-d080-western-unredacted-sensor-data';
-      } else if (q.includes('financial reset') || q.includes('reset') || q.includes('8904') || q.includes('ledger') || q.includes('viewer 042')) {
-        targetDocId = 'stargate-cia-financial-reset-rv-transcript';
       } else if (q.includes('baby orb merge') || q.includes('orb fusion') || q.includes('merge video') || q.includes('merge telemetry')) {
         targetDocId = 'video-uap-baby-orb-merge-2025';
+      } else if (q.includes('mother orb') || q.includes('d080')) {
+        targetDocId = 'uap-d080-mother-orb-western';
+      } else if (q.includes('financial reset') || q.includes('reset') || q.includes('8904') || q.includes('ledger') || q.includes('viewer 042')) {
+        targetDocId = 'stargate-cia-financial-reset-rv-transcript';
       } else if (q.includes('stargate') || q.includes('remote viewing') || q.includes('grill flame') || q.includes('sun streak') || q.includes('center lane')) {
         targetDocId = 'stargate-cia-grill-flame-rv-protocols-001';
       } else if (q.includes('gateway') || q.includes('monroe') || q.includes('hemi-sync') || q.includes('focus') || q.includes('click out') || q.includes('audio')) {
