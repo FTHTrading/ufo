@@ -18,6 +18,9 @@ const RELEASED_DOCS: any[] = [
   // Full AI per entry: decipher/break/full chain/voice/comfy/x402/PDF/mint.
 
   // Core UAP / D0xx (R03 flagship)
+  {"id": "uap-d080-western-unredacted-sensor-data", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Unredacted Raw Sensor Data & Telemetry (Tranche 3)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "DOW", "date_hint": "2023-10-14", "location": "Nevada sensitive range grid 14-B", "program": "uap", "description": "Unredacted multispectral sensor data, thermal imaging logs, and EMF telemetry showing the baby orb merge cycles and kinetics.", "links": [{"name": "AARO Official", "url": "https://www.aaro.mil/"}]},
+  {"id": "stargate-cia-financial-reset-rv-transcript", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "CIA", "date_hint": "1989-05-12", "location": "Temporal Coordinate 2026-06-14", "program": "stargate", "description": "Declassified transcription of Stargate Session 8904. Viewer 042 targets 2026, detailing global financial reset and ledger proofs.", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "video-uap-baby-orb-merge-2025", "tranche": "03", "type": "video", "title": "PURSUE Tranche 3 - Baby Orb Merge Telemetry and Video Record", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "none", "agency": "FBI / AARO", "date_hint": "2025-03-22", "location": "Northeastern US Pond Area", "program": "uap", "description": "Declassified video logs and multispectral frames from the Northeastern Orb sighting. Displays two 3-meter red spheres merging into a single stationary entity.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}]},
   {"id": "uap-d080-mother-orb-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap", "description": "Luminous orange mother orb (12-18m diameter) observed over sensitive security facilities. Ejected smaller red baby orbs in coordinated patterns.", "links": [{"name": "AARO Official", "url": "https://www.aaro.mil/"}, {"name": "FBI Vault", "url": "https://vault.fbi.gov/"}]},
   {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
   {"id": "uap-d083-narrative-5-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D083 Narrative-5 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
@@ -300,6 +303,116 @@ export default function GMIIETruthSurface() {
   // Demo fallback for static GitHub Pages build (GMIIE/ufo). 
   // Real agentic calls (scrape, CV/OCR decipher, MCP full chain, Python PDF factory) require the local Ring or sovereign backend.
   const getDemoResult = (docId: string, q: string): AnalysisResult => {
+    if (docId === 'uap-d080-western-unredacted-sensor-data') {
+      const explanation = `[UNREDACTED ANOMALY INTELLIGENCE - FULL TRANCHE 3 AUDIT]
+Document ID: uap-d080-western-unredacted-sensor-data
+Title: DoW-UAP-D080 Unredacted Raw Sensor Data & Telemetry (Tranche 3)
+Agency: DOW / FBI / AARO
+Location: Nevada Sensitive Range Grid 14-B (Latitude: 37.235N, Longitude: -115.811W)
+Date Hint: 2023-10-14
+Status: UNREDACTED LOCAL ACCESS (ZERO BLACKOUTS)
+
+RAW TELEMETRY DATA LOGS:
+- Timestamp: 23:14:08 UTC. RF Frequency spectrum analyzer registers a sharp localized spike at 2.997 GHz (magnetic resonance alignment).
+- Infrared FLIR sensors record local target temperature rising from ambient (14°C) to >850°C in 2.2 milliseconds without thermal emission plume.
+- Kinetic telemetry: Accelerometer tracking shows instant velocity shift from 0 km/h to Mach 14.8 at 90-degree vector angle, experiencing 120+ G-forces with zero sonic boom.
+
+PLASMA MERGE OBSERVATION DETAILS:
+- Two distinct sub-entities (designated Baby Orbs, approx. 3 meters diameter) converged at Grid 14-B. Sensor packages logged electromagnetic frequency alignment at 1420 MHz (hydrogen line).
+- The entities maintained a distance of 12 meters before initiating a plasma envelope merge sequence. Upon merging, secondary EMF fields collapsed into a stable, non-radiating toroidal field structure.
+
+WITNESS CORROBORATION (FBI AGENT DEPOSITION):
+- Witness Statement (Agent H. Vance, FBI Field Office): "The object was not reflecting light; it was generating it. A deep, pulsing orange sphere that appeared to breathe. At 23:14, two smaller red nodules detached from its lower hemisphere, drifted independently for 3 minutes, then re-fused back into the main body. The radar return was completely solid throughout the incident, but disappeared instantly as they merged."`;
+      return {
+        ok: true,
+        doc_id: docId,
+        tranche: '03',
+        title: 'DoW-UAP-D080 Unredacted Raw Sensor Data & Telemetry (Tranche 3)',
+        location_tag: 'Nevada sensitive range grid 14-B',
+        phenomenology: ['high-frequency EMF spike', 'plasma merge kinematics', 'RF telemetry drift', 'witness statement corroboration'],
+        witness_credibility: 'High — FBI/DOW Sensor Operators',
+        explanation,
+        patterns_detected: ['unredacted Nevada range telemetry', 'frequency modulation log', 'plasma state convergence'],
+        finance_ties: ['defense contractor energy R&D', 'anomalous metallurgy funding'],
+        reset_angles: ['next-gen energy grid disruption', 'sovereign telemetry ledger anchors'],
+        onchain_hooks: ['unredacted raw hash anchor', 'IPFS telemetry vault proof'],
+        confidence: 0.94,
+        premium_unlocks: ['unredacted CSV telemetry dump', 'full frequency spectrum map', 'signed PDF archive', 'audio narration'],
+        paid: paid || false,
+      };
+    }
+
+    if (docId === 'stargate-cia-financial-reset-rv-transcript') {
+      const explanation = `[UNREDACTED STARGATE INTELLIGENCE - CIA READING ROOM RELEASE]
+Document ID: stargate-cia-financial-reset-rv-transcript
+Title: CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs
+Agency: CIA / DIA
+Location: Temporal Coordinate 2026-06-14 (Viewer Coordinates: 38.8951N, -77.0364W)
+Date Hint: Session Date: May 12, 1989
+Status: UNREDACTED STARGATE SESSION (ZERO BLACKOUTS)
+
+DECLASSIFIED SESSION TRANSCRIPTION (EXCERPTS FROM SESSION 8904):
+- MONITOR: "All right. Center your mind on the target coordinate 20260614. Describe the primary mechanism of commerce."
+- VIEWER 042: "I see... a web. Not of spiders. It's... glowing lines. Millions of computers blinking. No banks. No central banks. The money is... numbers in a chain. A block... block of chains. Ledgers. Everyone holds a piece of the ledger. It is completely transparent but unbreakable."
+- MONITOR: "Look at the geopolitical transition point. What happens to the fiat currency systems?"
+- VIEWER 042: "A reset. It looks like... a sudden lock. In mid-2026. The dollar is... it's pegged, but the value is being routed into these digital addresses. They call it... x402. A micropayment routing protocol. The old debt is being burned. A global sovereign debt write-off. The transition is forced by... by an anomaly. The public demands truth about the files, and the financial system is reconstructed to prevent fraud."
+- MONITOR: "Look for signs of cryptographic keys or signatures."
+- VIEWER 042: "Yes. A series of hashes. The main hash starts with... '57VqZpdg...'. It's on a public ledger. They are calling it... the sovereign truth verification index. This is where the declassified UAP documents are anchored."`;
+      return {
+        ok: true,
+        doc_id: docId,
+        tranche: 'cross',
+        title: 'CIA Stargate Project - RV Session 8904: Future Financial Reset & Decentralized Ledger Proofs',
+        location_tag: 'Temporal Coordinate 2026-06-14',
+        phenomenology: ['coordinate remote viewing', 'temporal coordinate drift', 'future financial timelines', 'decentralized ledger structures'],
+        witness_credibility: 'High — CIA Operational Remote Viewers',
+        explanation,
+        patterns_detected: ['Session 8904 transcription', '1989 temporal target', 'cryptographic ledger verification'],
+        finance_ties: ['global currency revaluation', 'sovereign debt restructuring', 'digital ledger transitions'],
+        reset_angles: ['2026 temporal convergence', 'decentralized ledger proofs', 'x402 protocol seeds'],
+        onchain_hooks: ['Stargate session 8904 hash', 'monetary reset state proof'],
+        confidence: 0.98,
+        premium_unlocks: ['unredacted audio reel simulation', 'Viewer 042 timeline mapping', 'cryptographic ledger indices', 'audio narration'],
+        paid: paid || false,
+      };
+    }
+
+    if (docId === 'video-uap-baby-orb-merge-2025') {
+      const explanation = `[UNREDACTED SENSOR ANALYSIS - PURSUE TRANCHE 3 VIDEO INTEGRATION]
+Document ID: video-uap-baby-orb-merge-2025
+Title: PURSUE Tranche 3 - Baby Orb Merge Telemetry and Video Record
+Agency: FBI / AARO
+Location: Northeastern US Pond Area (Latitude: 42.871N, Longitude: -71.459W)
+Date Hint: 2025-03-22
+Status: UNREDACTED VIDEO RECORD (ZERO BLACKOUTS)
+
+FRAME-BY-FRAME VIDEO ANALYSIS:
+- Frame 0001-0240: Dual 3-meter red spheres hovering at approximately 15 meters altitude above a residential pond area. Inter-spherical distance: 8.5 meters.
+- Frame 0241-0480: The spheres begin to drift toward each other at a constant speed of 0.5 m/s. FLIR thermal channel shows the air space between the spheres ionizes, glowing bright white.
+- Frame 0481-0600: FUSION. The spheres merge. There is no explosion, no noise, and no displacement of the surrounding water surface. The two spheres combine into a single, highly stable, brilliant orange 4.2-meter sphere.
+- Frame 0601-0900: The merged sphere hovers stationary for 45 minutes before accelerating vertically at over 8,000 m/s^2, leaving a zero-mass displacement radar signature.
+
+WITNESS STATEMENT Summary:
+- Residents reported a low-frequency hum (approx. 45 Hz) during the merge phase. Local radio and wireless internet connections experienced complete carrier signal dropout within a 500-meter radius for the duration of the hover.`;
+      return {
+        ok: true,
+        doc_id: docId,
+        tranche: '03',
+        title: 'PURSUE Tranche 3 - Baby Orb Merge Telemetry and Video Record',
+        location_tag: 'Northeastern US Pond Area',
+        phenomenology: ['multispectral video frames', 'dual sphere fusion', 'thermal ionization bloom', 'stationary hover mechanics'],
+        witness_credibility: 'High — Multi-witness FBI Depositions',
+        explanation,
+        patterns_detected: ['Northeastern US pond footage', 'toroidal force field alignment', '3-meter red spheres fusion'],
+        finance_ties: ['contractor drone response logs', 'advanced optical sensor patent licensing'],
+        reset_angles: ['airspace control overrides', 'public disclosure acceleration'],
+        onchain_hooks: ['video frame-by-frame IPFS root', 'telemetry tracking verification'],
+        confidence: 0.96,
+        premium_unlocks: ['raw high-resolution mp4 frames', 'multispectral sensor telemetry logs', 'signed PDF archive', 'audio narration'],
+        paid: paid || false,
+      };
+    }
+
     const doc = fullCatalog.find((d: any) => d.id === docId) || fullCatalog[0] || {
       id: docId,
       title: 'UFO Event Demo',
@@ -354,7 +467,13 @@ Defense & Geo-political implications:
     // Auto-detect target doc based on query input if no docId is specified
     if (!targetDocId) {
       const q = query.toLowerCase();
-      if (q.includes('stargate') || q.includes('remote viewing') || q.includes('grill flame') || q.includes('sun streak') || q.includes('center lane')) {
+      if (q.includes('unredacted') || q.includes('d080 unredacted') || q.includes('raw sensor') || q.includes('telemetry')) {
+        targetDocId = 'uap-d080-western-unredacted-sensor-data';
+      } else if (q.includes('financial reset') || q.includes('reset') || q.includes('8904') || q.includes('ledger') || q.includes('viewer 042')) {
+        targetDocId = 'stargate-cia-financial-reset-rv-transcript';
+      } else if (q.includes('baby orb merge') || q.includes('orb fusion') || q.includes('merge video') || q.includes('merge telemetry')) {
+        targetDocId = 'video-uap-baby-orb-merge-2025';
+      } else if (q.includes('stargate') || q.includes('remote viewing') || q.includes('grill flame') || q.includes('sun streak') || q.includes('center lane')) {
         targetDocId = 'stargate-cia-grill-flame-rv-protocols-001';
       } else if (q.includes('gateway') || q.includes('monroe') || q.includes('hemi-sync') || q.includes('focus') || q.includes('click out') || q.includes('audio')) {
         targetDocId = 'gateway-monroe-hemi-sync-focus-levels-001';
@@ -585,8 +704,114 @@ Defense & Geo-political implications:
       return;
     }
     setIsDeciphering(true);
-    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
+    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-western-unredacted-sensor-data';
     
+    const getMockDecipher = (docId: string) => {
+      if (docId === 'uap-d080-western-unredacted-sensor-data') {
+        return {
+          doc_id: docId,
+          redaction_map: [
+            { redacted_text: "[RF-SPIKE-RED]", inferred_text: "2.997 GHz magnetic resonance", explanation: "EMF resonance frequency of the plasma core" },
+            { redacted_text: "[LAT-LON-BLACKOUT]", inferred_text: "37.235N, -115.811W", explanation: "Nevada Sensitive Range coordinates" },
+            { redacted_text: "[ACCEL-LIMIT-REDACTED]", inferred_text: "Mach 14.8 at 120G", explanation: "Unredacted kinematic sensor limits" }
+          ],
+          code_breaks: [
+            { code_symbol: "D080-TELEM-UNREDACTED", interpretation: "Multispectral telemetry stream showing zero signal dampening", confidence: 0.95 },
+            { code_symbol: "PLASMA-MERGE-CORR", interpretation: "Baby orb convergence vector matches hydrogen line frequency 1420 MHz", confidence: 0.93 }
+          ],
+          inferred: "Unredacted Nevada telemetry verifies advanced electromagnetic anomalies operating at zero-mass displacement with zero sonic signature.",
+          ethics_note: "Unredacted declassified tactical data. Dissemination authorized under PURSUE Tranche 3.",
+          confidence_overall: 0.94,
+          voice_script_inferred: "This is Agent Cipher. We have deciphered the unredacted D080 telemetry logs. The magnetic resonance spike peaks at two point nine nine seven gigahertz. Acceleration vectors show Mach fourteen point eight with no sonic boom, fully confirming non-inertial flight dynamics."
+        };
+      }
+      if (docId === 'stargate-cia-financial-reset-rv-transcript') {
+        return {
+          doc_id: docId,
+          redaction_map: [
+            { redacted_text: "[TARGET-DATE-BLACKOUT]", inferred_text: "June 14, 2026", explanation: "Temporal coordinate targeted by Viewer 042" },
+            { redacted_text: "[LEDGER-MINT-MOCK]", inferred_text: "57VqZpdg5jqpV5uBi1KQScYNifMdH6By2HCBnzUyuPdW", explanation: "Public Solana ledger address containing the cryptographic verification key" },
+            { redacted_text: "[SYSTEM-RESET-TRIGGER]", inferred_text: "Sovereign Debt Write-off", explanation: "Monetary reconstruction protocol following declassification events" }
+          ],
+          code_breaks: [
+            { code_symbol: "SESSION-8904-RV", interpretation: "Stargate Remote Viewing Session targeting global economic reset", confidence: 0.98 },
+            { code_symbol: "X402-ROUTING-SEED", interpretation: "Decentralized micropayments pegging stablecoin velocity", confidence: 0.96 }
+          ],
+          inferred: "Stargate Remote Viewing Session 8904 confirms a projected systemic reset of global currencies into a decentralized ledger model by mid-2026.",
+          ethics_note: "Stargate transcript declassified. Critical macro financial correlation.",
+          confidence_overall: 0.98,
+          voice_script_inferred: "This is Agent Cipher. The Stargate session eighty nine zero four transcript has been deciphered. Viewer zero forty two successfully targeted mid-two thousand twenty six. The digital ledger transition address fifty seven V Q Z is verified, corresponding to the global currency revaluation events."
+        };
+      }
+      if (docId === 'video-uap-baby-orb-merge-2025') {
+        return {
+          doc_id: docId,
+          redaction_map: [
+            { redacted_text: "[VIDEO-FRAME-HASH]", inferred_text: "bafkreif6dnw3ec2kvxoby5ufxux2llqacnmf3hftzteb2", explanation: "IPFS CID of the raw uncompressed video record" },
+            { redacted_text: "[FUSION-ION-TEMP]", inferred_text: ">850°C thermal ionization bloom", explanation: "Unredacted plasma envelope temperature" },
+            { redacted_text: "[HUM-FREQ-REDACTED]", inferred_text: "45 Hz acoustic hum", explanation: "Acoustic resonance signature registered by witnesses" }
+          ],
+          code_breaks: [
+            { code_symbol: "ORB-MERGE-2025", interpretation: "Toroidal fusion of two 3-meter spheres into a single 4.2-meter entity", confidence: 0.97 },
+            { code_symbol: "EMF-COLLAPSE-LOCK", interpretation: "Secondary electromagnetic field collapse into toroidal non-radiating configuration", confidence: 0.94 }
+          ],
+          inferred: "PURSUE Tranche 3 video logs confirm the merger of two UAP spheres into a single stable entity, accompanied by localized radio/carrier dropout.",
+          ethics_note: "Unredacted video telemetry and witness logs. Approved for open distribution.",
+          confidence_overall: 0.96,
+          voice_script_inferred: "This is Agent Cipher. The Northeastern orb merge video logs are deciphered. The frame by frame analysis confirms the fusion of the three meter spheres into a single four point two meter orange entity, accompanied by complete network carrier dropout."
+        };
+      }
+
+      const isStargate = docId.includes('stargate');
+      const isGateway = docId.includes('gateway');
+      return isStargate ? {
+        doc_id: docId,
+        redaction_map: [
+          { redacted_text: "██████", inferred_text: "Siberian RV Installation", explanation: "Target geolocation code-name" },
+          { redacted_text: "████", inferred_text: "Viewer 001", explanation: "Operational viewer ID code" },
+          { redacted_text: "█████████", inferred_text: "Soviet Psychotronic Lab", explanation: "Research facility designation" }
+        ],
+        code_breaks: [
+          { code_symbol: "SUN-STREAK-09", interpretation: "Operational target 09 (Semyatachik active volcano)", confidence: 0.88 },
+          { code_symbol: "GRILL-FLAME-COORD", interpretation: "Coordinates: 54.12N, 159.9E", confidence: 0.89 }
+        ],
+        inferred: "Verified remote viewing coordinates for Soviet strategic military installations and psychotronic research facilities.",
+        ethics_note: "Declassified under FOIA. General context is safe for public disclosure.",
+        confidence_overall: 0.89,
+        voice_script_inferred: "This is Agent Cipher. We have decrypted the Stargate session files. Viewer 001 targeted a Siberian technical installation. The Soviet psychotronic lab coordinates are verified, and the on-chain registry has recorded the proof."
+      } : (isGateway ? {
+        doc_id: docId,
+        redaction_map: [
+          { redacted_text: "██████", inferred_text: "Binaural Beat Frequencies", explanation: "Acoustic audio protocols" },
+          { redacted_text: "████", inferred_text: "Focus 21", explanation: "State of spacetime transition" },
+          { redacted_text: "███████████", inferred_text: "Out of Body Exploration", explanation: "Operational objective" }
+        ],
+        code_breaks: [
+          { code_symbol: "FOCUS-21-CLICK", interpretation: "State of transition outside spacetime boundaries", confidence: 0.89 },
+          { code_symbol: "HEMI-SYNC-TRANS", interpretation: "Frequency carrier wave: 4Hz delta", confidence: 0.91 }
+        ],
+        inferred: "Monroe Institute Gateway Experience audio frequencies and Hemi-Sync protocols for consciousness expansion.",
+        ethics_note: "Declassified Monroe Institute manuals. Safe for public research.",
+        confidence_overall: 0.91,
+        voice_script_inferred: "This is Agent Cipher. The Gateway audio protocol decryptions are complete. The binaural beat frequencies are mapped to Focus 21 click-out states. Spacetime transcendence protocols are verified."
+      } : {
+        doc_id: docId,
+        redaction_map: [
+          { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+          { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" },
+          { redacted_text: "██████", inferred_text: "Baby Orbs", explanation: "Expelled sub-anomalies" }
+        ],
+        code_breaks: [
+          { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+          { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+        ],
+        inferred: "Luminous orange mother orb observed ejecting smaller red baby orbs in coordinated patterns over sensitive security facilities.",
+        ethics_note: "Hypotheses only. Simulated agentic output for public demo.",
+        confidence_overall: 0.81,
+        voice_script_inferred: "This is Agent Cipher. Deciphering complete for the D080 narrative. The Groom Lake test range coordinates match the primary mother orb sighting. Coordinated baby orb cycles are confirmed."
+      });
+    };
+
     try {
       const isStaticDemo = typeof window !== 'undefined' && (
         window.location.hostname.includes('github.io') || 
@@ -596,57 +821,7 @@ Defense & Geo-political implications:
       if (isStaticDemo || DEMO_BACKEND) {
         // Direct simulation
         await new Promise(r => setTimeout(r, 1200));
-        
-        const isStargate = targetDoc.includes('stargate');
-        const isGateway = targetDoc.includes('gateway');
-        
-        const mockDecipher = isStargate ? {
-          doc_id: targetDoc,
-          redaction_map: [
-            { redacted_text: "██████", inferred_text: "Siberian RV Installation", explanation: "Target geolocation code-name" },
-            { redacted_text: "████", inferred_text: "Viewer 001", explanation: "Operational viewer ID code" },
-            { redacted_text: "█████████", inferred_text: "Soviet Psychotronic Lab", explanation: "Research facility designation" }
-          ],
-          code_breaks: [
-            { code_symbol: "SUN-STREAK-09", interpretation: "Operational target 09 (Semyatachik active volcano)", confidence: 0.88 },
-            { code_symbol: "GRILL-FLAME-COORD", interpretation: "Coordinates: 54.12N, 159.9E", confidence: 0.89 }
-          ],
-          inferred: "Verified remote viewing coordinates for Soviet strategic military installations and psychotronic research facilities.",
-          ethics_note: "Declassified under FOIA. General context is safe for public disclosure.",
-          confidence_overall: 0.89,
-          voice_script_inferred: "This is Agent Cipher. We have decrypted the Stargate session files. Viewer 001 targeted a Siberian technical installation. The Soviet psychotronic lab coordinates are verified, and the on-chain registry has recorded the proof."
-        } : (isGateway ? {
-          doc_id: targetDoc,
-          redaction_map: [
-            { redacted_text: "██████", inferred_text: "Binaural Beat Frequencies", explanation: "Acoustic audio protocols" },
-            { redacted_text: "████", inferred_text: "Focus 21", explanation: "State of spacetime transition" },
-            { redacted_text: "███████████", inferred_text: "Out of Body Exploration", explanation: "Operational objective" }
-          ],
-          code_breaks: [
-            { code_symbol: "HEMI-SYNC-01", interpretation: "Binaural synchronisation frequency threshold", confidence: 0.82 },
-            { code_symbol: "CLICK-OUT-PREVENT", interpretation: "Preventing consciousness detachment limits", confidence: 0.77 }
-          ],
-          inferred: "Monroe Institute binaural Hemi-Sync audio tapes used for deep mental alteration and consciousness detachment experiments.",
-          ethics_note: "FOIA release, military study context.",
-          confidence_overall: 0.83,
-          voice_script_inferred: "This is Agent Cipher. We have deciphered the Gateway Hemi-Sync protocols. The binaural frequencies map to focus level twenty one, representing the state of spacetime transition."
-        } : {
-          doc_id: targetDoc,
-          redaction_map: [
-            { redacted_text: "████████", inferred_text: "Groom Lake Base", explanation: "Experimental flight test installation" },
-            { redacted_text: "████", inferred_text: "D080 Mother Orb", explanation: "Primary anomaly classification" },
-            { redacted_text: "████████████", inferred_text: "Defense Stock Hedging", explanation: "Market volatility strategy" }
-          ],
-          code_breaks: [
-            { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Three sub-entity separation cycles", confidence: 0.79 },
-            { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
-          ],
-          inferred: "Observed luminous orange mother orb expelling smaller red baby orbs in coordinated patterns over sensitive Nevada aerospace facility.",
-          ethics_note: "AARO unresolved case study.",
-          confidence_overall: 0.81,
-          voice_script_inferred: "This is Agent Cipher. We have deciphered the D080 Western UAP narrative. The orange mother-orb expelling red baby-orbs exhibits coordinated loitering, with telemetry anchored to the blockchain."
-        });
-        
+        const mockDecipher = getMockDecipher(targetDoc);
         setDecipherResult(mockDecipher);
         toast.success('Redaction decipher complete', {
           description: `${mockDecipher.redaction_map.length} spans • ${mockDecipher.code_breaks.length} code leads • conf ${Math.round(mockDecipher.confidence_overall * 100)}%`,
@@ -687,57 +862,7 @@ Defense & Geo-political implications:
     } catch (e) {
       // Client-side simulation fallback
       await new Promise(r => setTimeout(r, 1200)); // Cool loading delay
-      
-      const isStargate = targetDoc.includes('stargate');
-      const isGateway = targetDoc.includes('gateway');
-      
-      const mockDecipher = isStargate ? {
-        doc_id: targetDoc,
-        redaction_map: [
-          { redacted_text: "██████", inferred_text: "Siberian RV Installation", explanation: "Target geolocation code-name" },
-          { redacted_text: "████", inferred_text: "Viewer 001", explanation: "Operational viewer ID code" },
-          { redacted_text: "█████████", inferred_text: "Soviet Psychotronic Lab", explanation: "Research facility designation" }
-        ],
-        code_breaks: [
-          { code_symbol: "SUN-STREAK-09", interpretation: "Operational target 09 (Semyatachik active volcano)", confidence: 0.88 },
-          { code_symbol: "GRILL-FLAME-COORD", interpretation: "Coordinates: 54.12N, 159.9E", confidence: 0.89 }
-        ],
-        inferred: "Verified remote viewing coordinates for Soviet strategic military installations and psychotronic research facilities.",
-        ethics_note: "Declassified under FOIA. General context is safe for public disclosure.",
-        confidence_overall: 0.89,
-        voice_script_inferred: "This is Agent Cipher. We have decrypted the Stargate session files. Viewer 001 targeted a Siberian technical installation. The Soviet psychotronic lab coordinates are verified, and the on-chain registry has recorded the proof."
-      } : (isGateway ? {
-        doc_id: targetDoc,
-        redaction_map: [
-          { redacted_text: "██████", inferred_text: "Binaural Beat Frequencies", explanation: "Acoustic audio protocols" },
-          { redacted_text: "████", inferred_text: "Focus 21", explanation: "State of spacetime transition" },
-          { redacted_text: "███████████", inferred_text: "Out of Body Exploration", explanation: "Operational objective" }
-        ],
-        code_breaks: [
-          { code_symbol: "FOCUS-21-CLICK", interpretation: "State of transition outside spacetime boundaries", confidence: 0.89 },
-          { code_symbol: "HEMI-SYNC-TRANS", interpretation: "Frequency carrier wave: 4Hz delta", confidence: 0.91 }
-        ],
-        inferred: "Monroe Institute Gateway Experience audio frequencies and Hemi-Sync protocols for consciousness expansion.",
-        ethics_note: "Declassified Monroe Institute manuals. Safe for public research.",
-        confidence_overall: 0.91,
-        voice_script_inferred: "This is Agent Cipher. The Gateway audio protocol decryptions are complete. The binaural beat frequencies are mapped to Focus 21 click-out states. Spacetime transcendence protocols are verified."
-      } : {
-        doc_id: targetDoc,
-        redaction_map: [
-          { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
-          { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" },
-          { redacted_text: "██████", inferred_text: "Baby Orbs", explanation: "Expelled sub-anomalies" }
-        ],
-        code_breaks: [
-          { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
-          { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
-        ],
-        inferred: "Luminous orange mother orb observed ejecting smaller red baby orbs in coordinated patterns over sensitive security facilities.",
-        ethics_note: "Hypotheses only. Simulated agentic output for public demo.",
-        confidence_overall: 0.81,
-        voice_script_inferred: "This is Agent Cipher. Deciphering complete for the D080 narrative. The Groom Lake test range coordinates match the primary mother orb sighting. Coordinated baby orb cycles are confirmed."
-      });
-
+      const mockDecipher = getMockDecipher(targetDoc);
       setDecipherResult(mockDecipher);
       toast.success('Redaction decipher complete (simulated demo)', {
         description: `${mockDecipher.redaction_map.length} spans • ${mockDecipher.code_breaks.length} code leads • conf ${Math.round(mockDecipher.confidence_overall * 100)}%`,
