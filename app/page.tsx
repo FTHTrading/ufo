@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, Shield, Zap, Volume2, Image as ImageIcon, Coins, ExternalLink, AlertTriangle, Loader2, Download, FileText, Filter, Table as TableIcon, Grid as GridIcon, Activity } from 'lucide-react';
+import { Search, Shield, Zap, Volume2, Image as ImageIcon, Coins, ExternalLink, AlertTriangle, Loader2, Download, FileText, Filter, Table as TableIcon, Grid as GridIcon, Activity, Calendar, Clock } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Enhanced catalog source (from data/index.json released_docs + manifest enhanced + public signals). 
@@ -18,56 +18,56 @@ const RELEASED_DOCS: any[] = [
   // Full AI per entry: decipher/break/full chain/voice/comfy/x402/PDF/mint.
 
   // Core UAP / D0xx (R03 flagship)
-  {"id": "uap-d080-mother-orb-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap"},
-  {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap"},
-  {"id": "uap-d083-narrative-5-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D083 Narrative-5 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap"},
-  {"id": "uap-d084-army-flying-saucer-1949", "tranche": "03", "type": "narrative", "title": "DOW-UAP-D084 US Army Flying Saucer Study 1949", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "DOW", "date_hint": "1949", "location": "N/A", "program": "uap"},
-  {"id": "uap-d085-narrative-6-midwest", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D085 Narrative-6 Midwest Sensitive Corridor", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12", "location": "Midwest", "program": "uap"},
-  {"id": "uap-d077-aaro-cross-ref", "tranche": "03", "type": "narrative", "title": "D077 AARO Cross-Reference Analysis (companion to D080)", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "AARO", "date_hint": "2023-2026", "location": "western US", "program": "uap"},
+  {"id": "uap-d080-mother-orb-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap", "description": "Luminous orange mother orb (12-18m diameter) observed over sensitive security facilities. Ejected smaller red baby orbs in coordinated patterns.", "links": [{"name": "AARO Official", "url": "https://www.aaro.mil/"}, {"name": "FBI Vault", "url": "https://vault.fbi.gov/"}]},
+  {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-d083-narrative-5-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D083 Narrative-5 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-d084-army-flying-saucer-1949", "tranche": "03", "type": "narrative", "title": "DOW-UAP-D084 US Army Flying Saucer Study 1949", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "DOW", "date_hint": "1949", "location": "N/A", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-d085-narrative-6-midwest", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D085 Narrative-6 Midwest Sensitive Corridor", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12", "location": "Midwest", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-d077-aaro-cross-ref", "tranche": "03", "type": "narrative", "title": "D077 AARO Cross-Reference Analysis (companion to D080)", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "AARO", "date_hint": "2023-2026", "location": "western US", "program": "uap", "description": "AARO Cross-Reference Analysis. Evaluates sensor calibration, witness testimony, and correlation with national security site logs.", "links": [{"name": "AARO Reports", "url": "https://www.aaro.mil/"}]},
 
   // FBI Orbs / Plasma (R03)
-  {"id": "uap-fbi-d002-colorado-springs-2022", "tranche": "03", "type": "narrative", "title": "FBI-UAP-D002 FD-1057 Unresolved UAP Report Colorado Springs 2022", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "partial", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
-  {"id": "uap-fbi-d003-digital-rendering-colorado", "tranche": "03", "type": "image", "title": "FBI-UAP-D003 Digital Rendering Unresolved UAP Report Colorado Springs 2022", "status": "released", "has_pdf": false, "missing": false, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
-  {"id": "uap-fbi-pr003-orbs-over-pond-2024", "tranche": "03", "type": "video", "title": "FBI-UAP-PR003 Orbs Over the Pond 2024", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2024-10", "location": "Northeastern United States", "program": "uap"},
-  {"id": "uap-fbi-pr004-northeastern-2025", "tranche": "03", "type": "video", "title": "FBI-UAP-PR004 Northeastern Orb Sighting 2025", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2025-07", "location": "Northeastern United States", "program": "uap"},
-  {"id": "uap-fbi-pr001-plasma-sphere-2023", "tranche": "03", "type": "video", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
-  {"id": "uap-ne-orb-pond-202x", "tranche": "03", "type": "video", "title": "Orbs Over the Pond + merge events (FBI highly credible)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021-2025", "location": "Northeastern US", "program": "uap"},
+  {"id": "uap-fbi-d002-colorado-springs-2022", "tranche": "03", "type": "narrative", "title": "FBI-UAP-D002 FD-1057 Unresolved UAP Report Colorado Springs 2022", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "partial", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-fbi-d003-digital-rendering-colorado", "tranche": "03", "type": "image", "title": "FBI-UAP-D003 Digital Rendering Unresolved UAP Report Colorado Springs 2022", "status": "released", "has_pdf": false, "missing": false, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-fbi-pr003-orbs-over-pond-2024", "tranche": "03", "type": "video", "title": "FBI-UAP-PR003 Orbs Over the Pond 2024", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2024-10", "location": "Northeastern United States", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-fbi-pr004-northeastern-2025", "tranche": "03", "type": "video", "title": "FBI-UAP-PR004 Northeastern Orb Sighting 2025", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2025-07", "location": "Northeastern United States", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-fbi-pr001-plasma-sphere-2023", "tranche": "03", "type": "video", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-ne-orb-pond-202x", "tranche": "03", "type": "video", "title": "Orbs Over the Pond + merge events (FBI highly credible)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021-2025", "location": "Northeastern US", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
 
   // CIA / Historical (R03 + cross) + more released R01/R02/R03
-  {"id": "historical-cia-uap-017-high-alert-foreign-2008", "tranche": "03", "type": "narrative", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing (Harare 2008)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA", "date_hint": "2008-07", "location": "Harare, Zimbabwe", "program": "historical"},
-  {"id": "uap-colorado-springs-potato-2022", "tranche": "03", "type": "image", "title": "Cloaking / potato object (Colorado Springs artistic interp)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
-  {"id": "historical-r01-18-100754-general-1946-vol2", "tranche": "01", "type": "narrative", "title": "18_100754 General 1946-7 Vol 2 - Historical UFO Records", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1946-1947", "location": "N/A", "program": "historical"},
-  {"id": "historical-apollo-16-audio-1962", "tranche": "03", "type": "audio", "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962 (alien starbase remark)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA", "date_hint": "1962/1972", "location": "various", "program": "historical"},
-  {"id": "historical-apollo-11-alt-transcript", "tranche": "01", "type": "audio", "title": "Apollo 11 Alternative Commentary / Unredacted Audio Clip", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1969", "location": "Lunar", "program": "historical"},
-  {"id": "historical-r02-fbi-sensor-pack-042", "tranche": "02", "type": "narrative", "title": "FBI Sensor Pack Unresolved 042 (Release 02)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI", "date_hint": "2022", "location": "Various", "program": "uap"},
-  {"id": "uap-img-cloaking-delta-formation", "tranche": "03", "type": "image", "title": "Cloaking Delta Formation Sighting (artist recon)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021", "location": "Southwest", "program": "uap"},
-  {"id": "historical-r01-army-ufo-general-1947-vol1", "tranche": "01", "type": "narrative", "title": "18_100754 General 1947 Vol 1 - Army UFO Records (Historical Release 01)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1947", "location": "N/A", "program": "historical"},
-  {"id": "historical-r01-army-flying-disk-1948-transcript", "tranche": "01", "type": "narrative", "title": "18_6369445 Army Flying Disk Study 1948 Vol 1 - Historical UFO Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1948", "location": "N/A", "program": "historical"},
-  {"id": "uap-r03-fbi-orb-transcript-northeast-2023", "tranche": "03", "type": "narrative", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023 - Full Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
-  {"id": "historical-r03-apollo-variant-starbase-debrief", "tranche": "03", "type": "audio", "title": "Apollo 16 Variant Debrief - Additional Alien Starbase / Unredacted Audio", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1972", "location": "various", "program": "historical"},
-  {"id": "historical-cloaking-potato-colorado-2022", "tranche": "03", "type": "image", "title": "Cloaking / Low-Observable 'Potato' UAP Report Colorado Springs 2022 (FBI Artistic/Render)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+  {"id": "historical-cia-uap-017-high-alert-foreign-2008", "tranche": "03", "type": "narrative", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing (Harare 2008)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA", "date_hint": "2008-07", "location": "Harare, Zimbabwe", "program": "historical", "description": "Archival declassified CIA document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
+  {"id": "uap-colorado-springs-potato-2022", "tranche": "03", "type": "image", "title": "Cloaking / potato object (Colorado Springs artistic interp)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap", "description": "Investigation of an irregular potato-shaped object near Colorado Springs, displaying advanced optical cloaking traits.", "links": [{"name": "FBI Records", "url": "https://vault.fbi.gov/"}]},
+  {"id": "historical-r01-18-100754-general-1946-vol2", "tranche": "01", "type": "narrative", "title": "18_100754 General 1946-7 Vol 2 - Historical UFO Records", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1946-1947", "location": "N/A", "program": "historical", "description": "Archival declassified DOW document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
+  {"id": "historical-apollo-16-audio-1962", "tranche": "03", "type": "audio", "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962 (alien starbase remark)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA", "date_hint": "1962/1972", "location": "various", "program": "historical", "description": "Apollo 16 astronaut debrief transcript highlighting Gordon Cooper and Walter Cronkite's remarks regarding an anomalous lunar starbase.", "links": [{"name": "NASA History Office", "url": "https://history.nasa.gov/"}]},
+  {"id": "historical-apollo-11-alt-transcript", "tranche": "01", "type": "audio", "title": "Apollo 11 Alternative Commentary / Unredacted Audio Clip", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1969", "location": "Lunar", "program": "historical", "description": "Apollo 11 alternative mission commentary and unredacted audio clips detailing anomalous observations during lunar descent.", "links": [{"name": "NASA Apollo Archives", "url": "https://www.nasa.gov/specials/apollo50th/index.html"}]},
+  {"id": "historical-r02-fbi-sensor-pack-042", "tranche": "02", "type": "narrative", "title": "FBI Sensor Pack Unresolved 042 (Release 02)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI", "date_hint": "2022", "location": "Various", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "uap-img-cloaking-delta-formation", "tranche": "03", "type": "image", "title": "Cloaking Delta Formation Sighting (artist recon)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021", "location": "Southwest", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "historical-r01-army-ufo-general-1947-vol1", "tranche": "01", "type": "narrative", "title": "18_100754 General 1947 Vol 1 - Army UFO Records (Historical Release 01)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1947", "location": "N/A", "program": "historical", "description": "Archival declassified DOW document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
+  {"id": "historical-r01-army-flying-disk-1948-transcript", "tranche": "01", "type": "narrative", "title": "18_6369445 Army Flying Disk Study 1948 Vol 1 - Historical UFO Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1948", "location": "N/A", "program": "historical", "description": "Archival declassified DOW document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
+  {"id": "uap-r03-fbi-orb-transcript-northeast-2023", "tranche": "03", "type": "narrative", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023 - Full Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "historical-r03-apollo-variant-starbase-debrief", "tranche": "03", "type": "audio", "title": "Apollo 16 Variant Debrief - Additional Alien Starbase / Unredacted Audio", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1972", "location": "various", "program": "historical", "description": "Archival declassified NASA document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
+  {"id": "historical-cloaking-potato-colorado-2022", "tranche": "03", "type": "image", "title": "Cloaking / Low-Observable 'Potato' UAP Report Colorado Springs 2022 (FBI Artistic/Render)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap", "description": "Investigation of an irregular potato-shaped object near Colorado Springs, displaying advanced optical cloaking traits.", "links": [{"name": "FBI Records", "url": "https://vault.fbi.gov/"}]},
 
   // Stargate Program (10+ new clean: CIA RV protocols/sessions, viewer redacted, Soviet sites, success metrics, overlap)
-  {"id": "stargate-cia-grill-flame-rv-protocols-001", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - Grill Flame Remote Viewing Protocols and Sessions (Viewer Redacted, Soviet Military Targets)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1970s-1980s", "location": "Various (Soviet/tech targets)", "program": "stargate"},
-  {"id": "stargate-cia-sun-streak-rv-sessions-002", "tranche": "cross", "type": "narrative", "title": "CIA Stargate - Sun Streak RV Operational Sessions and Success Metrics (1980s-1990s, Redacted Viewers)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s-1995", "location": "Redacted operational sites", "program": "stargate"},
-  {"id": "stargate-cia-center-lane-soviet-sites-003", "tranche": "cross", "type": "narrative", "title": "Stargate Project Center Lane - Targeting Soviet Installations and Technical Sites, Accuracy Reports", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s", "location": "Soviet sites (redacted)", "program": "stargate"},
-  {"id": "stargate-gateway-overlap-training-004", "tranche": "cross", "type": "narrative", "title": "Stargate / Gateway Program Overlap - Monroe Hemi-Sync Training for Remote Viewers", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "stargate"},
-  {"id": "stargate-rv-success-metrics-005", "tranche": "cross", "type": "narrative", "title": "Stargate RV Program - Viewer Performance Metrics, Operational Hits on Foreign Targets", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1978-1995", "location": "Various", "program": "stargate"},
+  {"id": "stargate-cia-grill-flame-rv-protocols-001", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - Grill Flame Remote Viewing Protocols and Sessions (Viewer Redacted, Soviet Military Targets)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1970s-1980s", "location": "Various (Soviet/tech targets)", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "stargate-cia-sun-streak-rv-sessions-002", "tranche": "cross", "type": "narrative", "title": "CIA Stargate - Sun Streak RV Operational Sessions and Success Metrics (1980s-1990s, Redacted Viewers)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s-1995", "location": "Redacted operational sites", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "stargate-cia-center-lane-soviet-sites-003", "tranche": "cross", "type": "narrative", "title": "Stargate Project Center Lane - Targeting Soviet Installations and Technical Sites, Accuracy Reports", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s", "location": "Soviet sites (redacted)", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "stargate-gateway-overlap-training-004", "tranche": "cross", "type": "narrative", "title": "Stargate / Gateway Program Overlap - Monroe Hemi-Sync Training for Remote Viewers", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "stargate-rv-success-metrics-005", "tranche": "cross", "type": "narrative", "title": "Stargate RV Program - Viewer Performance Metrics, Operational Hits on Foreign Targets", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1978-1995", "location": "Various", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
 
   // Gateway Experience (10+ new clean: Monroe Hemi-Sync Focus levels 10/12/15/21 click-out, energy bar tool, spacetime, audio protocols, CIA apps)
-  {"id": "gateway-monroe-hemi-sync-focus-levels-001", "tranche": "cross", "type": "narrative", "title": "The Gateway Experience - Monroe Institute Hemi-Sync Focus Levels (Focus 10, 12, 15, 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
-  {"id": "gateway-energy-bar-tool-spacetime-002", "tranche": "cross", "type": "narrative", "title": "Gateway Process - Energy Bar Tool (EBT), Spacetime Transcendence, and Non-Physical Exploration Protocols", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
-  {"id": "gateway-audio-protocols-cia-applications-003", "tranche": "cross", "type": "narrative", "title": "Gateway Hemi-Sync Audio Protocols and CIA Applications (1983 Declass Focus 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1983", "location": "N/A", "program": "gateway"},
-  {"id": "gateway-focus-21-click-out-004", "tranche": "cross", "type": "narrative", "title": "Monroe Gateway - Focus 21 'Click Out' State Documentation and CIA Intelligence Use Cases", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
-  {"id": "gateway-focus-10-12-sleep-awake-005", "tranche": "cross", "type": "narrative", "title": "Gateway Experience Focus 10 (Mind Awake / Body Asleep) and Focus 12 Expanded Awareness Docs", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+  {"id": "gateway-monroe-hemi-sync-focus-levels-001", "tranche": "cross", "type": "narrative", "title": "The Gateway Experience - Monroe Institute Hemi-Sync Focus Levels (Focus 10, 12, 15, 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
+  {"id": "gateway-energy-bar-tool-spacetime-002", "tranche": "cross", "type": "narrative", "title": "Gateway Process - Energy Bar Tool (EBT), Spacetime Transcendence, and Non-Physical Exploration Protocols", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
+  {"id": "gateway-audio-protocols-cia-applications-003", "tranche": "cross", "type": "narrative", "title": "Gateway Hemi-Sync Audio Protocols and CIA Applications (1983 Declass Focus 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1983", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
+  {"id": "gateway-focus-21-click-out-004", "tranche": "cross", "type": "narrative", "title": "Monroe Gateway - Focus 21 'Click Out' State Documentation and CIA Intelligence Use Cases", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
+  {"id": "gateway-focus-10-12-sleep-awake-005", "tranche": "cross", "type": "narrative", "title": "Gateway Experience Focus 10 (Mind Awake / Body Asleep) and Focus 12 Expanded Awareness Docs", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
 
   // === SEEDED VIDEOS from user-provided list (best ones added because primary war.gov/UFO site down / Akamai blocks as of 2026-06-14). Grok cross-refs + direct IDs. All "missing local" until drop.
-  {"id": "video-19fc9fa6-bf82-485b-a390-9f391e1936f7", "tranche": "03", "type": "video", "title": "UAP Plasma Sphere & Merge Orbs - Northeastern Event (war.gov ref ID 19fc9fa6...)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI / war.gov", "date_hint": "2023-2025", "location": "Northeastern US", "program": "uap"},
-  {"id": "video-c1d448f0-43b2-4d67-8b92-d944e68ad63d", "tranche": "03", "type": "video", "title": "Orb Cluster & Cloaking Event Video Log (Grok ref June 12 2026)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI / Grok cross-ref", "date_hint": "June 2026", "location": "Various", "program": "uap"},
-  {"id": "video-d4446c9b-308b-4450-a990-4c8154e9395e", "tranche": "03", "type": "video", "title": "Mother-Baby Orb Cycle Additional Footage (provided ID June 10)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "DOW / user list ref", "date_hint": "2023-10", "location": "Western US sensitive", "program": "uap"},
-  {"id": "video-2786a7f7-23d2-4434-9928-4ce14f66261f", "tranche": "cross", "type": "video", "title": "Gateway Hemi-Sync Focus Protocol Video Log (Grok ref)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "Monroe / CIA (user list)", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
-  {"id": "video-f4e861f6-b666-490b-b6b8-0de099540596", "tranche": "cross", "type": "video", "title": "Stargate Grill Flame / Sun Streak RV Operational Video (ID ref)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA (provided)", "date_hint": "1980s-1990s", "location": "Redacted Soviet/tech", "program": "stargate"},
-  {"id": "video-365867e3-97c3-4cd4-9af1-1d07920173d0", "tranche": "03", "type": "video", "title": "Apollo Variant Starbase Commentary Video (historical Grok cross)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA / provided ref", "date_hint": "1962-1972", "location": "various", "program": "historical"},
+  {"id": "video-19fc9fa6-bf82-485b-a390-9f391e1936f7", "tranche": "03", "type": "video", "title": "UAP Plasma Sphere & Merge Orbs - Northeastern Event (war.gov ref ID 19fc9fa6...)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI / war.gov", "date_hint": "2023-2025", "location": "Northeastern US", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI / war.gov witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "video-c1d448f0-43b2-4d67-8b92-d944e68ad63d", "tranche": "03", "type": "video", "title": "Orb Cluster & Cloaking Event Video Log (Grok ref June 12 2026)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI / Grok cross-ref", "date_hint": "June 2026", "location": "Various", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and FBI / Grok cross-ref witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "video-d4446c9b-308b-4450-a990-4c8154e9395e", "tranche": "03", "type": "video", "title": "Mother-Baby Orb Cycle Additional Footage (provided ID June 10)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "DOW / user list ref", "date_hint": "2023-10", "location": "Western US sensitive", "program": "uap", "description": "Declassified UAP sighting report detailing incident coordinates, sensor captures, and DOW / user list ref witness reports.", "links": [{"name": "AARO Archive", "url": "https://www.aaro.mil/"}, {"name": "FBI UAP Vault", "url": "https://vault.fbi.gov/unexplained-phenomenon"}]},
+  {"id": "video-2786a7f7-23d2-4434-9928-4ce14f66261f", "tranche": "cross", "type": "video", "title": "Gateway Hemi-Sync Focus Protocol Video Log (Grok ref)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "Monroe / CIA (user list)", "date_hint": "1980s", "location": "N/A", "program": "gateway", "description": "Monroe Institute Gateway Experience training report outlining Hemi-Sync audio protocols, Focus 10/12/15/21 levels, and spacetime Transcendence.", "links": [{"name": "CIA FOIA Gateway PDF", "url": "https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf"}, {"name": "Monroe Institute Website", "url": "https://www.monroeinstitute.org/"}]},
+  {"id": "video-f4e861f6-b666-490b-b6b8-0de099540596", "tranche": "cross", "type": "video", "title": "Stargate Grill Flame / Sun Streak RV Operational Video (ID ref)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA (provided)", "date_hint": "1980s-1990s", "location": "Redacted Soviet/tech", "program": "stargate", "description": "CIA Project Stargate document detailing declassified remote viewing protocols, training sessions, and intelligence targets (Soviet technical sites).", "links": [{"name": "CIA Reading Room", "url": "https://www.cia.gov/readingroom/collection/stargate"}]},
+  {"id": "video-365867e3-97c3-4cd4-9af1-1d07920173d0", "tranche": "03", "type": "video", "title": "Apollo Variant Starbase Commentary Video (historical Grok cross)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA / provided ref", "date_hint": "1962-1972", "location": "various", "program": "historical", "description": "Archival declassified NASA / provided ref document detailing historical investigations, study groups, or radar-visual UAP incidents.", "links": [{"name": "National Archives", "url": "https://www.archives.gov/"}, {"name": "NASA Archives", "url": "https://history.nasa.gov/"}]},
 ];
 
 // Load from enhanced index (in prod: fetch('/data/index.json').then... or server route)
@@ -93,29 +93,81 @@ interface AnalysisResult {
 
 const STANDOUTS = [
   {
-    id: "D080-mother-orb-western-sensitive",
+    id: "uap-d080-mother-orb-western",
     title: "D080 — Mother Orb (Western Sensitive Site)",
     desc: "Bright orange mother orb producing smaller red orbs over hours. Multiple agents. AARO unresolved.",
     tags: ["mother-baby", "sensitive-site"],
   },
   {
-    id: "NE-orb-pond-202x",
+    id: "uap-ne-orb-pond-202x",
     title: "NE Orb Pond — Plasma Merges (FBI Credible)",
     desc: "Plasma sphere stationary 45min + red orbs that merged. Highly credible FBI witnesses 2021-2025.",
     tags: ["plasma", "merge"],
   },
   {
-    id: "colorado-springs-potato-2022",
+    id: "uap-colorado-springs-potato-2022",
     title: "Colorado Springs — Cloaking Potato",
     desc: "Irregular 'potato' shaped object with cloaking/low-observable traits near Colorado Springs.",
     tags: ["cloaking", "irregular"],
   },
   {
-    id: "apollo-16-audio",
+    id: "historical-apollo-16-audio-1962",
     title: "Apollo 16 + Gordon Cooper Audio",
     desc: "Off-hand 'alien starbase' remark in debrief + 1962 Cronkite/Cooper interview in the tranche.",
     tags: ["historical", "audio"],
   },
+];
+
+const TIMELINE_EVENTS = [
+  {
+    date: "1949",
+    title: "US Army Flying Saucer Study",
+    desc: "Study of flying saucers and early declassified sightings.",
+    docId: "uap-d084-army-flying-saucer-1949",
+    program: "uap"
+  },
+  {
+    date: "1962",
+    title: "Cooper / Cronkite Interview",
+    desc: "Remark on alien starbase in Apollo debriefs.",
+    docId: "historical-apollo-16-audio-1962",
+    program: "historical"
+  },
+  {
+    date: "1978",
+    title: "Project Grill Flame",
+    desc: "Initiation of CIA remote viewing protocols.",
+    docId: "stargate-cia-grill-flame-rv-protocols-001",
+    program: "stargate"
+  },
+  {
+    date: "1983",
+    title: "Monroe Gateway Analysis",
+    desc: "CIA declassified report on the Gateway Experience.",
+    docId: "gateway-monroe-hemi-sync-focus-levels-001",
+    program: "gateway"
+  },
+  {
+    date: "2022-10",
+    title: "Colorado Potato Sightings",
+    desc: "Unresolved report of low-observable potato-shaped UAP.",
+    docId: "uap-colorado-springs-potato-2022",
+    program: "uap"
+  },
+  {
+    date: "2023-10",
+    title: "D080 Mother Orb Incident",
+    desc: "Luminous mother orb ejecting baby orbs over national security site.",
+    docId: "uap-d080-mother-orb-western",
+    program: "uap"
+  },
+  {
+    date: "2025-07",
+    title: "Northeastern Sighting",
+    desc: "Highly credible FBI report of stationary plasma sphere.",
+    docId: "uap-fbi-pr004-northeastern-2025",
+    program: "uap"
+  }
 ];
 
 // Professional program color coding (used in badges, tabs, cards)
@@ -157,7 +209,8 @@ export default function GMIIETruthSurface() {
   const [filterType, setFilterType] = useState<'all' | 'narrative' | 'video' | 'image' | 'audio'>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | 'local' | 'released' | 'ingested'>('all');
   const [filterProgram, setFilterProgram] = useState<'all' | 'uap' | 'stargate' | 'gateway' | 'historical'>('all');
-  const [activeDocId, setActiveDocId] = useState<string>('D080-mother-orb-western-sensitive');
+  const [activeDocId, setActiveDocId] = useState<string>('uap-d080-mother-orb-western');
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Dynamic catalog load (preferred) via /api/analyze?action=catalog — falls back to RELEASED_DOCS
   const [dynamicCatalog, setDynamicCatalog] = useState<any[] | null>(null);
@@ -224,6 +277,7 @@ export default function GMIIETruthSurface() {
   };
 
   const fullCatalog = (dynamicCatalog && dynamicCatalog.length > 0 ? dynamicCatalog : getFullCatalog());
+  const activeDoc = useMemo(() => fullCatalog.find((d: any) => d.id === activeDocId), [fullCatalog, activeDocId]);
 
   const filteredCatalog = useMemo(() => {
     return fullCatalog.filter((doc: any) => {
@@ -1062,6 +1116,46 @@ cloudflared tunnel --url http://localhost:3005
           <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + validation.</div>
         </div>
 
+        {/* Declassified Timeline Component */}
+        <div className="max-w-5xl mx-auto mb-10 p-5 rounded-2xl border border-[#222] bg-[#0c0c0c]/80 backdrop-blur-md">
+          <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-2">
+            <Calendar className="w-4 h-4 text-[#f55]" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#eaeaea]">Declassified Anomalies Timeline</span>
+            <span className="ml-auto text-[9px] text-[#666] font-mono">SCROLL TO EXPLORE</span>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-4 pt-2 snap-x scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+            {TIMELINE_EVENTS.map((evt, idx) => {
+              const c = getProgramColor(evt.program);
+              const isActive = activeDocId === evt.docId;
+              return (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    setFilterProgram(evt.program as any);
+                    setActiveDocId(evt.docId);
+                    setIsDrawerOpen(true);
+                    runAnalysis(evt.docId);
+                    setTimeout(() => {
+                      document.getElementById('breakdown-panel')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
+                  className={`flex-shrink-0 w-64 p-4 rounded-xl border snap-start cursor-pointer hover:border-[#f55]/50 transition duration-200 ${isActive ? 'bg-[#f55]/10 border-[#f55]/40' : 'bg-black/40 border-[#222]'}`}
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs font-bold text-[#f55] font-mono">{evt.date}</span>
+                    <span className={`text-[8px] px-1.5 py-0.5 rounded font-mono ${c.bg} ${c.text}`}>{c.label}</span>
+                  </div>
+                  <h4 className="text-sm font-semibold text-white truncate mb-1">{evt.title}</h4>
+                  <p className="text-xs text-[#888] line-clamp-2 leading-relaxed">{evt.desc}</p>
+                  <div className="flex items-center gap-1 text-[9px] text-[#f55]/80 font-mono mt-3">
+                    <Clock className="w-2.5 h-2.5" /> Analyze Event →
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Research Mode Elements */}
         {currentMode === 'research' && (
           <>
@@ -1075,7 +1169,7 @@ cloudflared tunnel --url http://localhost:3005
                     subtitle: "Sensitive Site Event (D080)",
                     desc: "Bright orange mother orb producing smaller red baby orbs over western US sensitive facility.",
                     query: "Explain the mother orb D080 incident near the sensitive site and any defense stock, stablecoin, or great reset implications",
-                    docId: "uap-d080-mother-orb-western-sensitive"
+                    docId: "uap-d080-mother-orb-western"
                   },
                   {
                     title: "Colorado Cloaking",
@@ -1096,7 +1190,7 @@ cloudflared tunnel --url http://localhost:3005
                     key={i} 
                     onClick={() => {
                       setQuery(card.query);
-                      setActiveDocId(card.docId);
+                      setActiveDocId(card.docId); setIsDrawerOpen(true);
                       runAnalysis(card.docId);
                       document.getElementById('query-input')?.scrollIntoView({ behavior: 'smooth' });
                     }}
@@ -1355,7 +1449,7 @@ cloudflared tunnel --url http://localhost:3005
                   <div 
                     key={doc.id} 
                     onClick={() => { 
-                      setActiveDocId(doc.id); 
+                      setActiveDocId(doc.id); setIsDrawerOpen(true);
                       runAnalysis(doc.id); 
                       document.getElementById('breakdown-panel')?.scrollIntoView({behavior:'smooth'}); 
                     }}
@@ -1389,7 +1483,7 @@ cloudflared tunnel --url http://localhost:3005
                     key={idx} 
                     className="flex-shrink-0 w-40 cursor-pointer group snap-start" 
                     onClick={() => { 
-                      setActiveDocId(img.docId); 
+                      setActiveDocId(img.docId); setIsDrawerOpen(true);
                       runAnalysis(img.docId); 
                       document.getElementById('breakdown-panel')?.scrollIntoView({behavior:'smooth'});
                     }}
@@ -1532,11 +1626,11 @@ cloudflared tunnel --url http://localhost:3005
                             </td>
                             <td className="px-4 py-3 text-right">
                               <div className="flex gap-1.5 justify-end flex-wrap">
-                                <button onClick={() => { setActiveDocId(doc.id); runAnalysis(doc.id); }} className="px-2.5 py-1 rounded border border-[#333] hover:bg-white hover:text-black transition text-[10px]">Analyze</button>
+                                <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runAnalysis(doc.id); }} className="px-2.5 py-1 rounded border border-[#333] hover:bg-white hover:text-black transition text-[10px]">Analyze</button>
                                 {currentMode === 'premium' && (
                                   <>
-                                    <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} disabled={isDeciphering} className="px-2.5 py-1 rounded border border-[#f55]/50 text-[#f55] hover:bg-[#2a0e0e] transition text-[10px]">Decipher</button>
-                                    <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} disabled={isFullChaining} className="px-2.5 py-1 rounded bg-[#f55]/10 border border-[#f55]/60 text-[#f55] text-[10px]">Full Chain</button>
+                                    <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runDecipherRedactions(); }} disabled={isDeciphering} className="px-2.5 py-1 rounded border border-[#f55]/50 text-[#f55] hover:bg-[#2a0e0e] transition text-[10px]">Decipher</button>
+                                    <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runFullD080Chain(); }} disabled={isFullChaining} className="px-2.5 py-1 rounded bg-[#f55]/10 border border-[#f55]/60 text-[#f55] text-[10px]">Full Chain</button>
                                     <button onClick={() => generatePdfForDoc(doc)} disabled={isGenerating} className="px-2.5 py-1 rounded border border-[#333] hover:bg-[#222] transition text-[10px] flex items-center gap-0.5"><FileText className="w-2.5 h-2.5" /> PDF</button>
                                     <button onClick={() => downloadPdfForDoc(doc)} disabled={isDownloading} className="px-2.5 py-1 rounded bg-[#f55] text-black text-[10px] font-semibold flex items-center gap-0.5 disabled:opacity-50"><Download className="w-2.5 h-2.5" /> DL</button>
                                   </>
@@ -1567,11 +1661,11 @@ cloudflared tunnel --url http://localhost:3005
                           <div className="text-[10px] text-[#666] font-mono">{doc.agency} • {doc.location}</div>
                         </div>
                         <div className="flex flex-wrap gap-1 mt-4 pt-3 border-t border-[#1a1a1a]">
-                          <button onClick={() => { setActiveDocId(doc.id); runAnalysis(doc.id); }} className="text-[10px] px-2 py-1 border border-[#333] rounded hover:bg-white hover:text-black transition">Analyze</button>
+                          <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runAnalysis(doc.id); }} className="text-[10px] px-2 py-1 border border-[#333] rounded hover:bg-white hover:text-black transition">Analyze</button>
                           {currentMode === 'premium' && (
                             <>
-                              <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} className="text-[10px] px-2 py-1 border border-[#f55]/60 text-[#f55] rounded hover:bg-[#f55]/10 transition">Decipher</button>
-                              <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} className="text-[10px] px-2 py-1 bg-[#f55]/10 border border-[#f55]/60 text-[#f55] rounded">Full Chain</button>
+                              <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runDecipherRedactions(); }} className="text-[10px] px-2 py-1 border border-[#f55]/60 text-[#f55] rounded hover:bg-[#f55]/10 transition">Decipher</button>
+                              <button onClick={() => { setActiveDocId(doc.id); setIsDrawerOpen(true); runFullD080Chain(); }} className="text-[10px] px-2 py-1 bg-[#f55]/10 border border-[#f55]/60 text-[#f55] rounded">Full Chain</button>
                               <button onClick={() => generatePdfForDoc(doc)} className="text-[10px] px-2 py-1 border border-[#333] rounded hover:bg-[#222] transition">PDF</button>
                               <button onClick={() => downloadPdfForDoc(doc)} className="text-[10px] px-2 py-1 bg-[#f55] text-black rounded font-semibold transition">DL</button>
                             </>
@@ -1587,7 +1681,7 @@ cloudflared tunnel --url http://localhost:3005
         </div>
 
         {/* Results Drawer */}
-        {(result || decipherResult || fullChainResult || scrapeResult || comfyPrompt || visualPreviewActive) && (
+        {(activeDocId && isDrawerOpen) && (
           <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
             {/* Backdrop */}
             <div 
@@ -1599,6 +1693,7 @@ cloudflared tunnel --url http://localhost:3005
                 setScrapeResult(null);
                 setComfyPrompt(null);
                 setVisualPreviewActive(false);
+                setIsDrawerOpen(false);
               }}
             />
             
@@ -1625,6 +1720,7 @@ cloudflared tunnel --url http://localhost:3005
                     setScrapeResult(null);
                     setComfyPrompt(null);
                     setVisualPreviewActive(false);
+                    setIsDrawerOpen(false);
                   }}
                   className="px-4 py-2 text-xs font-mono font-bold text-[#f55] hover:text-white hover:bg-[#f55]/10 rounded-lg border border-[#f55]/30 bg-black/50 transition flex items-center gap-1.5"
                 >
@@ -1634,6 +1730,38 @@ cloudflared tunnel --url http://localhost:3005
 
               {/* Drawer Body */}
               <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {activeDoc && (
+                  <div className="p-5 rounded-2xl border border-[#222] bg-[#0d0d0d] space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider ${getProgramColor(activeDoc.program).bg} ${getProgramColor(activeDoc.program).text} border ${getProgramColor(activeDoc.program).border}`}>
+                        {getProgramColor(activeDoc.program).label}
+                      </span>
+                      {activeDoc.agency && <span className="text-[10px] font-mono text-[#666]">{activeDoc.agency}</span>}
+                    </div>
+                    <h3 className="text-lg font-bold text-white leading-snug">{activeDoc.title}</h3>
+                    <p className="text-xs text-[#aaa] leading-relaxed">{activeDoc.description || 'No description available.'}</p>
+                    
+                    {activeDoc.links && activeDoc.links.length > 0 && (
+                      <div className="pt-2 border-t border-[#222]">
+                        <div className="text-[9px] uppercase tracking-wider text-[#666] mb-1.5 font-mono">Official Reference Sources</div>
+                        <div className="flex flex-wrap gap-2">
+                          {activeDoc.links.map((link: any, idx: number) => (
+                            <a 
+                              key={idx} 
+                              href={link.url} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-1 text-[10px] text-[#f55] hover:underline bg-[#f55]/5 px-2 py-1 rounded border border-[#f55]/20 hover:bg-[#f55]/10 transition"
+                            >
+                              {link.name} <ExternalLink className="w-2.5 h-2.5" />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {result && (
                   <div className={`card rounded-3xl p-6 border border-[#222] bg-[#0c0c0c] ${result.paid ? 'border-[#f55]/40 bg-[#0d0a0a]' : ''}`}>
                     <div className="flex items-start justify-between mb-4 pb-4 border-b border-[#222]">
