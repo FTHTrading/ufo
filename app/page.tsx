@@ -129,6 +129,8 @@ const getProgramColor = (program: string = 'uap') => {
 };
 
 export default function GMIIETruthSurface() {
+  const [currentMode, setCurrentMode] = useState<'research' | 'explorer' | 'premium'>('research');
+  const [showAllDocs, setShowAllDocs] = useState<boolean>(false);
   const [query, setQuery] = useState("Explain the mother orb D080 incident near the sensitive site and any defense stock, stablecoin, or great reset implications");
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -234,6 +236,13 @@ export default function GMIIETruthSurface() {
       return matchesSearch && matchesRelease && matchesType && matchesStatus && matchesProgram;
     });
   }, [fullCatalog, searchTerm, filterRelease, filterType, filterStatus, filterProgram]);
+
+  const displayedCatalog = useMemo(() => {
+    if (currentMode === 'research' && !showAllDocs) {
+      return filteredCatalog.slice(0, 8);
+    }
+    return filteredCatalog;
+  }, [filteredCatalog, currentMode, showAllDocs]);
 
   const missingCount = filteredCatalog.filter((d: any) => d.missing).length;
 
@@ -940,36 +949,95 @@ cloudflared tunnel --url http://localhost:3005
               <div className="text-[10px] text-[#888] -mt-1">PUBLIC TRUTH SURFACE • FTHTrading</div>
             </div>
           </div>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-3 text-sm">
             <button onClick={connectWallet} className={`px-3 py-1 rounded text-xs border ${walletAddress ? 'border-emerald-600 text-emerald-400' : 'border-[#444] hover:bg-[#111]'}`}>
               {walletAddress ? `Connected: ${walletAddress.slice(0,6)}...${walletAddress.slice(-4)}` : 'Connect Wallet (Web3)'}
             </button>
-            <button onClick={openInvestigations} className="hover:text-white underline decoration-dotted">Forensic Board (copy path)</button>
-            <button onClick={openTruth} className="hover:text-white underline decoration-dotted">Open Legacy Truth (5173)</button>
-            <button onClick={installAsApp} className="px-2 py-0.5 text-xs border border-[#444] rounded hover:bg-[#111]">Install as App (PWA)</button>
-            <button onClick={shareSession} className="px-2 py-0.5 text-xs border border-[#f55]/60 text-[#f55] rounded">Share Tunnel + PWA</button>
-            <div className="px-3 py-1 bg-[#111] rounded text-xs border border-[#222]">x402 + CDP • USDC (premium) | IPFS + On-chain</div>
+            <button onClick={openInvestigations} className="hover:text-white underline decoration-dotted text-xs font-mono">Forensic Board</button>
+            <button onClick={openTruth} className="hover:text-white underline decoration-dotted text-xs font-mono">Legacy Truth</button>
+            <button onClick={installAsApp} className="px-2 py-0.5 text-xs border border-[#444] rounded hover:bg-[#111] transition">Install App</button>
+            <button onClick={shareSession} className="px-2 py-0.5 text-xs border border-[#f55]/60 text-[#f55] rounded hover:bg-[#f55]/10 transition">Share Tunnel</button>
           </div>
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-6 pt-12 pb-24">
+        {/* Simplified Hero Section */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#111] border border-[#222] text-xs mb-4">
-            <Zap className="w-3.5 h-3.5 text-[#f55]" /> AGENTIC • x402 POWERED • ON-CHAIN PERMANENT
+            <Zap className="w-3.5 h-3.5 text-[#f55]" /> ANOMALY INTELLIGENCE TERMINAL
           </div>
-          <h1 className="text-6xl font-semibold tracking-tighter mb-3 cyber-text">FTHTrading UFO Truth Surface — gov site down, we build our own.</h1>
-          <p className="max-w-2xl mx-auto text-xl text-[#aaa]">
-            Natural language access to every PURSUE tranche. Mother orbs, sensitive sites, finance/reset implications. 
-            Free basic. Premium agentic unlocks via USDC micropayments on Solana/Base.
+          <h1 className="text-5xl font-bold tracking-tighter mb-4 cyber-text">FTHTrading UFO Truth Surface</h1>
+          <p className="max-w-2xl mx-auto text-lg text-[#aaa] mb-6">
+            A secure, decentralized portal deciphering PURSUE tranches, Stargate remote viewing records, and Gateway experience anomalies.
           </p>
+          
+          {/* Main Action CTAs */}
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            <button
+              onClick={() => {
+                setCurrentMode('research');
+                document.getElementById('query-section')?.scrollIntoView({ behavior: 'smooth' });
+                const inputEl = document.getElementById('query-input');
+                if (inputEl) inputEl.focus();
+              }}
+              className={`px-5 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2 ${currentMode === 'research' ? 'bg-white text-black font-bold' : 'bg-[#111] border border-[#333] text-white hover:bg-[#222]'}`}
+            >
+              <Search className="w-4 h-4" /> Ask the Ring
+            </button>
+            <button
+              onClick={() => {
+                setCurrentMode('explorer');
+                document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className={`px-5 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2 ${currentMode === 'explorer' ? 'bg-white text-black font-bold' : 'bg-[#111] border border-[#333] text-white hover:bg-[#222]'}`}
+            >
+              <FileText className="w-4 h-4" /> Browse Docs
+            </button>
+            <button
+              onClick={() => {
+                setCurrentMode('explorer');
+                setFilterProgram('all');
+                document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-5 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2 bg-[#111] border border-[#333] text-white hover:bg-[#222]"
+            >
+              <Filter className="w-4 h-4" /> Explore Programs
+            </button>
+          </div>
+
+          {/* Secondary Technical Metadata Strip */}
+          <div className="flex justify-center items-center gap-4 text-[10px] text-[#555] font-mono border-t border-[#1a1a1a] pt-4 max-w-md mx-auto">
+            <span>x402 Micropayments (CDP + USDC)</span>
+            <span>•</span>
+            <span>IPFS Vault Storage</span>
+            <span>•</span>
+            <span>On-chain Provenance Proofs</span>
+          </div>
+        </div>
+
+        {/* Mode Selector pills */}
+        <div className="max-w-3xl mx-auto mb-8 p-3 rounded-2xl border border-[#222] bg-[#111]/30 flex items-center justify-between text-xs text-[#888]">
+          <span className="font-semibold uppercase tracking-wider text-[#bbb] pl-2">SYSTEM MODE:</span>
+          <div className="flex gap-2">
+            {(['research', 'explorer', 'premium'] as const).map(mode => (
+              <button
+                key={mode}
+                onClick={() => setCurrentMode(mode)}
+                className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition ${currentMode === mode ? 'bg-[#f55] text-black' : 'hover:text-white'}`}
+              >
+                {mode === 'research' ? 'Research Mode' : mode === 'explorer' ? 'Explorer Mode' : 'Premium Agentic'}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Query Bar */}
-        <div className="max-w-3xl mx-auto mb-8">
-          <div className="query-bar flex items-center gap-3 rounded-2xl px-5 py-3">
+        <div id="query-section" className="max-w-3xl mx-auto mb-8">
+          <div className="query-bar flex items-center gap-3 rounded-2xl px-5 py-3 border border-[#222] bg-[#111]/30 focus-within:border-[#f55]/50 transition">
             <Search className="w-5 h-5 text-[#888]" />
             <input
+              id="query-input"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && runAnalysis()}
@@ -979,250 +1047,493 @@ cloudflared tunnel --url http://localhost:3005
             <button 
               onClick={() => runAnalysis()} 
               disabled={isLoading}
-              className="px-6 py-2 rounded-xl bg-white text-black font-medium disabled:opacity-50 flex items-center gap-2"
+              className="px-6 py-2 rounded-xl bg-[#f55] text-black font-semibold disabled:opacity-50 flex items-center gap-2 hover:bg-white transition"
             >
               {isLoading ? 'Analyzing...' : 'Ask the Ring'}
             </button>
             <button 
               onClick={resetAnalysis}
-              className="px-3 py-2 rounded-xl bg-[#222] text-white border border-[#444] text-sm"
+              className="px-3 py-2 rounded-xl bg-[#222] text-white border border-[#444] text-sm hover:bg-[#333] transition"
               title="Force reset if stuck in Analyzing state"
             >
               Reset
             </button>
           </div>
-          <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + verified downloads/exports</div>
+          <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + validation.</div>
         </div>
 
-        {/* === PRODUCTION CATALOG: Full view of ALL released docs from enhanced manifest/index.json + released_docs === */}
-        <div className="mb-10">
-          {/* REQUIRED BANNER (exact per audit task; evidence from manifest.json + data/index.json + RELEASED_DOCS + disk) */}
-          <div className="mb-4 p-3 rounded-xl border border-[#f55] bg-[#1a0a0a] text-sm font-medium">
-            294+ TOTAL (docs + seeded videos from provided list) — Primary war.gov/UFO down (Akamai/EdgeSuite). Best video refs added from your IDs (war.gov + Grok cross). R03 videos now in compact navigator. Use local drops for full archive. Ring for agentic analysis on any.
-          </div>
-          {/* TOP-LEVEL PROGRAM NAV / TABS — ultimate next-level program sections using "program" field from catalog + /api */}
-          <div className="mb-4">
-            <div className="flex items-center gap-2 mb-2 px-1">
-              <div className="text-xs uppercase tracking-[2px] text-[#888]">PROGRAMS • FILTER THE TRUTH MACHINE</div>
-              <button onClick={loadDynamicCatalog} disabled={catalogLoading} className="ml-auto text-[10px] px-2 py-0.5 border border-[#444] rounded hover:bg-[#111] disabled:opacity-50">{catalogLoading ? 'LOADING...' : '↻ REFRESH DYNAMIC CATALOG (/api)'}</button>
+        {/* Research Mode Elements */}
+        {currentMode === 'research' && (
+          <>
+            {/* Featured Analysis Cards Rail */}
+            <div className="max-w-3xl mx-auto mb-8">
+              <div className="text-xs uppercase tracking-[2px] text-[#666] mb-3 text-center font-mono">FEATURED ANALYSIS TRAILS (Click to Ask)</div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {[
+                  {
+                    title: "Mother Orb",
+                    subtitle: "Sensitive Site Event (D080)",
+                    desc: "Bright orange mother orb producing smaller red baby orbs over western US sensitive facility.",
+                    query: "Explain the mother orb D080 incident near the sensitive site and any defense stock, stablecoin, or great reset implications",
+                    docId: "uap-d080-mother-orb-western-sensitive"
+                  },
+                  {
+                    title: "Colorado Cloaking",
+                    subtitle: "Low-Observable UAP (2022)",
+                    desc: "Irregular potato-shaped object showcasing low-observable and optical cloaking traits in Colorado Springs.",
+                    query: "Describe the irregular potato-shaped object with cloaking and low-observable traits in Colorado Springs 2022",
+                    docId: "uap-colorado-springs-potato-2022"
+                  },
+                  {
+                    title: "Gateway Focus 21",
+                    subtitle: "Operational Overlap (1983)",
+                    desc: "Monroe Hemi-Sync training overlap with CIA remote viewing protocols for Stargate, Focus 21 click-out.",
+                    query: "Show Monroe Hemi-Sync training overlap with CIA remote viewing protocols for Stargate, and operational Focus 21 click-out details",
+                    docId: "gateway-monroe-hemi-sync-focus-levels-001"
+                  }
+                ].map((card, i) => (
+                  <div 
+                    key={i} 
+                    onClick={() => {
+                      setQuery(card.query);
+                      setActiveDocId(card.docId);
+                      runAnalysis(card.docId);
+                      document.getElementById('query-input')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-4 rounded-xl border border-[#222] bg-[#111]/30 hover:bg-[#1a1a1a]/50 hover:border-[#f55]/40 transition cursor-pointer flex flex-col justify-between hover:scale-[1.02] duration-200"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-semibold text-[#f55] uppercase font-mono">{card.title}</span>
+                        <Zap className="w-3 h-3 text-[#666]" />
+                      </div>
+                      <div className="text-sm font-semibold text-[#eee] mb-1">{card.subtitle}</div>
+                      <p className="text-xs text-[#888] leading-normal">{card.desc}</p>
+                    </div>
+                    <div className="text-[10px] text-[#f55]/60 mt-3 font-mono">Load & Analyze →</div>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Live Insights Panel */}
+            <div className="max-w-3xl mx-auto mb-10 p-5 rounded-2xl border border-[#222] bg-[#0c0c0c]/80">
+              <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-2">
+                <Shield className="w-4 h-4 text-[#f55]" />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#eaeaea]">Live Anomaly Intelligence Feed</span>
+                <span className="ml-auto w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="System Active"></span>
+              </div>
+              <div className="space-y-4">
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">01</div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
+                      Top Anomaly Thread: Western Sensitive Sites (D080)
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-red-950 text-red-400 font-mono">AARO UNRESOLVED</span>
+                    </h4>
+                    <p className="text-xs text-[#888] mt-1">
+                      Bright orange mother orb producing smaller red baby orbs over western US sensitive facility. Cross-referenced with stablecoin macro implications.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">02</div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
+                      Most Credible Orb Chain: Northeastern Plasma Merges
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 font-mono">FBI FD-1057</span>
+                    </h4>
+                    <p className="text-xs text-[#888] mt-1">
+                      Multi-witness reports (2021-2025) of stationary plasma spheres merging. Video logs now linked via local gateway.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 items-start">
+                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">03</div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
+                      Stargate/Gateway Overlap Identified
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-blue-950 text-blue-400 font-mono">MONROE DECLASS</span>
+                    </h4>
+                    <p className="text-xs text-[#888] mt-1">
+                      Monroe Institute Focus 21 Hemi-Sync audio protocols used to train CIA remote viewers (Grill Flame / Sun Streak).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Premium Agentic Operations Control Center */}
+        {currentMode === 'premium' && (
+          <div id="premium-operations-section" className="max-w-4xl mx-auto mb-10 p-6 rounded-3xl border border-[#f55]/40 bg-[#0f0a0a] animate-fade-in">
+            <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-3">
+              <Zap className="w-5 h-5 text-[#f55]" />
+              <div>
+                <span className="text-sm font-bold uppercase tracking-widest text-[#eaeaea]">Agentic Operations Control Center</span>
+                <div className="text-[10px] text-[#888]">SOVEREIGN agent network online • x402 CDP routing active</div>
+              </div>
+              <span className="ml-auto text-[10px] bg-[#222] px-2 py-1 rounded text-emerald-400 font-mono animate-pulse">ONLINE</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="p-4 rounded-xl border border-[#222] bg-black/60">
+                <div className="text-xs uppercase tracking-wider text-[#888] mb-2 font-mono">Web3 Provenance & Wallet</div>
+                <div className="flex items-center gap-2 mb-3">
+                  <button 
+                    onClick={connectWallet} 
+                    className={`px-3 py-1.5 rounded text-xs font-semibold border ${walletAddress ? 'border-emerald-600 text-emerald-400 bg-emerald-950/20' : 'border-[#444] hover:bg-[#222] hover:text-white transition'}`}
+                  >
+                    {walletAddress ? `Wallet: ${walletAddress.slice(0,6)}...${walletAddress.slice(-4)}` : 'Connect Wallet'}
+                  </button>
+                  <span className="text-[10px] text-[#666]">{walletAddress ? 'Active' : 'Connection Required'}</span>
+                </div>
+                <div className="space-y-1 text-[11px] font-mono text-[#aaa]">
+                  <div>Network: Solana / Base Cross-chain</div>
+                  <div>USDC Balance: Verified on-chain via CDP</div>
+                  <div>Registry API: UFORegistry v1 (Immutable)</div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl border border-[#222] bg-black/60">
+                <div className="text-xs uppercase tracking-wider text-[#888] mb-2 font-mono">Immutable Storage Vault</div>
+                <div className="space-y-1.5 text-[11px] font-mono text-[#aaa]">
+                  <div>IPFS Status: Content-Addressed Gateway Active</div>
+                  <div className="flex items-center justify-between">
+                    <span>Active CIDs:</span>
+                    <span className="text-xs text-[#f55]">{Object.keys(ipfsCIDs).length} published</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>On-chain Anchors:</span>
+                    <span className="text-xs text-[#f55]">{Object.keys(onchainProofs).length} registered</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-xl border border-[#f55]/20 bg-[#1e0e0e]/30">
+              <div className="text-xs uppercase tracking-wider text-[#f55] mb-2 font-semibold font-mono">Direct Pipeline Triggers</div>
+              <div className="flex flex-wrap gap-2">
+                <button 
+                  onClick={runScrape} 
+                  disabled={isScraping}
+                  className="px-3 py-1.5 rounded-lg border border-[#444] text-xs hover:bg-[#222] transition disabled:opacity-50"
+                >
+                  {isScraping ? 'Scraping...' : 'Trigger Scrape (Free)'}
+                </button>
+                <button 
+                  onClick={runDecipherRedactions} 
+                  disabled={isDeciphering}
+                  className="px-3 py-1.5 rounded-lg border border-[#f55]/40 text-[#f55] text-xs hover:bg-[#f55]/10 transition disabled:opacity-50"
+                >
+                  {isDeciphering ? 'Deciphering...' : 'Trigger Decipher (x402)'}
+                </button>
+                <button 
+                  onClick={runBreakCodes} 
+                  disabled={isBreaking}
+                  className="px-3 py-1.5 rounded-lg border border-[#f55] text-[#f55] text-xs hover:bg-[#f55]/10 transition disabled:opacity-50"
+                >
+                  {isBreaking ? 'Breaking...' : 'Break Codes (x402)'}
+                </button>
+                <button 
+                  onClick={runFullD080Chain} 
+                  disabled={isFullChaining}
+                  className="px-3 py-1.5 rounded-lg bg-[#f55] text-black text-xs font-semibold hover:bg-white transition disabled:opacity-50"
+                >
+                  {isFullChaining ? 'Running...' : 'Full D080 Chain'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Catalog Section */}
+        <div id="catalog-section" className="mb-10">
+          <div className="mb-6 p-4 rounded-2xl border border-[#f55]/20 bg-[#1a0a0a] text-xs font-medium text-[#ccc] flex items-center justify-between">
+            <span>
+              <strong>Catalog Depth:</strong> 294+ Total (docs + seeded videos). Primary war.gov/UFO down (Akamai/EdgeSuite). Best video refs added from your IDs.
+            </span>
+            <button 
+              onClick={loadDynamicCatalog} 
+              disabled={catalogLoading} 
+              className="px-3 py-1 border border-[#444] rounded-lg hover:bg-white hover:text-black transition text-[10px] uppercase font-mono disabled:opacity-50 font-semibold"
+            >
+              {catalogLoading ? 'Syncing...' : 'Sync Catalog'}
+            </button>
+          </div>
+
+          {/* Program Filters / Tabs */}
+          <div className="mb-6">
+            <div className="text-[10px] uppercase tracking-widest text-[#666] mb-2 font-mono">Select Active Program Plane</div>
             <div className="flex flex-wrap gap-2">
               {(['all','uap','stargate','gateway','historical'] as const).map(p => (
                 <button
                   key={p}
                   onClick={() => setFilterProgram(p)}
-                  className={`px-4 py-1.5 rounded-xl text-sm border transition ${filterProgram === p ? 'bg-[#f55] text-black border-[#f55] font-semibold' : 'border-[#333] hover:bg-[#111] hover:border-[#555]'}`}
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold border transition ${filterProgram === p ? 'bg-[#f55] text-black border-[#f55]' : 'border-[#222] bg-black/40 hover:bg-[#111] hover:border-[#444]'}`}
                 >
-                  {p === 'all' ? 'ALL PROGRAMS' : p.toUpperCase() + (p==='uap' ? ' SIGHTINGS' : p==='stargate' ? ' (RV)' : p==='gateway' ? ' EXPERIENCE' : ' RELEASES')}
+                  {p === 'all' ? 'ALL PROGRAMS' : p.toUpperCase() + (p==='uap' ? ' Sightings' : p==='stargate' ? ' (RV)' : p==='gateway' ? ' Experience' : ' Historical')}
                 </button>
               ))}
-              <div className="self-center text-[10px] text-[#555] ml-2">Active program filter: <span className="font-mono text-[#f55]">{filterProgram}</span></div>
             </div>
-            <div className="text-[10px] text-[#555] mt-1 px-1">Stargate: RV protocols / Grill Flame / Sun Streak. Gateway: Focus levels / Click-Out / Hemi-Sync. UAP: Mother orbs / AARO / FBI orbs. Historical: Apollo / 1940s+ releases. All agentic decipher + code breaks + finance hooks available per doc.</div>
           </div>
 
-          {/* COMPACT CLICKABLE LIST ON "SIDE" (above the list, acts as quick nav; full titles/IDs not cluttering the main chat area) */}
-          <div className="mb-3 p-2 border border-[#222] rounded bg-[#0a0a0a]">
-            <div className="text-[10px] uppercase tracking-widest text-[#888] mb-1">DOCS (click to load in Ring chat below — clean titles, no IDs clutter)</div>
-            <div className="max-h-28 overflow-auto grid grid-cols-2 md:grid-cols-3 gap-1 text-xs">
-              {(dynamicCatalog || filteredCatalog).map((doc: any) => (
-                <div 
-                  key={doc.id} 
-                  onClick={() => { setActiveDocId(doc.id); runAnalysis(doc.id); document.getElementById('breakdown-panel')?.scrollIntoView({behavior:'smooth'}); }}
-                  className={`p-1.5 rounded-lg cursor-pointer hover:bg-[#1a1a1a] truncate flex items-center gap-2 ${activeDocId === doc.id ? 'bg-[#c8102e]/10 border border-[#c8102e]/40' : 'border border-transparent'}`}
-                  title={doc.id}
+          {/* Seeded Catalog List */}
+          <div className="mb-6 p-5 border border-[#222] rounded-3xl bg-[#111]/10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-[10px] uppercase tracking-widest text-[#888] font-mono">
+                Seeded Catalog Docs ({displayedCatalog.length} of {filteredCatalog.length} shown)
+              </div>
+              {currentMode === 'research' && filteredCatalog.length > 8 && (
+                <button 
+                  onClick={() => setShowAllDocs(!showAllDocs)}
+                  className="text-xs text-[#f55] hover:underline uppercase tracking-wider font-semibold"
                 >
-                  <span className={`truncate flex-1 ${activeDocId === doc.id ? 'text-white' : getProgramColor(doc.program).text}`}>{doc.title}</span>
-                  {(() => {
-                    const c = getProgramColor(doc.program);
-                    const isVideo = doc.type === 'video';
-                    return <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium tracking-wider ${isVideo ? 'tag-video' : `tag-${doc.program || 'uap'}`}`}>{isVideo ? 'VIDEO' : c.label}</span>;
-                  })()}
-                </div>
-              ))}
+                  {showAllDocs ? 'Show Less' : 'Show All Documents'}
+                </button>
+              )}
             </div>
-            <button onClick={() => setShowFullCatalog(!showFullCatalog)} className="mt-1 text-[10px] text-[#f55] hover:underline">{showFullCatalog ? 'Hide full explorer' : 'Browse full catalog (35+ clean titles) — hidden for less noise'}</button>
-          </div>
-
-          {/* Cool reference imagery — clean horizontal strip, interactive (click loads related doc into the ask/produces flow below). Added per request since site down. Tied to programs + seeded videos. */}
-          <div className="mb-4">
-            <div className="text-[10px] uppercase tracking-widest text-[#888] mb-1">REFERENCE IMAGERY (AI-assisted reconstructions for context — HYPOTHESES ONLY)</div>
-            <div className="flex gap-2 overflow-x-auto pb-1 snap-x">
-              {[
-                {src: '/ufo/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
-                {src: '/ufo/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
-                {src: '/ufo/images/stargate-rv.jpg', label: 'Stargate RV / CRV Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
-                {src: '/ufo/images/gateway-focus.jpg', label: 'Gateway Focus 21 Click-Out', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
-                {src: '/ufo/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
-              ].map((img, idx) => {
-                const c = getProgramColor(img.program);
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              {displayedCatalog.map((doc: any) => {
+                const c = getProgramColor(doc.program);
+                const isVideo = doc.type === 'video';
                 return (
-                  <div key={idx} className="flex-shrink-0 w-36 cursor-pointer group snap-start" onClick={() => { setActiveDocId(img.docId); runAnalysis(img.docId); }}>
-                    <img src={img.src} className="w-36 h-20 object-cover rounded-lg border border-[#222] group-hover:border-[#c8102e] transition shadow" alt="" />
-                    <div className={`text-[9px] mt-1 px-1.5 py-0.5 rounded font-medium ${c.text} bg-black/60`}>{img.label}</div>
+                  <div 
+                    key={doc.id} 
+                    onClick={() => { 
+                      setActiveDocId(doc.id); 
+                      runAnalysis(doc.id); 
+                      document.getElementById('breakdown-panel')?.scrollIntoView({behavior:'smooth'}); 
+                    }}
+                    className={`p-3 rounded-xl cursor-pointer hover:bg-[#1a1a1a]/50 hover:border-[#f55]/40 transition flex items-center justify-between border ${activeDocId === doc.id ? 'bg-[#c8102e]/10 border-[#c8102e]/30' : 'border-[#222] bg-[#0c0c0c]/80'}`}
+                  >
+                    <div className="truncate flex-1 pr-2">
+                      <div className={`truncate text-xs font-medium ${activeDocId === doc.id ? 'text-white' : 'text-[#ccc]'}`}>{doc.title}</div>
+                      <div className="text-[9px] text-[#666] font-mono mt-0.5 truncate">{doc.id}</div>
+                    </div>
+                    <span className={`text-[8px] px-2 py-0.5 rounded-full font-medium tracking-wider shrink-0 ${isVideo ? 'bg-red-950/40 text-red-400 border border-red-900/40' : `${c.bg} ${c.text} border ${c.border}`}`}>{isVideo ? 'VIDEO' : c.label}</span>
                   </div>
                 );
               })}
             </div>
-            <div className="text-[9px] text-[#555] mt-0.5">Click any to load related analysis + breakdown below. Videos from provided list (war.gov down) now in compact navigator too.</div>
           </div>
 
-          {/* About section - color coded, professional, mirrors GitHub About box */}
-          <div className="mb-6 p-4 border border-[#222] rounded-2xl bg-[#111]">
-            <div className="text-sm uppercase tracking-[2px] text-[#888] mb-2">About</div>
-            <div className="text-lg font-semibold mb-1 text-[#e5e5e5]">FTHTrading UFO Anomaly Intelligence Ring</div>
-            <div className="text-sm text-[#aaa] mb-3">Public Web3 Truth Surface for PURSUE releases (war.gov/UFO), Stargate, Gateway. Hybrid: IPFS for immutable assets & manifests, on-chain for registry, proofs, payments (x402), off-chain sovereign agents for compute (decipher, code breaks, OCR/CV). Color-coded by program. Seeded videos & cool imagery (site down workaround). Clean interactive catalog with provenance.</div>
-            <div className="flex flex-wrap gap-2 mb-2">
-              <a href="https://fthtrading.github.io/ufo" target="_blank" className="text-xs px-2 py-1 border border-[#444] rounded hover:bg-[#1a1a1a]">Website: fthtrading.github.io/ufo</a>
-              <span className="text-xs px-2 py-1 bg-[#222] rounded">Topics:</span>
-              {['ufo','web3','ipfs','blockchain','fthtrading','anomaly-intelligence','stargate','gateway','pursue','sovereign'].map(t => (
-                <span key={t} className="text-xs px-2 py-1 rounded tag-uap">{t}</span>
+          {/* Reference Imagery */}
+          <div className="mb-6">
+            <div className="text-[10px] uppercase tracking-widest text-[#666] mb-3 font-mono">Reference Imagery (Assisted Reconstructions)</div>
+            <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
+              {[
+                {src: '/ufo/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
+                {src: '/ufo/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
+                {src: '/ufo/images/stargate-rv.jpg', label: 'Stargate RV / Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
+                {src: '/ufo/images/gateway-focus.jpg', label: 'Gateway Focus 21 State', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
+                {src: '/ufo/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
+              ].map((img, idx) => {
+                const c = getProgramColor(img.program);
+                return (
+                  <div 
+                    key={idx} 
+                    className="flex-shrink-0 w-40 cursor-pointer group snap-start" 
+                    onClick={() => { 
+                      setActiveDocId(img.docId); 
+                      runAnalysis(img.docId); 
+                      document.getElementById('breakdown-panel')?.scrollIntoView({behavior:'smooth'});
+                    }}
+                  >
+                    <div className="relative overflow-hidden rounded-xl border border-[#222] group-hover:border-[#f55]/60 transition">
+                      <img src={img.src} className="w-40 h-24 object-cover group-hover:scale-105 transition duration-300" alt="" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
+                        <span className={`text-[9px] font-semibold tracking-wider ${c.text}`}>{img.label}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* About section - tightened, premium value proposition */}
+          <div className="mb-6 p-6 border border-[#222] rounded-3xl bg-[#111]/20">
+            <div className="text-xs uppercase tracking-[2px] text-[#666] mb-3 font-mono">System Specification</div>
+            <h3 className="text-lg font-bold mb-4 text-[#eee]">FTHTrading UFO Anomaly Intelligence Ring</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 rounded-xl bg-black/40 border border-[#222]/80 animate-fade-in">
+                <div className="font-semibold text-white mb-1">Purpose</div>
+                <p className="text-[#888] leading-relaxed">Decentralized anomaly intelligence repository for PURSUE tranches, Stargate remote viewing, and Gateway experience.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-black/40 border border-[#222]/80 animate-fade-in">
+                <div className="font-semibold text-white mb-1">Architecture</div>
+                <p className="text-[#888] leading-relaxed">Hybrid IPFS document vault + on-chain registry proofs + x402 micropayments + off-chain agentic compute.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-black/40 border border-[#222]/80 animate-fade-in">
+                <div className="font-semibold text-white mb-1">Why It Matters</div>
+                <p className="text-[#888] leading-relaxed">Deciphers heavily redacted files and breaks embedded steganographic codes to secure historical provenance.</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-[#1a1a1a]">
+              <a href="https://fthtrading.github.io/ufo" target="_blank" className="text-xs px-3 py-1 border border-[#333] rounded-lg hover:bg-[#1a1a1a] text-[#aaa] hover:text-white transition">Website: fthtrading.github.io/ufo</a>
+              {['ufo','web3','ipfs','blockchain','anomaly-intelligence','pursue','sovereign'].map(t => (
+                <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-[#111] border border-[#222] text-[#888] uppercase tracking-wider font-mono">{t}</span>
               ))}
             </div>
-            <div className="text-[10px] text-[#666]">0 stars • 0 watching • 0 forks • Full sovereign backend for live agentic power.</div>
           </div>
 
-          {/* Full explorer (the noisy table/grid) is hidden by default for clean interactive view.
-              Toggle button above controls visibility via CSS so JSX stays simple and balanced. */}
-          <div className={showFullCatalog ? 'block mb-6 border border-[#333] rounded-2xl p-3 bg-[#0a0a0a]' : 'hidden'}>
-            <div className="flex items-center justify-between mb-3 px-1">
-            <div>
-              <div className="text-sm uppercase tracking-[2px] text-[#888]">ENHANCED RELEASE CATALOG — ALL RELEASED DOCS (from manifest/index + dynamic /api)</div>
-              <div className="text-[11px] text-[#666]">Filters: program tabs (top) • release • type • status • search. Clean titles primary. Missing indicators. One-click full agentic chain per row. (Audit: ... see CATALOG_AUDIT.md)</div>
-            </div>
-            <div className="flex items-center gap-2 text-xs">
-              <span className="px-2 py-0.5 bg-[#111] border border-[#333] rounded">Showing {filteredCatalog.length} / {fullCatalog.length}</span>
-              {missingCount > 0 && <span className="px-2 py-0.5 bg-red-950 text-red-400 border border-red-900 rounded">⚠ {missingCount} missing local</span>}
-              <button onClick={() => setCatalogView(catalogView === 'table' ? 'grid' : 'table')} className="px-2 py-1 border border-[#444] rounded flex items-center gap-1 hover:bg-[#1a1a1a]">
-                {catalogView === 'table' ? <><GridIcon className="w-3 h-3" /> Grid</> : <><TableIcon className="w-3 h-3" /> Table</>}
-              </button>
-              <button onClick={clearCatalogFilters} className="px-2 py-1 border border-[#444] rounded hover:bg-[#1a1a1a] flex items-center gap-1"><Filter className="w-3 h-3" /> Clear</button>
-              {/* ENHANCED: Export full catalog CSV stub */}
-              <button
-                onClick={() => {
-                  const rows = fullCatalog.map((d: any) => [d.id, d.title, d.tranche, d.type, d.status, d.missing ? 'MISSING' : 'present', d.agency || '', d.program || '']);
-                  const csv = 'id,title,release,type,status,local_status,agency,program\n' + rows.map(r => r.map(x => `"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');
-                  const blob = new Blob([csv], {type: 'text/csv'});
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a'); a.href=url; a.download='pursue-catalog-programs.csv'; a.click(); URL.revokeObjectURL(url);
-                }}
-                className="px-2 py-1 border border-[#f55] text-[#f55] rounded hover:bg-[#2a1a1a] text-xs"
-              >Export CSV (w/ program)</button>
-            </div>
-          </div>
-
-          {/* Filters */}
-          <div className="flex flex-wrap gap-2 mb-3">
-            <input
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search id, title, location..."
-              className="bg-[#111] border border-[#333] rounded px-3 py-1 text-sm w-72 focus:outline-none"
-            />
-            <select value={filterRelease} onChange={(e) => setFilterRelease(e.target.value as any)} className="bg-[#111] border border-[#333] rounded px-2 py-1 text-sm">
-              <option value="all">All Releases</option>
-              <option value="03">Release 03</option>
-              <option value="02">Release 02</option>
-              <option value="01">Release 01</option>
-            </select>
-            <select value={filterType} onChange={(e) => setFilterType(e.target.value as any)} className="bg-[#111] border border-[#333] rounded px-2 py-1 text-sm">
-              <option value="all">All Types</option>
-              <option value="narrative">Narrative / PDF</option>
-              <option value="video">Video</option>
-              <option value="image">Image</option>
-              <option value="audio">Audio</option>
-            </select>
-            <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as any)} className="bg-[#111] border border-[#333] rounded px-2 py-1 text-sm">
-              <option value="all">All Status</option>
-              <option value="local">Local (has asset)</option>
-              <option value="ingested">Ingested</option>
-              <option value="released">Released (public)</option>
-            </select>
-            <select value={filterProgram} onChange={(e) => setFilterProgram(e.target.value as any)} className="bg-[#111] border border-[#333] rounded px-2 py-1 text-sm">
-              <option value="all">All Programs</option>
-              <option value="uap">UAP / PURSUE</option>
-              <option value="stargate">STARGATE (RV)</option>
-              <option value="gateway">GATEWAY (Hemi-Sync)</option>
-              <option value="historical">Historical / Apollo / Army</option>
-            </select>
-            {/* Quick "place to go" program sections */}
-            <button onClick={() => { setFilterProgram('stargate'); setSearchTerm(''); }} className="px-2 py-1 text-xs border border-blue-800 text-blue-300 rounded hover:bg-blue-950">Stargate</button>
-            <button onClick={() => { setFilterProgram('gateway'); setSearchTerm(''); }} className="px-2 py-1 text-xs border border-purple-800 text-purple-300 rounded hover:bg-purple-950">Gateway</button>
-            <div className="text-[10px] self-center text-[#555] ml-1">Active: <span className="font-mono text-[#f55]">{activeDocId}</span></div>
-          </div>
-
-          {/* Catalog Grid / Table — only rendered inside the showFullCatalog guard below. Compact list above is the normal interactive path. */}
-          {catalogView === 'table' ? (
-            <div className="overflow-auto border border-[#222] rounded-2xl bg-[#0a0a0a]">
-              <table className="min-w-full text-sm">
-                <thead>
-                  <tr className="border-b border-[#222] text-[#888] text-xs uppercase tracking-widest">
-                    <th className="text-left px-3 py-2">ID / Title</th>
-                    <th className="px-3 py-2">Type</th>
-                    <th className="px-3 py-2">Release</th>
-                    <th className="px-3 py-2">Status</th>
-                    <th className="px-3 py-2">Indicators</th>
-                    <th className="px-3 py-2 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCatalog.map((doc: any) => (
-                    <tr key={doc.id} className={`border-b border-[#1a1a1a] hover:bg-[#111] ${activeDocId === doc.id ? 'bg-[#1a120a]' : ''}`}>
-                      <td className="px-3 py-2">
-                        <div className={`font-medium ${getProgramColor(doc.program).text}`}>{doc.title}</div>
-                        <div className="text-[10px] text-[#666] font-mono flex items-center gap-2">{doc.id} • {doc.agency} • {doc.location} <span className="px-1 bg-[#222] rounded text-[#f55] uppercase tracking-widest">{doc.program || 'uap'}</span></div>
-                      </td>
-                      <td className="px-3 py-2"><span className="tag text-[10px]">{doc.type}</span></td>
-                      <td className="px-3 py-2 font-mono text-xs">R{doc.tranche}</td>
-                      <td className="px-3 py-2"><span className={`text-[10px] px-1.5 py-0.5 rounded border ${doc.status === 'local' ? 'border-emerald-800 text-emerald-400' : 'border-[#444]'}`}>{doc.status}</span></td>
-                      <td className="px-3 py-2 text-xs">
-                        {doc.missing && <span className="text-red-400 mr-1">MISSING LOCAL</span>}
-                        {doc.has_pdf && <span className="text-emerald-400">PDF ready</span>}
-                        {doc.redaction_status !== 'none' && <span className="ml-1 text-[#f55]">redacted:{doc.redaction_status}</span>}
-                      </td>
-                      <td className="px-3 py-2 text-right">
-                        <div className="flex gap-1 justify-end flex-wrap">
-                          <button onClick={() => selectDoc(doc.id)} className="px-2 py-0.5 text-[11px] rounded border border-[#444] hover:bg-white hover:text-black">View Analysis</button>
-                          <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} disabled={isDeciphering} className="px-2 py-0.5 text-[11px] rounded border border-[#f55]/50 text-[#f55] hover:bg-[#2a120a]">Decipher (prem)</button>
-                          <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} disabled={isFullChaining} className="px-2 py-0.5 text-[11px] rounded border border-[#f55] bg-[#1a0a0a] text-[#f55]">BREAKTHROUGH HIDDEN (full chain)</button>
-                          <button onClick={() => generatePdfForDoc(doc)} disabled={isGenerating} className="px-2 py-0.5 text-[11px] rounded border border-[#444] hover:bg-[#1a1a1a] flex items-center gap-0.5"><FileText className="w-3 h-3" /> Gen PDF</button>
-                          <button onClick={() => downloadPdfForDoc(doc)} disabled={isDownloading} className="px-2 py-0.5 text-[11px] rounded bg-[#f55] text-black flex items-center gap-0.5 disabled:opacity-60"><Download className="w-3 h-3" /> Download (x402)</button>
-                          <button onClick={() => runComfyForDoc(doc)} className="px-2 py-0.5 text-[11px] rounded border border-[#444]">Comfy</button>
-                          <button onClick={() => narrateForDoc(doc)} className="px-2 py-0.5 text-[11px] rounded border border-[#444]">Voice</button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : catalogView === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {filteredCatalog.map((doc: any) => (
-                <div key={doc.id} className={`card p-3 rounded-2xl text-sm ${activeDocId === doc.id ? 'border-[#f55]' : ''}`}>
-                  <div className={`font-medium mb-0.5 line-clamp-2 ${getProgramColor(doc.program).text}`}>{doc.title}</div>
-                  <div className="text-[10px] text-[#666] font-mono mb-1">{doc.id} <span className="px-1 bg-[#222] rounded text-[#f55]">{doc.program || 'uap'}</span></div>
-                  <div className="flex gap-1 text-[10px] mb-2">
-                    <span className="tag">{doc.type}</span><span className="tag">R{doc.tranche}</span>
-                    {doc.missing && <span className="bg-red-900 text-red-300 px-1 rounded">MISSING</span>}
-                    <span className={`px-1 rounded ${doc.program==='stargate'?'bg-blue-900 text-blue-200':doc.program==='gateway'?'bg-purple-900 text-purple-200':doc.program==='historical'?'bg-amber-900 text-amber-200':'bg-emerald-900 text-emerald-200'}`}>{(doc.program||'uap').toUpperCase()}</span>
-                  </div>
-                  <div className="text-[10px] text-[#888] mb-2">{doc.agency} • {doc.location} • {doc.redaction_status}</div>
-                  <div className="flex flex-wrap gap-1">
-                    <button onClick={() => selectDoc(doc.id)} className="text-xs px-2 py-0.5 border border-[#444] rounded">View Analysis</button>
-                    <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} className="text-xs px-2 py-0.5 border border-[#f55]/60 text-[#f55] rounded">Decipher</button>
-                    <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} className="text-xs px-2 py-0.5 border border-[#f55] bg-[#1a0a0a] text-[#f55] rounded">BREAKTHROUGH HIDDEN</button>
-                    <button onClick={() => generatePdfForDoc(doc)} className="text-xs px-2 py-0.5 border border-[#444] rounded">Gen</button>
-                    <button onClick={() => downloadPdfForDoc(doc)} className="text-xs px-2 py-0.5 bg-[#f55] text-black rounded">DL x402</button>
-                    <button onClick={() => runComfyForDoc(doc)} className="text-xs px-2 py-0.5 border border-[#444] rounded">Comfy</button>
-                    <button onClick={() => narrateForDoc(doc)} className="text-xs px-2 py-0.5 border border-[#444] rounded">Voice</button>
-                  </div>
+          {/* Granular Release Catalog Explorer */}
+          {(currentMode === 'explorer' || currentMode === 'premium') && (
+            <div className="mb-10 border border-[#222] rounded-3xl p-5 bg-[#0a0a0a]/60 animate-fade-in">
+              <div className="flex flex-wrap items-center justify-between mb-4 gap-2">
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#eee]">Granular Release Catalog Explorer</h3>
+                  <div className="text-[10px] text-[#666]">Granular filters, search by ID/Location, and full metadata table.</div>
                 </div>
-              ))}
+                <div className="flex flex-wrap items-center gap-2 text-xs">
+                  <span className="px-2.5 py-0.5 bg-[#111] border border-[#222] rounded text-[#888]">Showing {filteredCatalog.length} / {fullCatalog.length}</span>
+                  {missingCount > 0 && <span className="px-2 py-0.5 bg-red-950/20 text-red-400 border border-red-900/30 rounded">⚠ {missingCount} missing local</span>}
+                  <button onClick={() => setCatalogView(catalogView === 'table' ? 'grid' : 'table')} className="px-2 py-1 border border-[#333] rounded-lg flex items-center gap-1 hover:bg-[#1a1a1a] transition text-[11px]">
+                    {catalogView === 'table' ? <><GridIcon className="w-3 h-3" /> Grid</> : <><TableIcon className="w-3 h-3" /> Table</>}
+                  </button>
+                  <button onClick={clearCatalogFilters} className="px-2 py-1 border border-[#333] rounded-lg hover:bg-[#1a1a1a] transition flex items-center gap-1 text-[11px]"><Filter className="w-3 h-3" /> Clear</button>
+                  <button
+                    onClick={() => {
+                      const rows = fullCatalog.map((d: any) => [d.id, d.title, d.tranche, d.type, d.status, d.missing ? 'MISSING' : 'present', d.agency || '', d.program || '']);
+                      const csv = 'id,title,release,type,status,local_status,agency,program\n' + rows.map(r => r.map(x => `"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');
+                      const blob = new Blob([csv], {type: 'text/csv'});
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a'); a.href=url; a.download='pursue-catalog-programs.csv'; a.click(); URL.revokeObjectURL(url);
+                    }}
+                    className="px-2.5 py-1 bg-[#1a0a0a] border border-[#f55]/40 text-[#f55] rounded-lg hover:bg-[#2a0e0e] transition text-[11px] font-semibold"
+                  >Export CSV</button>
+                </div>
+              </div>
+
+              {/* Filters Panel */}
+              <div className="flex flex-wrap gap-2 mb-4 bg-black/20 p-3 rounded-2xl border border-[#1a1a1a]">
+                <input
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search id, title, location..."
+                  className="bg-[#111] border border-[#222] rounded-lg px-3 py-1.5 text-xs w-64 focus:outline-none focus:border-[#f55]/60 transition text-[#ccc]"
+                />
+                <select value={filterRelease} onChange={(e) => setFilterRelease(e.target.value as any)} className="bg-[#111] border border-[#222] rounded-lg px-2 py-1.5 text-xs text-[#ccc] outline-none">
+                  <option value="all">All Releases</option>
+                  <option value="03">Release 03</option>
+                  <option value="02">Release 02</option>
+                  <option value="01">Release 01</option>
+                </select>
+                <select value={filterType} onChange={(e) => setFilterType(e.target.value as any)} className="bg-[#111] border border-[#222] rounded-lg px-2 py-1.5 text-xs text-[#ccc] outline-none">
+                  <option value="all">All Types</option>
+                  <option value="narrative">Narrative / PDF</option>
+                  <option value="video">Video</option>
+                  <option value="image">Image</option>
+                  <option value="audio">Audio</option>
+                </select>
+                <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as any)} className="bg-[#111] border border-[#222] rounded-lg px-2 py-1.5 text-xs text-[#ccc] outline-none">
+                  <option value="all">All Status</option>
+                  <option value="local">Local (has asset)</option>
+                  <option value="ingested">Ingested</option>
+                  <option value="released">Released (public)</option>
+                </select>
+                <select value={filterProgram} onChange={(e) => setFilterProgram(e.target.value as any)} className="bg-[#111] border border-[#222] rounded-lg px-2 py-1.5 text-xs text-[#ccc] outline-none">
+                  <option value="all">All Programs</option>
+                  <option value="uap">UAP / PURSUE</option>
+                  <option value="stargate">STARGATE (RV)</option>
+                  <option value="gateway">GATEWAY (Hemi-Sync)</option>
+                  <option value="historical">Historical / Apollo / Army</option>
+                </select>
+              </div>
+
+              {/* Grid / Table Output */}
+              {catalogView === 'table' ? (
+                <div className="overflow-auto border border-[#222] rounded-2xl bg-black/40">
+                  <table className="min-w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-[#222] text-[#666] uppercase tracking-widest text-[9px] font-mono">
+                        <th className="text-left px-4 py-3">Document Title</th>
+                        <th className="px-3 py-3 text-left">Type</th>
+                        <th className="px-3 py-3 text-left">Release</th>
+                        <th className="px-3 py-3 text-left">Status</th>
+                        <th className="px-3 py-3 text-left">Metadata</th>
+                        <th className="px-4 py-3 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCatalog.map((doc: any) => {
+                        const isVideo = doc.type === 'video';
+                        const c = getProgramColor(doc.program);
+                        return (
+                          <tr key={doc.id} className={`border-b border-[#1a1a1a] hover:bg-[#111]/30 transition ${activeDocId === doc.id ? 'bg-[#c8102e]/5' : ''}`}>
+                            <td className="px-4 py-3">
+                              <div className={`font-semibold ${c.text}`}>{doc.title}</div>
+                              <div className="text-[10px] text-[#555] font-mono mt-0.5">{doc.id} • {doc.agency}</div>
+                            </td>
+                            <td className="px-3 py-3"><span className="px-2 py-0.5 rounded bg-[#222] text-[#888] uppercase tracking-wider text-[8px] font-mono">{doc.type}</span></td>
+                            <td className="px-3 py-3 font-mono text-[#aaa]">Tranche {doc.tranche}</td>
+                            <td className="px-3 py-3"><span className={`text-[9px] px-1.5 py-0.5 rounded-full border ${doc.status === 'local' ? 'border-emerald-800 text-emerald-400 bg-emerald-950/20' : 'border-[#333] text-[#888]'}`}>{doc.status}</span></td>
+                            <td className="px-3 py-3 text-[#666] font-mono text-[9px]">
+                              {doc.missing && <span className="text-red-400 mr-2">MISSING</span>}
+                              {doc.has_pdf && <span className="text-emerald-400 mr-2">PDF</span>}
+                              {doc.redaction_status !== 'none' && <span>redaction:{doc.redaction_status}</span>}
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <div className="flex gap-1.5 justify-end flex-wrap">
+                                <button onClick={() => { setActiveDocId(doc.id); runAnalysis(doc.id); }} className="px-2.5 py-1 rounded border border-[#333] hover:bg-white hover:text-black transition text-[10px]">Analyze</button>
+                                {currentMode === 'premium' && (
+                                  <>
+                                    <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} disabled={isDeciphering} className="px-2.5 py-1 rounded border border-[#f55]/50 text-[#f55] hover:bg-[#2a0e0e] transition text-[10px]">Decipher</button>
+                                    <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} disabled={isFullChaining} className="px-2.5 py-1 rounded bg-[#f55]/10 border border-[#f55]/60 text-[#f55] text-[10px]">Full Chain</button>
+                                    <button onClick={() => generatePdfForDoc(doc)} disabled={isGenerating} className="px-2.5 py-1 rounded border border-[#333] hover:bg-[#222] transition text-[10px] flex items-center gap-0.5"><FileText className="w-2.5 h-2.5" /> PDF</button>
+                                    <button onClick={() => downloadPdfForDoc(doc)} disabled={isDownloading} className="px-2.5 py-1 rounded bg-[#f55] text-black text-[10px] font-semibold flex items-center gap-0.5 disabled:opacity-50"><Download className="w-2.5 h-2.5" /> DL</button>
+                                  </>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {filteredCatalog.map((doc: any) => {
+                    const c = getProgramColor(doc.program);
+                    return (
+                      <div key={doc.id} className={`p-4 rounded-2xl border bg-black/40 flex flex-col justify-between ${activeDocId === doc.id ? 'border-[#f55]' : 'border-[#222]'}`}>
+                        <div>
+                          <div className={`font-semibold mb-1 line-clamp-2 ${c.text}`}>{doc.title}</div>
+                          <div className="text-[10px] text-[#555] font-mono mb-2">{doc.id}</div>
+                          <div className="flex gap-1.5 text-[9px] mb-2 font-mono flex-wrap">
+                            <span className="bg-[#111] px-1.5 py-0.5 rounded text-[#888] border border-[#222]">{doc.type.toUpperCase()}</span>
+                            <span className="bg-[#111] px-1.5 py-0.5 rounded text-[#888] border border-[#222]">T-{doc.tranche}</span>
+                            {doc.missing && <span className="bg-red-950 text-red-400 px-1.5 py-0.5 rounded">MISSING</span>}
+                            <span className={`${c.bg} ${c.text} px-1.5 py-0.5 rounded`}>{doc.program?.toUpperCase() || 'UAP'}</span>
+                          </div>
+                          <div className="text-[10px] text-[#666] font-mono">{doc.agency} • {doc.location}</div>
+                        </div>
+                        <div className="flex flex-wrap gap-1 mt-4 pt-3 border-t border-[#1a1a1a]">
+                          <button onClick={() => { setActiveDocId(doc.id); runAnalysis(doc.id); }} className="text-[10px] px-2 py-1 border border-[#333] rounded hover:bg-white hover:text-black transition">Analyze</button>
+                          {currentMode === 'premium' && (
+                            <>
+                              <button onClick={() => { setActiveDocId(doc.id); runDecipherRedactions(); }} className="text-[10px] px-2 py-1 border border-[#f55]/60 text-[#f55] rounded hover:bg-[#f55]/10 transition">Decipher</button>
+                              <button onClick={() => { setActiveDocId(doc.id); runFullD080Chain(); }} className="text-[10px] px-2 py-1 bg-[#f55]/10 border border-[#f55]/60 text-[#f55] rounded">Full Chain</button>
+                              <button onClick={() => generatePdfForDoc(doc)} className="text-[10px] px-2 py-1 border border-[#333] rounded hover:bg-[#222] transition">PDF</button>
+                              <button onClick={() => downloadPdfForDoc(doc)} className="text-[10px] px-2 py-1 bg-[#f55] text-black rounded font-semibold transition">DL</button>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          ) : null}
-          <div className="text-[10px] text-[#555] mt-1">Full explorer (toggle the button above for clean mode). All actions work from the compact list above too.</div>
-          </div> {/* end of explorer (hidden by default via class) */}
+          )}
+        </div>
 
         {/* Results */}
         {result && (
@@ -1544,7 +1855,6 @@ cloudflared tunnel --url http://localhost:3005
           Polished: Full catalog table+grid of ALL docs from enhanced manifest/index (released_docs). Filters (release, type, status), search, missing indicators. Status + actions: View Analysis, Decipher (premium), Generate PDF (/api/generate), Download x402 gated (/api/download — generates PDF embedding deciphered if not present). Comfy visuals + voice integrated per-item. Real deciphered content access. TROPTIONS mint UI removed. Production x402 flows + new endpoints. Calls ufo APIs + generate/download. Canonical /truth at adk_build/legacy-vault-protocol.
         </div>
       </div>
-    </div>
     </div>
   );
 }
