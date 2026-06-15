@@ -1,0 +1,598 @@
+{
+  "tranches": {
+    "release-03": {
+      "release": "03",
+      "scraped_at": "2026-06-14T18:29:45.196533+00:00",
+      "assets": [
+        {
+          "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+          "name": "DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+          "sha256": "2b011f25bb6fed4870766506b5799374cb3589d747c29e4227bab99ee779665b",
+          "size": 1062294,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-2b011f25bb6fed48",
+            "provider": "mock",
+            "size": 1062294,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-2b011f25bb6fed48"
+          },
+          "meta": {
+            "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+            "filename": "DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+            "d_code": "D080",
+            "date_hint": "061226",
+            "agency": "DOW",
+            "location_tags": [
+              "western-us-sensitive-site"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-DoW-UAP-D080_Narrative-2_Western-US-Event",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D081_Narrative-3_Western-US-Event.pdf",
+          "name": "DoW-UAP-D081_Narrative-3_Western-US-Event.pdf",
+          "sha256": "3c369f9660a3528455b6140d03dfef6bc94b1cf430b85ce26938e5adf1dd1e9d",
+          "size": 555535,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-3c369f9660a35284",
+            "provider": "mock",
+            "size": 555535,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-3c369f9660a35284"
+          },
+          "meta": {
+            "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D081_Narrative-3_Western-US-Event.pdf",
+            "filename": "DoW-UAP-D081_Narrative-3_Western-US-Event.pdf",
+            "d_code": "D081",
+            "date_hint": "061226",
+            "agency": "DOW",
+            "location_tags": [
+              "western-us-sensitive-site"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-DoW-UAP-D081_Narrative-3_Western-US-Event",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D083_Narrative-5_Western-US-Event.pdf",
+          "name": "DoW-UAP-D083_Narrative-5_Western-US-Event.pdf",
+          "sha256": "ad70e6d8f9091d432dd89d9cd803734c0a297f16cb211311feb609fb435ff360",
+          "size": 579735,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-ad70e6d8f9091d43",
+            "provider": "mock",
+            "size": 579735,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-ad70e6d8f9091d43"
+          },
+          "meta": {
+            "url": "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D083_Narrative-5_Western-US-Event.pdf",
+            "filename": "DoW-UAP-D083_Narrative-5_Western-US-Event.pdf",
+            "d_code": "D083",
+            "date_hint": "061226",
+            "agency": "DOW",
+            "location_tags": [
+              "western-us-sensitive-site"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-DoW-UAP-D083_Narrative-5_Western-US-Event",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/?releaseDate=Release+03#FBI-UAP-PR003",
+          "name": "UFO",
+          "sha256": "dac3a0b549de17e53298fab74d9ea15f1a9b301851be3360f53d1528c9fb5539",
+          "size": 194836,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-dac3a0b549de17e5",
+            "provider": "mock",
+            "size": 194836,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-dac3a0b549de17e5"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/?releaseDate=Release+03#FBI-UAP-PR003",
+            "filename": "UFO",
+            "d_code": null,
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-UFO",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/?releaseDate=Release+03#FBI-UAP-D002",
+          "name": "UFO",
+          "sha256": "dac3a0b549de17e53298fab74d9ea15f1a9b301851be3360f53d1528c9fb5539",
+          "size": 194836,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-dac3a0b549de17e5",
+            "provider": "mock",
+            "size": 194836,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-dac3a0b549de17e5"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/?releaseDate=Release+03#FBI-UAP-D002",
+            "filename": "UFO",
+            "d_code": null,
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-UFO",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/?releaseDate=Release+01#18_100754_General_1946-7_Vol_2",
+          "name": "UFO",
+          "sha256": "57c727f640025b4bd5c81488cd1dc0d366e0335f989a7c743a4eb19a6da3f416",
+          "size": 194836,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-57c727f640025b4b",
+            "provider": "mock",
+            "size": 194836,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-57c727f640025b4b"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/?releaseDate=Release+01#18_100754_General_1946-7_Vol_2",
+            "filename": "UFO",
+            "d_code": null,
+            "date_hint": "100754",
+            "agency": null,
+            "location_tags": [],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03"
+          },
+          "downloaded": true,
+          "source": "public-signals",
+          "release": "03",
+          "doc_id": "03-UFO",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../CIA-UAP-017_Placement_on_High_Alert_Due_to_Perceived_Aggressive_Foreign_Posturing.pdf",
+          "name": "CIA-UAP-017_Placement_on_High_Alert_Due_to_Perceived_Aggressive_Foreign_Posturing.pdf",
+          "sha256": "207abae15fd61c1c034786a430f84bc9e39c49d46923f027eaeea416c0a7a241",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-207abae15fd61c1c",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-207abae15fd61c1c"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../CIA-UAP-017_Placement_on_High_Alert_Due_to_Perceived_Aggressive_Foreign_Posturing.pdf",
+            "filename": "CIA-UAP-017_Placement_on_High_Alert_Due_to_Perceived_Aggressive_Foreign_Posturing.pdf",
+            "d_code": null,
+            "date_hint": null,
+            "agency": "CIA",
+            "location_tags": [
+              "Harare, Zimbabwe"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2008-07"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-CIA-UAP-017_Placement_on_High_Alert_Due_to_Perceived_Aggressive_Foreign_Posturin",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../DOW-UAP-D084_US_Army-Flying-Saucer-Study_1949.pdf",
+          "name": "DOW-UAP-D084_US_Army-Flying-Saucer-Study_1949.pdf",
+          "sha256": "dcbaa51373955e9b6ab834322aa44344679752c155ee407139a2d31083658557",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-dcbaa51373955e9b",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-dcbaa51373955e9b"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../DOW-UAP-D084_US_Army-Flying-Saucer-Study_1949.pdf",
+            "filename": "DOW-UAP-D084_US_Army-Flying-Saucer-Study_1949.pdf",
+            "d_code": "D084",
+            "date_hint": null,
+            "agency": "DOW",
+            "location_tags": [
+              "N/A"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "1949"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-DOW-UAP-D084_US_Army-Flying-Saucer-Study_1949",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+          "name": "FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+          "sha256": "f2c882f4ea6df2e461383c1bb2791ad8d881e1b5ca6d360638b62751c1202750",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-f2c882f4ea6df2e4",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-f2c882f4ea6df2e4"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+            "filename": "FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+            "d_code": "D002",
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [
+              "colorado-springs",
+              "Colorado Springs, Colorado, U.S."
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2022"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+          "name": "FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+          "sha256": "753449242dddff9f78b09696d691c2197cd8802fbf44885ecad585c1b6b56ad1",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-753449242dddff9f",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-753449242dddff9f"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+            "filename": "FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022.pdf",
+            "d_code": "D003",
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [
+              "colorado-springs",
+              "Colorado Springs, Colorado, U.S."
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2022"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-PR003_Orbs_Over_the_Pond_2024.vid",
+          "name": "FBI-UAP-PR003_Orbs_Over_the_Pond_2024.vid",
+          "sha256": "d71b3dc8b8edb72e75d50c1ad0121835e3d0e10e2b6d9a7543a11d02e7be9918",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-d71b3dc8b8edb72e",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-d71b3dc8b8edb72e"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-PR003_Orbs_Over_the_Pond_2024.vid",
+            "filename": "FBI-UAP-PR003_Orbs_Over_the_Pond_2024.vid",
+            "d_code": null,
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [
+              "Northeastern United States"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2024-10"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-FBI-UAP-PR003_Orbs_Over_the_Pond_2024",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-PR004_Northeastern_Orb_Sighting_2025.vid",
+          "name": "FBI-UAP-PR004_Northeastern_Orb_Sighting_2025.vid",
+          "sha256": "6e293e658f73b1970d83c0b68759e289ffb40e8c93935fd7c98eac6233919ffa",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-6e293e658f73b197",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-6e293e658f73b197"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../FBI-UAP-PR004_Northeastern_Orb_Sighting_2025.vid",
+            "filename": "FBI-UAP-PR004_Northeastern_Orb_Sighting_2025.vid",
+            "d_code": null,
+            "date_hint": null,
+            "agency": "FBI",
+            "location_tags": [
+              "Northeastern United States"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2025-07"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-FBI-UAP-PR004_Northeastern_Orb_Sighting_2025",
+          "status": "downloaded",
+          "deciphered": false
+        },
+        {
+          "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+          "name": "DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+          "sha256": "65f258350d438d7ab695ec4e557e0ca231c9325e137620d8468398207706158a",
+          "size": 194842,
+          "ipfs": {
+            "cid": "bafy-fake-gmiie-65f258350d438d7a",
+            "provider": "mock",
+            "size": 194842,
+            "url": "https://ipfs.io/ipfs/bafy-fake-gmiie-65f258350d438d7a"
+          },
+          "meta": {
+            "url": "https://www.war.gov/UFO/medialink/ufo/.../release_03/.../DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+            "filename": "DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+            "d_code": "D080",
+            "date_hint": null,
+            "agency": "DOW",
+            "location_tags": [
+              "western-us-sensitive-site",
+              "western US sensitive site"
+            ],
+            "redaction_hints": [],
+            "pages": null,
+            "text_preview": null,
+            "release": "03",
+            "incident_date": "2023-10"
+          },
+          "downloaded": true,
+          "source": "public-index-seed",
+          "release": "03",
+          "doc_id": "03-DoW-UAP-D080_Narrative-2_Western-US-Event",
+          "status": "downloaded",
+          "deciphered": false
+        }
+      ],
+      "discovered_count": 13,
+      "downloaded_count": 13,
+      "deciphered_count": 0
+    }
+  },
+  "sightings": {
+    "D080-mother-orb-western-sensitive": {
+      "tranche": "03",
+      "type": "narrative",
+      "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)",
+      "description": "Multiple federal agents reported bright orange mother orb producing smaller red orbs over several hours near sensitive national security site (western US, ~Oct 2023 context). AARO unresolved as of June 2026. PDF referenced: DoW-UAP-D080_Narrative-2_Western-US-Event.pdf",
+      "phenomenology": [
+        "mother orb",
+        "baby / smaller red orbs",
+        "multi-hour",
+        "sensitive site"
+      ],
+      "source_links": [
+        "https://www.war.gov/UFO/release/03/",
+        "https://www.war.gov/medialink/ufo/061226/release_03/documents/DoW-UAP-D080_Narrative-2_Western-US-Event.pdf"
+      ],
+      "extracted_text": "",
+      "ipfs_cid": null,
+      "sha256": null
+    },
+    "NE-orb-pond-202x": {
+      "tranche": "03",
+      "type": "video",
+      "title": "Orbs Over the Pond + merge events (FBI highly credible)",
+      "description": "Plasma-like sphere stationary ~45 min; two red orbs with white plasma centers that appeared to merge. Northeastern US, 2021-2025. Multiple FBI eyewitness videos.",
+      "phenomenology": [
+        "plasma sphere",
+        "stationary",
+        "red orbs merge"
+      ],
+      "source_links": [
+        "https://www.war.gov/UFO/release/03/"
+      ],
+      "extracted_text": "",
+      "ipfs_cid": null,
+      "sha256": null
+    },
+    "colorado-springs-potato-2022": {
+      "tranche": "03",
+      "type": "image",
+      "title": "Cloaking / potato object (Colorado Springs artistic interp)",
+      "description": "Artistic interpretation of 2022 incident near Colorado Springs involving irregular 'potato'-shaped UAP with cloaking/low-observable characteristics.",
+      "phenomenology": [
+        "irregular potato",
+        "cloaking"
+      ],
+      "source_links": [
+        "https://www.war.gov/UFO/release/03/"
+      ],
+      "extracted_text": "",
+      "ipfs_cid": null,
+      "sha256": null
+    },
+    "apollo-16-audio": {
+      "tranche": "03",
+      "type": "audio",
+      "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962",
+      "description": "NASA Apollo 16 scientific debrief (off-hand 'alien starbase' remark at ~32:41) and 1962 Walter Cronkite interview with Gordon Cooper.",
+      "phenomenology": [
+        "historical astronaut commentary"
+      ],
+      "source_links": [
+        "https://www.war.gov/UFO/release/03/"
+      ],
+      "extracted_text": "",
+      "ipfs_cid": null,
+      "sha256": null
+    }
+  },
+  "last_ingest": "2026-06-14T18:29:45.897460+00:00",
+  "released_docs": [
+    {"id": "uap-d080-mother-orb-western-sensitive", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2023-10", "location": "western US sensitive national security site", "program": "uap"},
+    {"id": "uap-d081-narrative-3-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap"},
+    {"id": "uap-d083-narrative-5-western", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D083 Narrative-5 Western US Event", "status": "local", "has_pdf": true, "missing": false, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12-26", "location": "western", "program": "uap"},
+    {"id": "uap-d084-army-flying-saucer-1949", "tranche": "03", "type": "narrative", "title": "DOW-UAP-D084 US Army Flying Saucer Study 1949", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "DOW", "date_hint": "1949", "location": "N/A", "program": "uap"},
+    {"id": "uap-d085-narrative-6-midwest", "tranche": "03", "type": "narrative", "title": "DoW-UAP-D085 Narrative-6 Midwest Sensitive Corridor", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "2006-12", "location": "Midwest", "program": "uap"},
+    {"id": "uap-d077-aaro-cross-ref", "tranche": "03", "type": "narrative", "title": "D077 AARO Cross-Reference Analysis (companion to D080)", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "heavy", "agency": "AARO", "date_hint": "2023-2026", "location": "western US", "program": "uap"},
+    {"id": "uap-fbi-d002-colorado-springs-2022", "tranche": "03", "type": "narrative", "title": "FBI-UAP-D002 FD-1057 Unresolved UAP Report Colorado Springs 2022", "status": "ingested", "has_pdf": true, "missing": false, "redaction_status": "partial", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+    {"id": "uap-fbi-d003-digital-rendering-colorado", "tranche": "03", "type": "image", "title": "FBI-UAP-D003 Digital Rendering Unresolved UAP Report Colorado Springs 2022", "status": "released", "has_pdf": false, "missing": false, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+    {"id": "uap-fbi-pr003-orbs-over-pond-2024", "tranche": "03", "type": "video", "title": "FBI-UAP-PR003 Orbs Over the Pond 2024", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2024-10", "location": "Northeastern United States", "program": "uap"},
+    {"id": "uap-fbi-pr004-northeastern-2025", "tranche": "03", "type": "video", "title": "FBI-UAP-PR004 Northeastern Orb Sighting 2025", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2025-07", "location": "Northeastern United States", "program": "uap"},
+    {"id": "uap-fbi-pr001-plasma-sphere-2023", "tranche": "03", "type": "video", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
+    {"id": "uap-ne-orb-pond-202x", "tranche": "03", "type": "video", "title": "Orbs Over the Pond + merge events (FBI highly credible)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021-2025", "location": "Northeastern US", "program": "uap"},
+    {"id": "historical-cia-uap-017-high-alert-foreign-2008", "tranche": "03", "type": "narrative", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing (Harare 2008)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA", "date_hint": "2008-07", "location": "Harare, Zimbabwe", "program": "historical"},
+    {"id": "uap-colorado-springs-potato-2022", "tranche": "03", "type": "image", "title": "Cloaking / potato object (Colorado Springs artistic interp)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"},
+    {"id": "historical-r01-18-100754-general-1946-vol2", "tranche": "01", "type": "narrative", "title": "18_100754 General 1946-7 Vol 2 - Historical UFO Records", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1946-1947", "location": "N/A", "program": "historical"},
+    {"id": "historical-apollo-16-audio-1962", "tranche": "03", "type": "audio", "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962 (alien starbase remark)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "NASA", "date_hint": "1962/1972", "location": "various", "program": "historical"},
+    {"id": "historical-apollo-11-alt-transcript", "tranche": "01", "type": "audio", "title": "Apollo 11 Alternative Commentary / Unredacted Audio Clip", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1969", "location": "Lunar", "program": "historical"},
+    {"id": "historical-r02-fbi-sensor-pack-042", "tranche": "02", "type": "narrative", "title": "FBI Sensor Pack Unresolved 042 (Release 02)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI", "date_hint": "2022", "location": "Various", "program": "uap"},
+    {"id": "uap-img-cloaking-delta-formation", "tranche": "03", "type": "image", "title": "Cloaking Delta Formation Sighting (artist recon)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2021", "location": "Southwest", "program": "uap"},
+    {"id": "historical-r01-army-ufo-general-1947-vol1", "tranche": "01", "type": "narrative", "title": "18_100754 General 1947 Vol 1 - Army UFO Records (Historical Release 01)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1947", "location": "N/A", "program": "historical"},
+    {"id": "historical-r01-army-flying-disk-1948-transcript", "tranche": "01", "type": "narrative", "title": "18_6369445 Army Flying Disk Study 1948 Vol 1 - Historical UFO Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1948", "location": "N/A", "program": "historical"},
+    {"id": "uap-r03-fbi-orb-transcript-northeast-2023", "tranche": "03", "type": "narrative", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023 - Full Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2023", "location": "Northeast", "program": "uap"},
+    {"id": "uap-r03-cia-uap-transcript-harare-2008", "tranche": "03", "type": "narrative", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing - Full Transcript", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA", "date_hint": "2008-07", "location": "Harare, Zimbabwe", "program": "uap"},
+    {"id": "historical-r03-apollo-variant-starbase-debrief", "tranche": "03", "type": "audio", "title": "Apollo 16 Variant Debrief - Additional Alien Starbase / Unredacted Audio", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "partial", "agency": "NASA", "date_hint": "1972", "location": "various", "program": "historical"},
+    {"id": "uap-r02-sensor-fbi-pack-042-full", "tranche": "02", "type": "narrative", "title": "FBI Sensor Pack Unresolved 042 Full - Release 02 Sensor Data", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "FBI", "date_hint": "2022", "location": "Various", "program": "uap"},
+    {"id": "historical-r01-ufo-army-1946-vol3", "tranche": "01", "type": "narrative", "title": "18_100754 General 1946-7 Vol 3 - Additional Historical UFO Army Records", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "DOW", "date_hint": "1946-1947", "location": "N/A", "program": "historical"},
+    {"id": "stargate-cia-grill-flame-rv-protocols-001", "tranche": "cross", "type": "narrative", "title": "CIA Stargate Project - Grill Flame Remote Viewing Protocols and Sessions (Viewer Redacted, Soviet Military Targets)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1970s-1980s", "location": "Various (Soviet/tech targets)", "program": "stargate"},
+    {"id": "stargate-cia-sun-streak-rv-sessions-002", "tranche": "cross", "type": "narrative", "title": "CIA Stargate - Sun Streak RV Operational Sessions and Success Metrics (1980s-1990s, Redacted Viewers)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s-1995", "location": "Redacted operational sites", "program": "stargate"},
+    {"id": "stargate-cia-center-lane-soviet-sites-003", "tranche": "cross", "type": "narrative", "title": "Stargate Project Center Lane - Targeting Soviet Installations and Technical Sites, Accuracy Reports", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1980s", "location": "Soviet sites (redacted)", "program": "stargate"},
+    {"id": "stargate-gateway-overlap-training-004", "tranche": "cross", "type": "narrative", "title": "Stargate / Gateway Program Overlap - Monroe Hemi-Sync Training for Remote Viewers", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "stargate"},
+    {"id": "stargate-rv-success-metrics-005", "tranche": "cross", "type": "narrative", "title": "Stargate RV Program - Viewer Performance Metrics, Operational Hits on Foreign Targets", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA", "date_hint": "1978-1995", "location": "Various", "program": "stargate"},
+    {"id": "gateway-monroe-hemi-sync-focus-levels-001", "tranche": "cross", "type": "narrative", "title": "The Gateway Experience - Monroe Institute Hemi-Sync Focus Levels (Focus 10, 12, 15, 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+    {"id": "gateway-energy-bar-tool-spacetime-002", "tranche": "cross", "type": "narrative", "title": "Gateway Process - Energy Bar Tool (EBT), Spacetime Transcendence, and Non-Physical Exploration Protocols", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+    {"id": "gateway-audio-protocols-cia-applications-003", "tranche": "cross", "type": "narrative", "title": "Gateway Hemi-Sync Audio Protocols and CIA Applications (1983 Declass Focus 21 Click-Out)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "heavy", "agency": "CIA / Monroe Institute", "date_hint": "1983", "location": "N/A", "program": "gateway"},
+    {"id": "gateway-focus-21-click-out-004", "tranche": "cross", "type": "narrative", "title": "Monroe Gateway - Focus 21 'Click Out' State Documentation and CIA Intelligence Use Cases", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+    {"id": "gateway-focus-10-12-sleep-awake-005", "tranche": "cross", "type": "narrative", "title": "Gateway Experience Focus 10 (Mind Awake / Body Asleep) and Focus 12 Expanded Awareness Docs", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "unknown", "agency": "Monroe Institute / CIA", "date_hint": "1980s", "location": "N/A", "program": "gateway"},
+    {"id": "historical-cloaking-potato-colorado-2022", "tranche": "03", "type": "image", "title": "Cloaking / Low-Observable 'Potato' UAP Report Colorado Springs 2022 (FBI Artistic/Render)", "status": "released", "has_pdf": false, "missing": true, "redaction_status": "none", "agency": "FBI", "date_hint": "2022", "location": "Colorado Springs", "program": "uap"}
+  ],
+  "releases_summary": {
+    "01": {
+      "claimed_total": 160,
+      "claimed_documents": 105,
+      "discovered": 2,
+      "missing": 158,
+      "deciphered": 0,
+      "note": "Initial tranche: historical + interagency UAP records. May 8 2026 launch of PURSUE. Includes multiple Army UFO General volumes and Apollo variants.",
+      "example_missing_note": "Release 01 claimed 105 docs but only ~2 discovered in this run (public data seeds + scraper). Stargate/Gateway cross not in R01."
+    },
+    "02": {
+      "claimed_total": 62,
+      "claimed_documents": 80,
+      "discovered": 1,
+      "missing": 61,
+      "deciphered": 0,
+      "note": "Second tranche. AARO sensor videos heavy. May 22 2026. FBI sensor packs.",
+      "example_missing_note": "Release 02 claimed 80 docs but only ~1 discovered in this run (public data seeds + scraper)."
+    },
+    "03": {
+      "claimed_total": 72,
+      "claimed_documents": 53,
+      "discovered": 15,
+      "missing": 57,
+      "deciphered": 0,
+      "note": "Third tranche (FBI tranche dominant: 29 FBI files). 72 files total per official. war.gov/UFO/release/03/ . Includes additional D0xx, orbs, cloaking, transcripts. Stargate/Gateway seeded in cross for program org.",
+      "example_missing_note": "Release 03 claimed 53 docs but only ~15 discovered/seeded in this run (public data seeds + scraper). Most Stargate/Gateway remain missing (public signals only)."
+    }
+  },
+  "catalog": [
+    {"doc_id": "uap-d080-mother-orb-western", "title": "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)", "type": "pdf", "release": "03", "agency": "DOW", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-signals", "program": "uap"},
+    {"doc_id": "uap-d081-narrative-3-western", "title": "DoW-UAP-D081 Narrative-3 Western US Event", "type": "pdf", "release": "03", "agency": "DOW", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-signals", "program": "uap"},
+    {"doc_id": "uap-d083-narrative-5-western", "title": "DoW-UAP-D083 Narrative-5 Western US Event", "type": "pdf", "release": "03", "agency": "DOW", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-signals", "program": "uap"},
+    {"doc_id": "uap-d084-army-flying-saucer-1949", "title": "DOW-UAP-D084 US Army Flying Saucer Study 1949", "type": "pdf", "release": "03", "agency": "DOW", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Official claim includes this; not in current discovered set.", "source": "public-catalog-seed", "program": "uap"},
+    {"doc_id": "stargate-cia-grill-flame-rv-protocols-001", "title": "CIA Stargate Project - Grill Flame Remote Viewing Protocols and Sessions (Viewer Redacted, Soviet Military Targets)", "type": "narrative", "release": "cross", "agency": "CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded from public declass signals + PURSUE cross; missing until real drop.", "source": "public-signals", "program": "stargate"},
+    {"doc_id": "stargate-cia-sun-streak-rv-sessions-002", "title": "CIA Stargate - Sun Streak RV Operational Sessions and Success Metrics (1980s-1990s, Redacted Viewers)", "type": "narrative", "release": "cross", "agency": "CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded from public declass signals + PURSUE cross; missing until real drop.", "source": "public-signals", "program": "stargate"},
+    {"doc_id": "stargate-cia-center-lane-soviet-sites-003", "title": "Stargate Project Center Lane - Targeting Soviet Installations and Technical Sites, Accuracy Reports", "type": "narrative", "release": "cross", "agency": "CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded; missing until real drop.", "source": "public-signals", "program": "stargate"},
+    {"doc_id": "stargate-gateway-overlap-training-004", "title": "Stargate / Gateway Program Overlap - Monroe Hemi-Sync Training for Remote Viewers", "type": "narrative", "release": "cross", "agency": "CIA / Monroe Institute", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded; missing until real drop.", "source": "public-signals", "program": "stargate"},
+    {"doc_id": "gateway-monroe-hemi-sync-focus-levels-001", "title": "The Gateway Experience - Monroe Institute Hemi-Sync Focus Levels (Focus 10, 12, 15, 21 Click-Out)", "type": "narrative", "release": "cross", "agency": "CIA / Monroe Institute", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded from public declass + PURSUE cross; missing until real drop.", "source": "public-signals", "program": "gateway"},
+    {"doc_id": "gateway-energy-bar-tool-spacetime-002", "title": "Gateway Process - Energy Bar Tool (EBT), Spacetime Transcendence, and Non-Physical Exploration Protocols", "type": "narrative", "release": "cross", "agency": "Monroe Institute / CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded; missing until real drop.", "source": "public-signals", "program": "gateway"},
+    {"doc_id": "gateway-audio-protocols-cia-applications-003", "title": "Gateway Hemi-Sync Audio Protocols and CIA Applications (1983 Declass Focus 21 Click-Out)", "type": "narrative", "release": "cross", "agency": "CIA / Monroe Institute", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded; missing until real drop.", "source": "public-signals", "program": "gateway"},
+    {"doc_id": "gateway-focus-21-click-out-004", "title": "Monroe Gateway - Focus 21 'Click Out' State Documentation and CIA Intelligence Use Cases", "type": "narrative", "release": "cross", "agency": "Monroe Institute / CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Seeded; missing until real drop.", "source": "public-signals", "program": "gateway"},
+    {"doc_id": "historical-cia-uap-017-high-alert-foreign-2008", "title": "CIA-UAP-017 Placement on High Alert Due to Perceived Aggressive Foreign Posturing (Harare 2008)", "type": "pdf", "release": "03", "agency": "CIA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": null, "source": "public-index-seed", "program": "historical"},
+    {"doc_id": "historical-r01-18-100754-general-1946-vol2", "title": "18_100754 General 1946-7 Vol 2 - Historical UFO Records", "type": "pdf", "release": "01", "agency": "DOW", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Official claim includes this; not in current discovered set.", "source": "public-catalog-seed", "program": "historical"},
+    {"doc_id": "historical-apollo-16-audio-1962", "title": "Apollo 16 debrief + Gordon Cooper / Cronkite 1962 (alien starbase remark)", "type": "audio", "release": "03", "agency": "NASA", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": null, "source": "public-signals", "program": "historical"},
+    {"doc_id": "uap-r03-fbi-orb-transcript-northeast-2023", "title": "FBI-UAP-PR001 Plasma Sphere Stationary Report 2023 - Full Transcript", "type": "narrative", "release": "03", "agency": "FBI", "status": "available", "discovered": false, "downloaded": false, "deciphered": false, "missing_note": "Official claim; missing full local.", "source": "public-catalog-seed", "program": "uap"},
+    {"doc_id": "03-FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022", "title": "FBI-UAP-D002_FD-1057_Unresolved_UAP_Report_Colorado_Springs_2022.pdf", "type": "pdf", "release": "03", "agency": "FBI", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-index-seed", "program": "uap"},
+    {"doc_id": "03-FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022", "title": "FBI-UAP-D003_Digital_Rendering_Unresolved_UAP_Report_Colorado_Springs_2022.pdf", "type": "pdf", "release": "03", "agency": "FBI", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-index-seed", "program": "uap"},
+    {"doc_id": "03-FBI-UAP-PR003_Orbs_Over_the_Pond_2024", "title": "FBI-UAP-PR003_Orbs_Over_the_Pond_2024.vid", "type": "vid", "release": "03", "agency": "FBI", "status": "downloaded", "discovered": true, "downloaded": true, "deciphered": false, "missing_note": null, "source": "public-index-seed", "program": "uap"}
+  ],
+  "global": {
+    "total_claimed": 294,
+    "catalog_size": 35,
+    "last_full_catalog_build": "2026-06-14T19:15:00.000000+00:00",
+    "note": "Expanded to 35+ clean entries with program field (uap/stargate/gateway/historical). All IDs cleaned to consistent slugs (e.g. stargate-cia-grill-flame-rv-protocols-001), full readable titles (no truncation). Stargate/Gateway seeded as missing (public signals + historical declass). released_docs source of truth. Dynamic via /api/analyze?action=catalog."
+  }
+}

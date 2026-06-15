@@ -1,0 +1,25 @@
+{
+  "name": "GMIIE Anomaly Intelligence Ring • Truth Surface",
+  "short_name": "GMIIE Ring",
+  "description": "Agentic analysis of PURSUE UFO tranches. Full catalog, redaction decipher, code breaks (MOTHER-3-BABY 0.79), x402 premium downloads of deciphered documents, sovereign vault paths. Real answers and access.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["education", "research", "news"],
+  "shortcuts": [
+    {
+      "name": "Full D080 Chain",
+      "url": "/?action=full_d080",
+      "description": "Run the complete scrape + decipher + break codes chain"
+    }
+  ]
+}

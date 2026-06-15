@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GMIIE Anomaly Intelligence Ring • Truth Surface (Prototype)</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { font-family: system-ui, sans-serif; background:#0a0a0a; color:#ddd; margin:0; padding:2rem; line-height:1.5; }
+    h1,h2 { color:#fff; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+    .card { background:#111; border:1px solid #222; border-radius:8px; padding:1rem; }
+    button { background:#222; color:#fff; border:1px solid #444; padding:.5rem 1rem; border-radius:6px; cursor:pointer; }
+    button:hover { background:#333; }
+    input, select, textarea { width:100%; background:#111; color:#ddd; border:1px solid #333; padding:.5rem; border-radius:6px; }
+    .result { white-space:pre-wrap; background:#0a0a0a; border:1px solid #222; padding:1rem; border-radius:6px; min-height:140px; }
+    .meta { font-size:.85rem; color:#888; }
+    .tag { display:inline-block; background:#1a1a1a; padding:2px 6px; border-radius:3px; margin:2px; font-size:.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>GMIIE Anomaly Intelligence Ring <span style="color:#f55">• Truth Surface</span></h1>
+  <p class="meta">Prototype inside blockchainfraud-platform (sovereign preflight GREEN). Slots into xxxiii.io / GMIIE. Powered by your full stack: bf-platform MCP + Grok, legacy-vault (ZK/IPFS/voice), fth-mcp-hub, x402, Apostle, Qdrant, Deepgram, ComfyUI, genesis402 gateways. (TROPTIONS-specific mint removed; x402 for premium.)</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>1. Fetch Tranche</h2>
+      <button onclick="fetchTranche()">Fetch PURSUE Release 03 (manifest + seeds)</button>
+      <div id="fetch-out" class="result"></div>
+    </div>
+
+    <div class="card">
+      <h2>2. Analyze Sighting (AI + Finance/Reset Ties)</h2>
+      <select id="doc">
+        <option value="D080-mother-orb-western-sensitive">D080 — Mother Orb (western sensitive site)</option>
+        <option value="NE-orb-pond-202x">NE Orb Pond — Plasma sphere (FBI highly credible)</option>
+        <option value="colorado-springs-potato-2022">Colorado Springs — Cloaking "potato"</option>
+        <option value="apollo-16-audio">Apollo 16 + Gordon Cooper audio</option>
+      </select>
+      <input id="query" placeholder="Optional: + market implications, stablecoin, Solana, reset angles, voice, visuals..." />
+      <button onclick="analyze()">Analyze + Cross-Ref (mother orb + finance example)</button>
+      <div id="analyze-out" class="result"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <h2>3. Ring Actions (Premium hooks — x402 gated)</h2>
+    <button onclick="action('export')">Export Premium Verified Bundle (x402 gated download/evidence)</button>
+    <button onclick="action('narrate')">Narrate Explanation (Deepgram Aura via legacy-vault)</button>
+    <button onclick="action('visual')">Generate Visual Recon (ComfyUI prompt)</button>
+    <button onclick="action('anchor')">Anchor to IPFS + Web3 Gateways (genesis402 primary)</button>
+    <div id="action-out" class="result"></div>
+    <p class="meta">These are wired in the real system to x402 gate (bf-platform), legacy-vault voice/solana/IPFS/ZK, ComfyUI, and AgentMail. Premium unlocks full RAG + proof pack.</p>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <h2>Timeline (Release 03 signals — public converged)</h2>
+    <div class="meta">
+      ~2021-2025: NE US orb events (FBI highly credible videos)<br>
+      2022: Colorado Springs "potato"/cloaking incident (artistic released in R03)<br>
+      Oct 2023 context: D080 mother orb + baby orbs near western sensitive site (multiple agents, AARO unresolved)<br>
+      2026-06-12: Release 03 published on war.gov/UFO (53 docs + 10 img + 6 vid + 3 audio)<br>
+      2026-06-14: This Ring prototype live in your stack
+    </div>
+  </div>
+
+  <p class="meta" style="margin-top:2rem">
+    Direct war.gov/UFO currently Access Denied (Akamai). This prototype uses public signals + manifest + local drop path.<br>
+    Next: run mcp_server.py locally → add to Cursor/Claude config → query naturally. Wire the TS version (pursue-analyzer.ts) into live bf-platform chat for "mother orb + market implications" in production.
+  </p>
+</div>
+
+<script>
+async function fetchTranche() {
+  const out = document.getElementById('fetch-out');
+  out.textContent = 'Fetching... (in real: calls MCP tool fetch_pursue_tranche)';
+  // Simulated response matching the Python MCP tool
+  const data = {
+    ok: true,
+    tranche: { release: "03", published: "2026-06-12", source: "war.gov/UFO (PURSUE)", claimed_files: 72, bundle_mb: 826 },
+    standouts: ["D080-mother-orb-western-sensitive", "NE-orb-pond-202x", "colorado-springs-potato-2022", "apollo-16-audio"],
+    sightings_count: 4,
+    note: "Prototype uses seeded public signals. Drop full tranche locally and run ingest.py for real hashes/CIDs."
+  };
+  out.textContent = JSON.stringify(data, null, 2);
+}
+
+async function analyze() {
+  const out = document.getElementById('analyze-out');
+  const doc = document.getElementById('doc').value;
+  const q = document.getElementById('query').value || "Explain the mother orb incident and any market / defense / stablecoin / reset implications";
+  out.textContent = 'Analyzing via MCP (pursue_analyzer) + finance cross-ref...';
+
+  // Simulated rich output (exact shape the real MCP tool + TS pursue-analyzer return)
+  const result = {
+    ok: true,
+    doc_id: doc,
+    tranche: "03",
+    title: doc.includes("D080") ? "DoW-UAP-D080 Narrative-2 Western US Event (Mother Orb)" : "Selected sighting",
+    location_tag: doc.includes("D080") ? "western US sensitive national security site" : "various",
+    phenomenology: doc.includes("D080") ? ["bright orange mother orb", "smaller red orbs / baby orbs", "multi-hour", "sensitive site"] : ["orb", "anomaly"],
+    witness_credibility: "multiple cleared personnel; AARO unresolved",
+    explanation: "Agents described bright orange mother orb producing smaller red orbs over several hours near sensitive site. One account mentioned hovering at vehicle height with single centered taillight appearance.",
+    patterns_detected: ["mother-baby-orb-deployment", "sensitive-site-proximity"],
+    finance_ties: [
+      "Defense contractor equities (aerospace, surveillance, directed energy) historically react to credible UAP near sensitive sites.",
+      "Tranche timing acts as 'Macro Fear / Great Reset' narrative catalyst (already live archetype in bf-platform pattern-detector)."
+    ],
+    reset_angles: [
+      "Disclosure can accelerate CBDC/stablecoin rails framed as 'trust anchors' during uncertainty.",
+      "GMIIE Oracle: tranche timing historically correlates with defense outperformance + crypto volatility (stablecoin velocity up)."
+    ],
+    onchain_hooks: [
+      "IPFS via genesis402 (primary) or blockchainfraud.org gateways + legacy-vault ZK (DocumentHashProof + 5-Proof).",
+      "Apostle 7332 x402 (ATP/USDC) for premium full report + AgentMail with gateway proof links.",
+      "x402 premium verified export of summary (CID + hash) as downloadable evidence bundle / access pack.",
+      "Deepgram narration + ComfyUI visual recon available in premium flow."
+    ],
+    confidence: 0.78,
+    premium_unlocks: ["full RAG", "voice (Deepgram)", "ComfyUI visuals", "x402 premium export + ZK pack (download)", "AgentMail Ring Brief"],
+    query: q
+  };
+  out.textContent = JSON.stringify(result, null, 2);
+}
+
+function action(kind) {
+  const out = document.getElementById('action-out');
+  const map = {
+    export: "x402 premium export stub. Returns downloadable verified analysis bundle + IPFS+ZK pack (pure x402 gated access after receipt). No NFT mint.",
+    narrate: "Deepgram Aura narration (via legacy-vault/lib/voice patterns). Server-side key only. Calm professional fiduciary tone.",
+    visual: "ComfyUI prompt generated: 'bright orange mother orb launching smaller red orbs above desert sensitive site at dusk, low observable, multiple witness sketch + thermal overlay'.",
+    anchor: "IPFS pin + web3 anchor via genesis402 (4 IPFS + 3 EVM) + bf gateways + ZK 5-Proof from legacy-vault circuits. Evidence pack + AgentMail ready."
+  };
+  out.textContent = (map[kind] || map.export) + "\n\n(Real version executes through bf-platform x402 gate + legacy-vault libs + your gateways. Premium only. No TROPTIONS mint.)";
+}
+</script>
+</body>
+</html>

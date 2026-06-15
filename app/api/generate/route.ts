@@ -5,6 +5,19 @@ import * as crypto from 'crypto';
 
 export const dynamic = 'force-static';
 
+/**
+ * POST /api/generate
+ * PRODUCTION-GRADE Document Factory.
+ * - Embeds FULL DecipherResult (redaction_map + code_breaks incl. MOTHER 0.79 + voice_script_inferred + ethics HYPOTHESES ONLY + conf matrix + provenance paths)
+ * - Uses fpdf2/reportlab via redaction_decipher.py generate_deciphered_pdf (preferred for real PDF + watermark + sign)
+ * - Fallback: hardened hand-rolled PDF with watermark, sha256(payload), full content, GCP HSM stub note.
+ * - Watermark: "GMIIE-CERTIFIED HYPOTHESES ONLY — CONF X — DO NOT CITE AS FACT"
+ * - Signed hash stub: "GCP Cloud HSM would sign here"
+ * - Optional vault_transfer ready (caller /download wires direct sovereign vault)
+ * Returns {ok, doc_id, pdf_base64?, pdf_path?, download_url, sha256, hsm_note, vault_ready, generated, note}
+ * x402 gate enforced on downstream /download.
+ */
+
 function computeSha256(input: string | Buffer): string {
   return crypto.createHash('sha256').update(input).digest('hex');
 }
@@ -27,7 +40,7 @@ function buildHardenedHandrolledPDF(title: string, contentLines: string[], water
     const chunk = safe(line.slice(0, 95));
     contentStream.push(`(${chunk}) Tj`, '0 -11 Td');
     y -= 11;
-    if (y < 120) {
+    if (y < 120) { // simulate page break header
       contentStream.push('ET', 'BT', '/F1 8 Tf', `1 0 0 1 50 780 Tm`, `(${safe(watermark)}) Tj`, '0 -10 Td');
       y = 770;
     }
@@ -157,5 +170,6 @@ export async function POST(req: NextRequest) {
     source: `enhanced index + /api/analyze + redaction_decipher.py (${gen.used})`,
     note: 'Production Document Factory: full DecipherResult (redaction_map + MOTHER-3-BABY-CYCLE@0.79 + voice + ethics + conf + provenance) embedded. Watermark + sha256 + GCP HSM stub. x402 gate on /download. vault_transfer optional.',
     vault_transfer_ready: vaultReady,
+    vault_stub: vaultReady ? { endpoint: 'legacy /api/vault/transfer (or http://127.0.0.1:9077/mcp proxy)', token: paidTx, note: 'POST {token, doc_id, sha256, pdf_cid?} from sovereign vault config' } : null,
   });
 }

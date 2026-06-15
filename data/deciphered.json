@@ -1,0 +1,70 @@
+{
+  "deciphered_doc_ids": [
+    "D080-mother-orb-western-sensitive",
+    "break-codes-D080",
+    "break-codes-D080-mother",
+    "break-codes-D080-mother-orb",
+    "break-codes-DoW-UAP-D080_Narrative-2_Western-US-Event",
+    "gateway-focus-10-15-21",
+    "gateway-monroe-experience-001",
+    "stargate-cia-grill-flame-001",
+    "stargate-cia-sun-streak-002"
+  ],
+  "last_marked": "2026-06-14T19:01:35.464428+00:00",
+  "details": {
+    "break-codes-D080": {
+      "overall_confidence": 0.46,
+      "spans": 2,
+      "codes": 3,
+      "ts": "2026-06-14T18:25:49.986718+00:00"
+    },
+    "break-codes-D080-mother": {
+      "overall_confidence": 0.46,
+      "spans": 2,
+      "codes": 3,
+      "ts": "2026-06-14T18:23:52.094670+00:00"
+    },
+    "break-codes-D080-mother-orb": {
+      "overall_confidence": 0.46,
+      "spans": 2,
+      "codes": 3,
+      "ts": "2026-06-14T18:24:27.638671+00:00"
+    },
+    "D080-mother-orb-western-sensitive": {
+      "overall_confidence": 0.46,
+      "spans": 2,
+      "codes": 3,
+      "ts": "2026-06-14T18:29:20.533844+00:00"
+    },
+    "break-codes-DoW-UAP-D080_Narrative-2_Western-US-Event": {
+      "overall_confidence": 0.46,
+      "spans": 2,
+      "codes": 3,
+      "ts": "2026-06-14T18:29:20.537587+00:00"
+    },
+    "stargate-cia-grill-flame-001": {
+      "overall_confidence": 0.78,
+      "spans": 7,
+      "codes": 7,
+      "program": "stargate",
+      "ts": "2026-06-14T19:01:35.456467+00:00"
+    },
+    "gateway-focus-10-15-21": {
+      "overall_confidence": 0.79,
+      "spans": 7,
+      "codes": 7,
+      "program": "gateway",
+      "ts": "2026-06-14T19:00:41.416796+00:00"
+    },
+    "stargate-cia-sun-streak-002": {
+      "overall_confidence": 0.78,
+      "ts": "2026-06-14T19:00:36.431270+00:00",
+      "generalized": true
+    },
+    "gateway-monroe-experience-001": {
+      "overall_confidence": 0.79,
+      "ts": "2026-06-14T19:00:36.431270+00:00",
+      "generalized": true
+    }
+  }
+}
