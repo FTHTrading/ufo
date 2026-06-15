@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, Shield, Zap, Volume2, Image as ImageIcon, Coins, ExternalLink, AlertTriangle, Loader2, Download, FileText, Filter, Table as TableIcon, Grid as GridIcon } from 'lucide-react';
+import { Search, Shield, Zap, Volume2, Image as ImageIcon, Coins, ExternalLink, AlertTriangle, Loader2, Download, FileText, Filter, Table as TableIcon, Grid as GridIcon, Activity } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Enhanced catalog source (from data/index.json released_docs + manifest enhanced + public signals). 
@@ -795,7 +795,7 @@ export default function GMIIETruthSurface() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `${doc.id}-fthtrading-ufo-demo-report.txt`;
+      a.download = `${doc.id}-gmiie-ufo-demo-report.txt`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -1116,50 +1116,101 @@ cloudflared tunnel --url http://localhost:3005
               </div>
             </div>
 
-            {/* Live Insights Panel */}
-            <div className="max-w-3xl mx-auto mb-10 p-5 rounded-2xl border border-[#222] bg-[#0c0c0c]/80">
-              <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-2">
-                <Shield className="w-4 h-4 text-[#f55]" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#eaeaea]">Live Anomaly Intelligence Feed</span>
-                <span className="ml-auto w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="System Active"></span>
-              </div>
-              <div className="space-y-4">
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">01</div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
-                      Top Anomaly Thread: Western Sensitive Sites (D080)
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-red-950 text-red-400 font-mono">AARO UNRESOLVED</span>
-                    </h4>
-                    <p className="text-xs text-[#888] mt-1">
-                      Bright orange mother orb producing smaller red baby orbs over western US sensitive facility. Cross-referenced with stablecoin macro implications.
-                    </p>
+            {/* Live Insights & Agent Network Panel */}
+            <div className="max-w-5xl mx-auto mb-10 p-5 rounded-2xl border border-[#222] bg-[#0c0c0c]/80">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Column 1: Live Anomaly Intelligence Feed */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-2">
+                    <Shield className="w-4 h-4 text-[#f55]" />
+                    <span className="text-xs font-semibold uppercase tracking-widest text-[#eaeaea]">Live Anomaly Intelligence Feed</span>
+                    <span className="ml-auto w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="System Active"></span>
                   </div>
-                </div>
-                
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">02</div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
-                      Most Credible Orb Chain: Northeastern Plasma Merges
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 font-mono">FBI FD-1057</span>
-                    </h4>
-                    <p className="text-xs text-[#888] mt-1">
-                      Multi-witness reports (2021-2025) of stationary plasma spheres merging. Video logs now linked via local gateway.
-                    </p>
+                  <div className="space-y-4">
+                    <div className="flex gap-3 items-start">
+                      <div className="w-7 h-7 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono font-bold">01</div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-[#eee] flex items-center gap-2">
+                          Western Sensitive Sites (D080)
+                          <span className="text-[8px] px-1 py-0.5 rounded-full bg-red-950 text-red-400 font-mono">AARO UNRESOLVED</span>
+                        </h4>
+                        <p className="text-[11px] text-[#888] mt-0.5">
+                          Bright orange mother orb producing smaller red baby orbs. Cross-referenced with stablecoin macro reset implications.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3 items-start">
+                      <div className="w-7 h-7 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono font-bold">02</div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-[#eee] flex items-center gap-2">
+                          Northeastern Plasma Merges
+                          <span className="text-[8px] px-1 py-0.5 rounded-full bg-emerald-950 text-emerald-400 font-mono">FBI FD-1057</span>
+                        </h4>
+                        <p className="text-[11px] text-[#888] mt-0.5">
+                          Multi-witness reports (2021-2025) of stationary plasma spheres merging. Video logs linked via local gateway.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 items-start">
+                      <div className="w-7 h-7 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono font-bold">03</div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-[#eee] flex items-center gap-2">
+                          Stargate/Gateway Overlap
+                          <span className="text-[8px] px-1 py-0.5 rounded-full bg-blue-950 text-blue-400 font-mono">MONROE DECLASS</span>
+                        </h4>
+                        <p className="text-[11px] text-[#888] mt-0.5">
+                          Monroe Institute Focus 21 Hemi-Sync protocols used to train CIA remote viewers (Grill Flame / Sun Streak).
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex gap-4 items-start">
-                  <div className="w-8 h-8 rounded-lg bg-[#f55]/10 border border-[#f55]/20 flex items-center justify-center shrink-0 mt-0.5 text-xs text-[#f55] font-mono">03</div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-[#eee] flex items-center gap-2">
-                      Stargate/Gateway Overlap Identified
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-blue-950 text-blue-400 font-mono">MONROE DECLASS</span>
-                    </h4>
-                    <p className="text-xs text-[#888] mt-1">
-                      Monroe Institute Focus 21 Hemi-Sync audio protocols used to train CIA remote viewers (Grill Flame / Sun Streak).
-                    </p>
+                {/* Column 2: Active Agent Network Status */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4 border-b border-[#222] pb-2">
+                    <Activity className="w-4 h-4 text-[#f55]" />
+                    <span className="text-xs font-semibold uppercase tracking-widest text-[#eaeaea]">Active Agent Ingestion Network</span>
+                    <span className="ml-auto text-[9px] bg-emerald-950/40 text-emerald-400 border border-emerald-900/40 px-1.5 py-0.5 rounded font-mono animate-pulse">3 AGENTS SECURE</span>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex gap-3 items-start border border-[#222] p-2.5 rounded-xl bg-black/40 hover:border-[#f55]/20 transition duration-200">
+                      <div className="w-7 h-7 rounded-full bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 mt-0.5 text-emerald-400 font-bold text-xs font-mono flex items-center justify-center">Æ</div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold text-[#eee]">Agent Aether</span>
+                          <span className="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">Ingesting</span>
+                        </div>
+                        <div className="text-[10px] text-[#888] mt-0.5">Scanning FBI/CIA declassified feeds & PURSUE Tranche 03 repositories.</div>
+                        <div className="text-[9px] font-mono text-[#f55]/60 mt-1">Status: Listening to war.gov/UFO | Last ping: 4s ago</div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 items-start border border-[#222] p-2.5 rounded-xl bg-black/40 hover:border-[#f55]/20 transition duration-200">
+                      <div className="w-7 h-7 rounded-full bg-blue-950/40 border border-blue-500/30 flex items-center justify-center shrink-0 mt-0.5 text-blue-400 font-bold text-xs font-mono flex items-center justify-center">CP</div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold text-[#eee]">Agent Cipher</span>
+                          <span className="text-[8px] font-mono text-blue-400 uppercase tracking-widest">Deciphering</span>
+                        </div>
+                        <div className="text-[10px] text-[#888] mt-0.5">Running OpenCV overlays and breaking steganographic grammar on redacted files.</div>
+                        <div className="text-[9px] font-mono text-[#f55]/60 mt-1">Status: Ready to process OpenCV spans | Models: Llama-3-UFO</div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 items-start border border-[#222] p-2.5 rounded-xl bg-black/40 hover:border-[#f55]/20 transition duration-200">
+                      <div className="w-7 h-7 rounded-full bg-[#f55]/15 border border-[#f55]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#f55] font-bold text-xs font-mono flex items-center justify-center">OR</div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold text-[#eee]">Agent Oracle</span>
+                          <span className="text-[8px] font-mono text-[#f55] uppercase tracking-widest">Settling</span>
+                        </div>
+                        <div className="text-[10px] text-[#888] mt-0.5">Auditing x402 CDP routing, stablecoin custody, and reset ties on Polygon/Solana.</div>
+                        <div className="text-[9px] font-mono text-[#f55]/60 mt-1">Status: Wallet verification & provenance monitoring active</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1326,11 +1377,11 @@ cloudflared tunnel --url http://localhost:3005
             <div className="text-[10px] uppercase tracking-widest text-[#666] mb-3 font-mono">Reference Imagery (Assisted Reconstructions)</div>
             <div className="flex gap-3 overflow-x-auto pb-2 snap-x">
               {[
-                {src: '/ufo/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
-                {src: '/ufo/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
-                {src: '/ufo/images/stargate-rv.jpg', label: 'Stargate RV / Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
-                {src: '/ufo/images/gateway-focus.jpg', label: 'Gateway Focus 21 State', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
-                {src: '/ufo/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
+                {src: '/images/mother-orb.jpg', label: 'Mother Orb + Baby Cycle', docId: 'uap-d080-mother-orb-western-sensitive', program: 'uap'},
+                {src: '/images/potato-cloaking.jpg', label: 'Colorado Potato Cloaking', docId: 'uap-colorado-springs-potato-2022', program: 'uap'},
+                {src: '/images/stargate-rv.jpg', label: 'Stargate RV / Session', docId: 'stargate-cia-grill-flame-rv-protocols-001', program: 'stargate'},
+                {src: '/images/gateway-focus.jpg', label: 'Gateway Focus 21 State', docId: 'gateway-monroe-hemi-sync-focus-levels-001', program: 'gateway'},
+                {src: '/images/apollo-cooper.jpg', label: 'Apollo Starbase Remark', docId: 'historical-apollo-16-audio-1962', program: 'historical'},
               ].map((img, idx) => {
                 const c = getProgramColor(img.program);
                 return (
@@ -1376,7 +1427,7 @@ cloudflared tunnel --url http://localhost:3005
             </div>
             
             <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-[#1a1a1a]">
-              <a href="https://fthtrading.github.io/ufo" target="_blank" className="text-xs px-3 py-1 border border-[#333] rounded-lg hover:bg-[#1a1a1a] text-[#aaa] hover:text-white transition">Website: fthtrading.github.io/ufo</a>
+              <a href="https://ufo.xxxiii.io" target="_blank" className="text-xs px-3 py-1 border border-[#333] rounded-lg hover:bg-[#1a1a1a] text-[#aaa] hover:text-white transition">Website: ufo.xxxiii.io</a>
               {['ufo','web3','ipfs','blockchain','anomaly-intelligence','pursue','sovereign'].map(t => (
                 <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-[#111] border border-[#222] text-[#888] uppercase tracking-wider font-mono">{t}</span>
               ))}
@@ -1535,319 +1586,332 @@ cloudflared tunnel --url http://localhost:3005
           )}
         </div>
 
-        {/* Results */}
-        {result && (
-          <div className="max-w-4xl mx-auto">
-            <div className={`card rounded-3xl p-8 ${result.paid ? 'premium' : ''}`}>
-              <div className="flex items-start justify-between mb-6">
+        {/* Results Drawer */}
+        {(result || decipherResult || fullChainResult || scrapeResult || comfyPrompt || visualPreviewActive) && (
+          <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity cursor-pointer"
+              onClick={() => {
+                setResult(null);
+                setDecipherResult(null);
+                setFullChainResult(null);
+                setScrapeResult(null);
+                setComfyPrompt(null);
+                setVisualPreviewActive(false);
+              }}
+            />
+            
+            {/* Drawer Content */}
+            <div className="relative w-full max-w-3xl bg-[#090909]/95 border-l border-[#f55]/30 h-full shadow-2xl flex flex-col z-10 transition-transform duration-300 ease-out">
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-6 border-b border-[#222] bg-[#0d0d0d]">
                 <div>
-                  <div className="uppercase text-xs tracking-[3px] text-[#f55] mb-1">RELEASE {result.tranche} • {result.doc_id}</div>
-                  <h2 className={`text-3xl font-semibold tracking-tight ${getProgramColor(result.doc_id.includes('stargate') ? 'stargate' : result.doc_id.includes('gateway') ? 'gateway' : result.doc_id.includes('video') ? 'uap' : 'uap').text}`}>{result.title}</h2>
-                  {result.location_tag && <div className="text-[#888] mt-1">{result.location_tag}</div>}
-                </div>
-                <div className="text-right text-sm">
-                  <div>Confidence</div>
-                  <div className="text-4xl font-mono text-white">{Math.round(result.confidence * 100)}<span className="text-base align-super">%</span></div>
-                </div>
-              </div>
-
-              <div className="prose prose-invert max-w-none text-[15px] leading-relaxed mb-6">
-                {result.explanation}
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div>
-                  <div className="uppercase text-xs tracking-widest text-[#888] mb-2">Patterns Detected</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {result.patterns_detected.map(p => <span key={p} className="tag bg-[#1f1f1f]">{p}</span>)}
+                  <div className="text-[10px] uppercase tracking-[3px] text-[#f55] font-mono">Active Intelligence Terminal</div>
+                  <div className="text-xl font-semibold tracking-tight text-white mt-1">
+                    {result?.title || decipherResult?.title || fullChainResult?.title || scrapeResult?.title || 'Selected Document Analysis'}
                   </div>
-                </div>
-
-                <div>
-                  <div className="uppercase text-xs tracking-widest text-[#888] mb-2">Finance / Reset Angles (GMIIE Oracle)</div>
-                  <ul className="text-sm space-y-1.5 text-[#bbb]">
-                    {result.finance_ties.concat(result.reset_angles).map((t, i) => (
-                      <li key={i} className="flex gap-2">• {t}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-[#222] text-xs text-[#888]">
-                <strong>On-Chain Hooks:</strong> {result.onchain_hooks.join(' • ')}
-              </div>
-
-              {/* Premium Actions — ALL BELLS & WHISTLES one-click row */}
-              <div className="mt-8 pt-6 border-t border-[#222] flex flex-wrap gap-3">
-                {!result.paid && (
-                  <button onClick={() => handlePayment({ amount: "0.01", asset: "USDC", network: "solana", payTo: "FTH-treasury-solana-or-base" })} 
-                          className="px-5 py-2 rounded-xl bg-[#f55] text-black font-medium flex items-center gap-2">
-                    <Coins className="w-4 h-4" /> Pay 0.01 USDC (x402 / CDP) — Unlock Full
-                  </button>
-                )}
-
-                {/* NEW dedicated buttons for Scrape (free), Decipher Redactions (x402 premium), Break Codes (premium), Full D080 Chain; seamless with legacy /truth wiring */}
-                <button
-                  onClick={runScrape}
-                  disabled={isScraping}
-                  className="px-5 py-2 rounded-xl border border-[#444] flex items-center gap-2 hover:bg-[#1a1a1a] disabled:opacity-60"
-                >
-                  {isScraping ? <><Loader2 className="w-4 h-4 animate-spin" /> Scraping Tranche...</> : <><Search className="w-4 h-4" /> Scrape Tranche (free)</>}
-                </button>
-
-                <button
-                  onClick={runDecipherRedactions}
-                  disabled={isDeciphering}
-                  className="px-5 py-2 rounded-xl border border-[#f55]/60 text-[#f55] flex items-center gap-2 hover:bg-[#1a0a0a] disabled:opacity-60"
-                >
-                  {isDeciphering ? <><Loader2 className="w-4 h-4 animate-spin" /> Deciphering Redactions...</> : <><Shield className="w-4 h-4" /> Decipher Redactions (x402 premium)</>}
-                </button>
-
-                <button
-                  onClick={runBreakCodes}
-                  disabled={isBreaking}
-                  className="px-5 py-2 rounded-xl border border-[#f55] text-[#f55] flex items-center gap-2 hover:bg-[#1a0a0a] disabled:opacity-60"
-                >
-                  {isBreaking ? <><Loader2 className="w-4 h-4 animate-spin" /> Breaking Codes...</> : <><Zap className="w-4 h-4" /> Break Codes (premium)</>}
-                </button>
-
-                {/* Final wiring: button for the 4th tool + full consolidated chain */}
-                <button
-                  onClick={runFullD080Chain}
-                  disabled={isFullChaining}
-                  className="px-5 py-2 rounded-xl border border-[#f55] bg-[#1a0a0a] text-[#f55] font-medium flex items-center gap-2 hover:bg-[#2a1a1a] disabled:opacity-60"
-                >
-                  {isFullChaining ? <><Loader2 className="w-4 h-4 animate-spin" /> Running Full Chain...</> : <><Shield className="w-4 h-4" /> Full D080 Chain (scrape+decipher+break+full) (premium)</>}
-                </button>
-
-                {/* BREAKTHROUGH HIDDEN — forces full chain + highlights inferences (the money button) */}
-                <button
-                  onClick={runBreakthroughHidden}
-                  disabled={isFullChaining}
-                  className="px-6 py-2 rounded-xl bg-[#f55] text-black font-bold flex items-center gap-2 hover:bg-white disabled:opacity-60 shadow-[0_0_0_1px_#f55]"
-                >
-                  {isFullChaining ? <><Loader2 className="w-4 h-4 animate-spin" /> BREAKING THROUGH...</> : <>🔥 BREAKTHROUGH HIDDEN (full chain + spotlight)</>}
-                </button>
-
-                {result.paid && (
-                  <>
-                    <button onClick={narrate} className="px-5 py-2 rounded-xl border border-[#444] flex items-center gap-2 hover:bg-[#1a1a1a]">
-                      <Volume2 className="w-4 h-4" /> Narrate (voice_script_inferred)
-                    </button>
-                    <button onClick={generateVisualPrompt} className="px-5 py-2 rounded-xl border border-[#444] flex items-center gap-2 hover:bg-[#1a1a1a]">
-                      <ImageIcon className="w-4 h-4" /> Copy ComfyUI Prompt
-                    </button>
-                    <button onClick={runComfyFromDecipher} className="px-5 py-2 rounded-xl border border-[#444] flex items-center gap-2 hover:bg-[#1a1a1a]">
-                      <ImageIcon className="w-4 h-4" /> Comfy: Deciphered Scene (D080+redact)
-                    </button>
-                    <button onClick={async () => { const g = await generatePdfForDoc({id: result.doc_id, title: result.title}); }} className="px-5 py-2 rounded-xl border border-[#444] flex items-center gap-2 hover:bg-[#1a1a1a]"><FileText className="w-4 h-4" /> Generate PDF (inferred embedded)</button>
-                    <button onClick={() => downloadPdfForDoc({id: result.doc_id, title: result.title})} disabled={isDownloading} className="px-5 py-2 rounded-xl bg-[#f55] text-black flex items-center gap-2"><Download className="w-4 h-4" /> Download (x402 + full embeds)</button>
-                  </>
-                )}
-              </div>
-
-              {!result.paid && <div className="mt-4 text-[10px] text-[#f55]/70 flex items-center gap-1.5"><AlertTriangle className="w-3 h-3" /> Premium features (full RAG, voice, visuals, verified IPFS+ZK downloads/exports) require x402 payment.</div>}
-            </div>
-
-            {/* === ULTIMATE BADASS PER-DOC BREAKDOWN PANEL (id for breakthrough scroll) ===
-                 Full translation/explanation from analyze • Decipher redaction_map with overlays, inferred, conf, alts, rationale (HYPOTHESES ONLY) •
-                 Program-specific code breaks (MOTHER for UAP / RV protocols for Stargate / Focus click-out for Gateway) • Finance/reset + on-chain • All one-clicks
-                 Clean titles. Evidence-led. Dark cyber ultimate. */}
-            <div id="breakdown-panel" className="max-w-4xl mx-auto mt-4">
-              {(result || decipherResult || fullChainResult) && (
-                <div className="rounded-3xl border border-[#f55]/40 bg-[#0a0a0a] p-6 mb-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <div className="uppercase text-[10px] tracking-[3px] text-[#f55]">AGENTIC BREAKDOWN — EVIDENCE LED • HYPOTHESES ONLY</div>
-                      <div className="text-2xl font-semibold tracking-tight">{result?.title || decipherResult?.title || 'Selected Document'}</div>
-                      <div className="text-xs font-mono text-[#888]">{activeDocId} • PROGRAM: <span className="text-[#f55] uppercase">{(filteredCatalog.find((d:any)=>d.id===activeDocId)?.program) || 'uap'}</span> • {result?.tranche || '03'}</div>
+                  {activeDocId && (
+                    <div className="text-xs font-mono text-[#888] mt-0.5">
+                      ID: {activeDocId} • PROGRAM: <span className="text-[#f55] uppercase">{(filteredCatalog.find((d:any)=>d.id===activeDocId)?.program) || 'uap'}</span>
                     </div>
-                    <div className="text-right text-xs">
-                      {result?.confidence && <div>Base conf: <span className="font-mono text-white text-lg">{Math.round(result.confidence*100)}%</span></div>}
-                      {(decipherResult?.confidence_overall || decipherResult?.conf) && <div>Decipher conf: <span className="font-mono text-[#f55]">{Math.round((decipherResult.confidence_overall || decipherResult.conf)*100)}%</span></div>}
-                    </div>
-                  </div>
+                  )}
+                </div>
+                <button
+                  onClick={() => {
+                    setResult(null);
+                    setDecipherResult(null);
+                    setFullChainResult(null);
+                    setScrapeResult(null);
+                    setComfyPrompt(null);
+                    setVisualPreviewActive(false);
+                  }}
+                  className="px-4 py-2 text-xs font-mono font-bold text-[#f55] hover:text-white hover:bg-[#f55]/10 rounded-lg border border-[#f55]/30 bg-black/50 transition flex items-center gap-1.5"
+                >
+                  ✕ CLOSE
+                </button>
+              </div>
 
-                  {/* Full explanation / translation from analyze */}
-                  {result?.explanation && (
-                    <div className="mb-4 p-4 bg-black/60 border border-[#222] rounded-xl text-sm leading-relaxed">
-                      <div className="uppercase text-xs text-[#888] mb-1">FULL TRANSLATION / EXPLANATION (from Ring analyze)</div>
+              {/* Drawer Body */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {result && (
+                  <div className={`card rounded-3xl p-6 border border-[#222] bg-[#0c0c0c] ${result.paid ? 'border-[#f55]/40 bg-[#0d0a0a]' : ''}`}>
+                    <div className="flex items-start justify-between mb-4 pb-4 border-b border-[#222]">
+                      <div>
+                        <div className="uppercase text-[10px] tracking-[3px] text-[#f55] mb-1">RELEASE {result.tranche} • {result.doc_id}</div>
+                        <h3 className={`text-xl font-semibold tracking-tight ${getProgramColor(result.doc_id.includes('stargate') ? 'stargate' : result.doc_id.includes('gateway') ? 'gateway' : result.doc_id.includes('video') ? 'uap' : 'uap').text}`}>{result.title}</h3>
+                        {result.location_tag && <div className="text-[#888] text-xs mt-1">{result.location_tag}</div>}
+                      </div>
+                      <div className="text-right text-xs">
+                        <div>Confidence</div>
+                        <div className="text-2xl font-mono text-white">{Math.round(result.confidence * 100)}<span className="text-xs align-super">%</span></div>
+                      </div>
+                    </div>
+
+                    <div className="prose prose-invert max-w-none text-xs leading-relaxed mb-6 text-[#ccc]">
                       {result.explanation}
                     </div>
-                  )}
 
-                  {/* Finance / Reset / Onchain */}
-                  {(result?.finance_ties || result?.reset_angles || result?.onchain_hooks) && (
-                    <div className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                      <div className="p-3 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1">Finance Ties</div>{(result.finance_ties||[]).map((t:string,i:number)=><div key={i}>• {t}</div>)}</div>
-                      <div className="p-3 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1">Reset Angles (GMIIE)</div>{(result.reset_angles||[]).map((t:string,i:number)=><div key={i}>• {t}</div>)}</div>
-                      <div className="p-3 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1">On-Chain Hooks</div>{(result.onchain_hooks||[]).map((t:string,i:number)=><div key={i}>• {t}</div>)}</div>
-                    </div>
-                  )}
-
-                  {/* Breakthrough highlights banner */}
-                  {showBreakthrough && breakthroughHighlights && (
-                    <div className="mb-4 p-3 rounded-xl bg-[#3a1a00] border border-[#f55] text-xs">
-                      <strong>🔥 BREAKTHROUGH INFERENCES HIGHLIGHTED</strong> — Full chain executed. Review redaction/code cards below for conf/alts/rationale. All HYPOTHESES ONLY.
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* NEW: Deciphered Redactions Display — structured output ... (now inside badass context) */}
-            {decipherResult && (
-              <div className="max-w-4xl mx-auto mt-6 card rounded-3xl p-6 border border-[#f55]/30 bg-[#0f0f0f]">
-                <div className="uppercase text-[10px] tracking-[2px] text-[#f55] mb-2">PURSUE RELEASE 03 • D080/D077 CYCLE • REDACTION DECIPHER (MCP + redaction_decipher.py) • Break Codes + Comfy D080 cycle integration</div>
-                <div className="flex items-baseline justify-between mb-4">
-                  <div className="text-xl font-semibold">Inferred Redactions + Code Breaks</div>
-                  <div className="font-mono text-sm text-[#f55]">Overall Conf: {Math.round((decipherResult.confidence_overall || decipherResult.conf || 0.58) * 100)}%</div>
-                </div>
-
-                <div className="prose prose-invert text-xs max-w-none mb-4 p-3 bg-black/60 rounded border border-[#222]">
-                  <strong>ETHICS (always shown):</strong> {decipherResult.ethics_note || decipherResult.decipher_result?.ethics_note || "HYPOTHESES ONLY — NOT OFFICIAL. Never cite as recovered text."}
-                </div>
-
-                {/* Redaction Map — polished cards with inferred_text, confidence, alternatives, rationale, bbox, + highlighted original text overlay for auditable/ethical UX */}
-                <div className="mb-5">
-                  <div className="uppercase text-xs tracking-widest text-[#888] mb-2">Redaction Map (OpenCV + OCR + Context Inference) — full DecipherResult • HYPOTHESES ONLY</div>
-                  <div className="space-y-3">
-                    {(decipherResult.redaction_map || decipherResult.redaction_spans || decipherResult.decipher_result?.redaction_map || []).map((span: any, idx: number) => {
-                      const before = (span.visible_context_before || '').slice(0, 110);
-                      const after = (span.visible_context_after || '').slice(0, 90);
-                      const highlightedOverlay = `${before} [REDACTED] ${after}`;
-                      return (
-                        <div key={idx} className="border border-[#333] rounded-xl p-4 text-xs bg-[#0a0a0a] card">
-                          <div className="flex justify-between text-[#aaa] mb-2">
-                            <span>Page {span.page || '?'} • bbox [{(span.bbox || []).join(', ')}] • Target: {span.target_hint || 'redacted-span'}</span>
-                            <span className="font-mono text-[#f55] font-semibold">conf {Math.round((span.confidence || span.conf || 0.5) * 100)}%</span>
-                          </div>
-
-                          {/* Inferred text prominent */}
-                          <div className="mb-2">
-                            <div className="uppercase text-[10px] text-[#f55]/80 tracking-widest mb-0.5">INFERRED TEXT (HYPOTHESIS)</div>
-                            <div className="text-white font-medium text-sm leading-snug">{span.inferred_text}</div>
-                          </div>
-
-                          {/* Alternatives */}
-                          {span.alternatives && span.alternatives.length > 0 && (
-                            <div className="mb-2">
-                              <div className="text-[#666] text-[10px] uppercase tracking-widest">Alternatives</div>
-                              <div className="text-[#888] text-[10px]">{span.alternatives.join('  |  ')}</div>
-                            </div>
-                          )}
-
-                          {/* Rationale */}
-                          <div className="text-[#555] text-[10px] mb-3">Rationale: {span.rationale || 'Contextual + RAG inference from D080_D077 seeds.'}</div>
-
-                          {/* Highlighted original text overlay (auditable reconstruction) */}
-                          <div className="mt-1">
-                            <div className="uppercase text-[10px] text-[#888] mb-1">Highlighted Original Context Overlay (visible + redaction fill)</div>
-                            <div className="p-2.5 rounded bg-black/70 border border-[#222] font-mono text-[10px] leading-relaxed text-[#ccc]">
-                              {before}
-                              <span className="bg-[#3a2a00] text-[#ffcc66] px-1 py-0.5 rounded font-semibold mx-0.5" title={`Inferred @ ${Math.round((span.confidence || 0.5)*100)}%`}>[REDACTED: {span.inferred_text?.slice(0,60)}{span.inferred_text?.length > 60 ? '…' : ''} • conf {(span.confidence||0.5)*100|0}%]</span>
-                              {after}
-                            </div>
-                            <div className="text-[#444] text-[9px] mt-0.5">Full visible text available in original_visible_text payload. This overlay is for rapid forensic review.</div>
-                          </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 border-t border-[#222] pt-4">
+                      <div>
+                        <div className="uppercase text-[10px] tracking-widest text-[#888] mb-2 font-mono">Patterns Detected</div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {result.patterns_detected.map(p => <span key={p} className="tag bg-[#1f1f1f] text-[9px] px-2 py-0.5 rounded">{p}</span>)}
                         </div>
-                      );
-                    })}
-                    {(!decipherResult.redaction_map && !decipherResult.redaction_spans && !decipherResult.decipher_result?.redaction_map) && <div className="text-xs text-[#666]">No map in payload (run with local PDF for real OpenCV spans).</div>}
+                      </div>
+
+                      <div>
+                        <div className="uppercase text-[10px] tracking-widest text-[#888] mb-2 font-mono">Finance / Reset Angles (GMIIE Oracle)</div>
+                        <ul className="text-xs space-y-1.5 text-[#bbb]">
+                          {result.finance_ties.concat(result.reset_angles).map((t, i) => (
+                            <li key={i} className="flex gap-2 text-[10px]">• {t}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 pt-4 border-t border-[#222] text-[9px] text-[#888] font-mono">
+                      <strong>On-Chain Hooks:</strong> {result.onchain_hooks.join(' • ')}
+                    </div>
+
+                    {/* Premium Actions */}
+                    <div className="mt-6 pt-4 border-t border-[#222] flex flex-wrap gap-2">
+                      {!result.paid && (
+                        <button onClick={() => handlePayment({ amount: "0.01", asset: "USDC", network: "solana", payTo: "FTH-treasury-solana-or-base" })} 
+                                className="px-4 py-1.5 text-xs rounded-xl bg-[#f55] text-black font-semibold flex items-center gap-1.5 hover:bg-white transition">
+                          <Coins className="w-3.5 h-3.5" /> Pay 0.01 USDC (x402 / CDP)
+                        </button>
+                      )}
+
+                      <button
+                        onClick={runScrape}
+                        disabled={isScraping}
+                        className="px-4 py-1.5 text-xs rounded-xl border border-[#444] flex items-center gap-1.5 hover:bg-[#1a1a1a] disabled:opacity-60 text-white transition"
+                      >
+                        {isScraping ? <><Loader2 className="w-3 h-3 animate-spin" /> Scraping...</> : <><Search className="w-3 h-3" /> Scrape (free)</>}
+                      </button>
+
+                      <button
+                        onClick={runDecipherRedactions}
+                        disabled={isDeciphering}
+                        className="px-4 py-1.5 text-xs rounded-xl border border-[#f55]/60 text-[#f55] flex items-center gap-1.5 hover:bg-[#1a0a0a] disabled:opacity-60 transition"
+                      >
+                        {isDeciphering ? <><Loader2 className="w-3 h-3 animate-spin" /> Deciphering...</> : <><Shield className="w-3 h-3" /> Decipher (x402)</>}
+                      </button>
+
+                      <button
+                        onClick={runBreakCodes}
+                        disabled={isBreaking}
+                        className="px-4 py-1.5 text-xs rounded-xl border border-[#f55] text-[#f55] flex items-center gap-1.5 hover:bg-[#1a0a0a] disabled:opacity-60 transition"
+                      >
+                        {isBreaking ? <><Loader2 className="w-3 h-3 animate-spin" /> Breaking...</> : <><Zap className="w-3 h-3" /> Break Codes</>}
+                      </button>
+
+                      <button
+                        onClick={runFullD080Chain}
+                        disabled={isFullChaining}
+                        className="px-4 py-1.5 text-xs rounded-xl border border-[#f55] bg-[#1a0a0a] text-[#f55] font-medium flex items-center gap-1.5 hover:bg-[#2a1a1a] disabled:opacity-60 transition"
+                      >
+                        {isFullChaining ? <><Loader2 className="w-3 h-3 animate-spin" /> Running...</> : <><Shield className="w-3 h-3" /> Full Chain</>}
+                      </button>
+
+                      <button
+                        onClick={runBreakthroughHidden}
+                        disabled={isFullChaining}
+                        className="px-4 py-1.5 text-xs rounded-xl bg-[#f55] text-black font-bold flex items-center gap-1.5 hover:bg-white disabled:opacity-60 shadow-[0_0_0_1px_#f55] transition"
+                      >
+                        {isFullChaining ? <><Loader2 className="w-3 h-3 animate-spin" /> BREAKING...</> : <>🔥 BREAKTHROUGH HIDDEN</>}
+                      </button>
+
+                      {result.paid && (
+                        <>
+                          <button onClick={narrate} className="px-4 py-1.5 text-xs rounded-xl border border-[#444] flex items-center gap-1.5 hover:bg-[#1a1a1a] text-[#ccc] transition">
+                            <Volume2 className="w-3.5 h-3.5" /> Narrate
+                          </button>
+                          <button onClick={generateVisualPrompt} className="px-4 py-1.5 text-xs rounded-xl border border-[#444] flex items-center gap-1.5 hover:bg-[#1a1a1a] text-[#ccc] transition">
+                            <ImageIcon className="w-3.5 h-3.5" /> Copy Comfy
+                          </button>
+                          <button onClick={runComfyFromDecipher} className="px-4 py-1.5 text-xs rounded-xl border border-[#444] flex items-center gap-1.5 hover:bg-[#1a1a1a] text-[#ccc] transition">
+                            <ImageIcon className="w-3.5 h-3.5" /> Comfy Render
+                          </button>
+                          <button onClick={async () => { await generatePdfForDoc({id: result.doc_id, title: result.title}); }} className="px-4 py-1.5 text-xs rounded-xl border border-[#444] flex items-center gap-1.5 hover:bg-[#1a1a1a] text-[#ccc] transition"><FileText className="w-3.5 h-3.5" /> Gen PDF</button>
+                          <button onClick={() => downloadPdfForDoc({id: result.doc_id, title: result.title})} disabled={isDownloading} className="px-4 py-1.5 text-xs rounded-xl bg-[#f55] text-black flex items-center gap-1.5 hover:bg-white font-semibold transition"><Download className="w-3.5 h-3.5" /> Download</button>
+                        </>
+                      )}
+                    </div>
+
+                    {!result.paid && <div className="mt-3 text-[9px] text-[#f55]/70 flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> Premium features (RAG, voice, visuals, ZK proofs) require x402 payment.</div>}
                   </div>
+                )}
+
+                {/* Agentic breakdown panel */}
+                <div id="breakdown-panel">
+                  {(result || decipherResult || fullChainResult) && (
+                    <div className="rounded-2xl border border-[#f55]/40 bg-[#0c0a0a] p-5">
+                      <div className="flex items-center justify-between mb-3 border-b border-[#222] pb-3">
+                        <div>
+                          <div className="uppercase text-[9px] tracking-[2px] text-[#f55] font-mono">AGENTIC BREAKDOWN — EVIDENCE LED • HYPOTHESES ONLY</div>
+                          <div className="text-lg font-bold tracking-tight text-white mt-1">{result?.title || decipherResult?.title || 'Selected Document'}</div>
+                        </div>
+                        <div className="text-right text-xs">
+                          {result?.confidence && <div>Base conf: <span className="font-mono text-white text-sm font-bold">{Math.round(result.confidence*100)}%</span></div>}
+                          {(decipherResult?.confidence_overall || decipherResult?.conf) && <div>Decipher conf: <span className="font-mono text-[#f55] font-bold">{Math.round((decipherResult.confidence_overall || decipherResult.conf)*100)}%</span></div>}
+                        </div>
+                      </div>
+
+                      {result?.explanation && (
+                        <div className="mb-4 p-3.5 bg-black/60 border border-[#222] rounded-xl text-xs leading-relaxed text-[#bbb]">
+                          <div className="uppercase text-[9px] text-[#888] mb-1 font-mono">FULL TRANSLATION / EXPLANATION (from Ring analyze)</div>
+                          {result.explanation}
+                        </div>
+                      )}
+
+                      {(result?.finance_ties || result?.reset_angles || result?.onchain_hooks) && (
+                        <div className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-2.5 text-[10px]">
+                          <div className="p-2.5 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1 font-mono">Finance Ties</div>{(result.finance_ties||[]).map((t:string,i:number)=><div key={i} className="text-[#aaa]">• {t}</div>)}</div>
+                          <div className="p-2.5 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1 font-mono">Reset Angles (GMIIE)</div>{(result.reset_angles||[]).map((t:string,i:number)=><div key={i} className="text-[#aaa]">• {t}</div>)}</div>
+                          <div className="p-2.5 border border-[#333] rounded bg-[#111]"><div className="text-[#f55] uppercase tracking-widest mb-1 font-mono">On-Chain Hooks</div>{(result.onchain_hooks||[]).map((t:string,i:number)=><div key={i} className="text-[#aaa]">• {t}</div>)}</div>
+                        </div>
+                      )}
+
+                      {showBreakthrough && breakthroughHighlights && (
+                        <div className="p-2.5 rounded-xl bg-[#3a1a00] border border-[#f55] text-[10px] text-[#ffddbb]">
+                          <strong>🔥 BREAKTHROUGH INFERENCES HIGHLIGHTED</strong> — Full chain executed. Review redaction/code cards below for conf/alts/rationale. All HYPOTHESES ONLY.
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                {/* Code Breaks — polished list with MOTHER-3-BABY etc. Program-aware labels */}
-                <div className="mb-4">
-                  <div className="uppercase text-xs tracking-widest text-[#888] mb-2">
-                    { (activeDocId.includes('stargate') || (filteredCatalog.find((d:any)=>d.id===activeDocId)?.program)==='stargate') ? 'CODE BREAKS — RV PROTOCOLS / GRILL FLAME / SUN STREAK / HEMI-SYNC (STARGATE)' : 
-                      (activeDocId.includes('gateway') || (filteredCatalog.find((d:any)=>d.id===activeDocId)?.program)==='gateway') ? 'CODE BREAKS — FOCUS LEVELS / CLICK-OUT / ENERGY BAR / SPACETIME (GATEWAY EXPERIENCE)' : 
-                      'CODE BREAKS / STEGO — MOTHER-3-BABY-CYCLE • LSB • Metadata Base64 • QR • Freq • Redaction Grammar (UAP / D080)' } (HYPOTHESES ONLY, confs shown)
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
-                    {((decipherResult.code_break_results || decipherResult.code_breaks || decipherResult.decipher_result?.code_break_results || decipherResult.decipher_result?.code_breaks) || []).map((cb: any, i: number) => (
-                      <div key={i} className="border border-[#333] rounded p-3 bg-black/40">
-                        <div><span className="text-[#f55] font-semibold">{cb.technique || cb.code || 'code-break'}</span> <span className="text-[#555] font-mono ml-2">conf {Math.round((cb.confidence || cb.conf || 0.3) * 100)}%</span></div>
-                        <div className="text-[#bbb] break-all mt-1 font-medium">{cb.payload || cb.meaning || cb.decoded || '—'}</div>
-                        <div className="text-[#555] mt-1 text-[10px]">{cb.notes || cb.rationale || cb.notes}</div>
+                {/* Deciphered redactions */}
+                {decipherResult && (
+                  <div className="card rounded-2xl p-5 border border-[#f55]/30 bg-[#0a0a0a]">
+                    <div className="uppercase text-[9px] tracking-[2px] text-[#f55] mb-1.5 font-mono">PURSUE RELEASE 03 • REDACTION DECIPHER (MCP)</div>
+                    <div className="flex items-baseline justify-between mb-3 border-b border-[#222] pb-2">
+                      <div className="text-base font-semibold text-white">Inferred Redactions & Code Breaks</div>
+                      <div className="font-mono text-xs text-[#f55] font-semibold">Overall Conf: {Math.round((decipherResult.confidence_overall || decipherResult.conf || 0.58) * 100)}%</div>
+                    </div>
+
+                    <div className="prose prose-invert text-[10px] max-w-none mb-4 p-2.5 bg-black/60 rounded border border-[#222] text-[#888]">
+                      <strong>ETHICS:</strong> {decipherResult.ethics_note || decipherResult.decipher_result?.ethics_note || "HYPOTHESES ONLY — NOT OFFICIAL. Never cite as recovered text."}
+                    </div>
+
+                    <div className="mb-4">
+                      <div className="uppercase text-[10px] tracking-widest text-[#888] mb-2 font-mono">Redaction Map (OpenCV + Context Inference)</div>
+                      <div className="space-y-2.5">
+                        {(decipherResult.redaction_map || decipherResult.redaction_spans || decipherResult.decipher_result?.redaction_map || []).map((span: any, idx: number) => {
+                          const before = (span.visible_context_before || '').slice(0, 110);
+                          const after = (span.visible_context_after || '').slice(0, 90);
+                          return (
+                            <div key={idx} className="border border-[#222] rounded-xl p-3.5 text-xs bg-black/40">
+                              <div className="flex justify-between text-[#777] mb-1.5 text-[9px] font-mono">
+                                <span>Page {span.page || '?'} • bbox [{(span.bbox || []).join(', ')}] • Target: {span.target_hint || 'redacted-span'}</span>
+                                <span className="text-[#f55] font-bold">conf {Math.round((span.confidence || span.conf || 0.5) * 100)}%</span>
+                              </div>
+
+                              <div className="mb-1.5">
+                                <div className="uppercase text-[9px] text-[#f55]/85 tracking-widest mb-0.5 font-mono">INFERRED TEXT</div>
+                                <div className="text-white font-medium text-xs">{span.inferred_text}</div>
+                              </div>
+
+                              {span.alternatives && span.alternatives.length > 0 && (
+                                <div className="mb-1.5">
+                                  <div className="text-[#555] text-[9px] uppercase tracking-widest font-mono">Alternatives</div>
+                                  <div className="text-[#777] text-[9px]">{span.alternatives.join('  |  ')}</div>
+                                </div>
+                              )}
+
+                              <div className="text-[#666] text-[9px] mb-2">Rationale: {span.rationale || 'Contextual + RAG inference.'}</div>
+
+                              <div className="mt-1">
+                                <div className="uppercase text-[9px] text-[#666] mb-1 font-mono">Forensic Text Overlay</div>
+                                <div className="p-2 rounded bg-black border border-[#222] font-mono text-[9px] leading-relaxed text-[#aaa]">
+                                  {before}
+                                  <span className="bg-[#3a2a00] text-[#ffcc66] px-1 py-0.5 rounded font-semibold mx-0.5">[REDACTED: {span.inferred_text} • conf {(span.confidence||0.5)*100|0}%]</span>
+                                  {after}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                        {(!decipherResult.redaction_map && !decipherResult.redaction_spans && !decipherResult.decipher_result?.redaction_map) && <div className="text-[10px] text-[#555] font-mono">No map in payload.</div>}
                       </div>
-                    ))}
-                    {((decipherResult.code_breaks || []).length === 0 && (decipherResult.code_break_results || []).length === 0) && (
-                      <div className="text-xs text-[#666] col-span-2">No code breaks in payload (run Break Codes or Full Chain on D080).</div>
+                    </div>
+
+                    <div className="mb-4">
+                      <div className="uppercase text-[10px] tracking-widest text-[#888] mb-2 font-mono">CODE BREAKS / STEGO PROTOCOLS</div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                        {((decipherResult.code_break_results || decipherResult.code_breaks || decipherResult.decipher_result?.code_break_results || decipherResult.decipher_result?.code_breaks) || []).map((cb: any, i: number) => (
+                          <div key={i} className="border border-[#222] rounded p-2.5 bg-black/40">
+                            <div><span className="text-[#f55] font-semibold font-mono text-[11px]">{cb.technique || cb.code || 'code-break'}</span> <span className="text-[#555] font-mono ml-2 text-[9px]">conf {Math.round((cb.confidence || cb.conf || 0.3) * 100)}%</span></div>
+                            <div className="text-[#ccc] break-all mt-1 font-medium text-[11px]">{cb.payload || cb.meaning || cb.decoded || '—'}</div>
+                            <div className="text-[#555] mt-1 text-[9px]">{cb.notes || cb.rationale}</div>
+                          </div>
+                        ))}
+                        {((decipherResult.code_breaks || []).length === 0 && (decipherResult.code_break_results || []).length === 0) && (
+                          <div className="text-[10px] text-[#555] col-span-2 font-mono">No code breaks in payload. Run Break Codes.</div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Scrape result */}
+                {scrapeResult && (
+                  <div className="card rounded-2xl p-4 border border-[#333] bg-[#0f0f0f] text-xs">
+                    <div className="uppercase tracking-[1px] text-[#888] mb-1 font-mono">SCRAPE TRANCHE (free)</div>
+                    <div className="text-[#ccc]">Tranche: {scrapeResult.tranche?.release || '03'} • Standouts: {(scrapeResult.standouts || []).join(', ')} • Evidence: {scrapeResult.evidence_persisted}</div>
+                  </div>
+                )}
+
+                {/* Full chain result */}
+                {fullChainResult && (
+                  <div className="card rounded-2xl p-5 border border-[#f55]/40 bg-[#0a0a0a]">
+                    <div className="uppercase text-[9px] tracking-[2px] text-[#f55] mb-2 font-mono">FULL CHAIN CONSOLIDATION</div>
+                    <div className="flex items-baseline justify-between mb-2 pb-2 border-b border-[#222]">
+                      <div className="text-base font-semibold text-white">{fullChainResult.title || 'D080 Mother Orb + Decipher Packet'}</div>
+                      <div className="font-mono text-xs text-[#f55] font-semibold">Overall: {Math.round((fullChainResult.confidence_matrix?.overall || fullChainResult.conf || 0.78) * 100)}%</div>
+                    </div>
+                    <div className="text-[10px] text-[#888] mb-3 font-mono">Chaining: {fullChainResult.chaining_ready}</div>
+
+                    {fullChainResult.inferences && fullChainResult.inferences.length > 0 && (
+                      <div className="mb-3 text-xs">
+                        <div className="uppercase tracking-widest text-[#888] mb-1.5 font-mono text-[9px]">Inferences (redaction + code)</div>
+                        <ul className="list-disc pl-4 text-[#ccc] space-y-1">
+                          {fullChainResult.inferences.slice(0,4).map((inf: any, i: number) => (
+                            <li key={i}>{inf.field || 'code'}: {inf.inferred || inf} (conf {(inf.confidence||0.7)*100|0}%)</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {fullChainResult.code_breaks && fullChainResult.code_breaks.length > 0 && (
+                      <div className="mb-3 text-xs">
+                        <div className="uppercase tracking-widest text-[#888] mb-1.5 font-mono text-[9px]">Code Breaks</div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                          {fullChainResult.code_breaks.slice(0,4).map((cb: any, i: number) => (
+                            <div key={i} className="border border-[#222] p-2 rounded bg-black/40 text-[10px] font-mono">
+                              {cb.code || cb.technique}: {cb.decoded || cb.meaning} @{(cb.confidence||0.7)*100|0}%
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     )}
                   </div>
-                </div>
-
-                {/* Evidence paths (auditable) */}
-                {(decipherResult.evidence_board_paths || decipherResult.evidence_persisted || fullChainResult?.evidence_board_paths) && (
-                  <div className="mb-3 p-2 bg-[#111] border border-[#222] rounded text-[10px] text-[#aaa]">
-                    <strong>Evidence paths:</strong> investigations/ufo-pursue-r03 (and gmiie-* subdirs) 
-                    <button onClick={() => openEvidence('investigations/ufo-pursue-r03')} className="ml-2 underline text-[#f55]">COPY FULL PATH + OPEN INSTRUCTIONS</button>
-                  </div>
                 )}
 
-                <div className="text-[10px] text-[#666] border-t border-[#222] pt-3">
-                  Full narrative + inferences ready for analyze_sighting merge, IPFS+ZK anchor (legacy-vault), Apostle x402. Premium x402-gated verified report downloads/exports available. RAG sources: {(decipherResult.rag_sources_used || decipherResult.decipher_result?.rag_sources_used || ['seed + D080_D077_CONTEXT']).join(', ')}
-                  <div className="mt-1">MCP: <span className="font-mono">decipher_redactions(doc_id, file_path)</span> + <span className="font-mono">break_codes(file_path)</span>. Python module: ufo-gmiie-app/redaction_decipher.py. Batch tranche supported. Comfy uses D080 cycle + redaction_notes. Narrate uses voice_script_inferred.</div>
-                </div>
-              </div>
-            )}
-
-            {/* NEW: Scrape result banner (free tier, updates data for premium actions + legacy /truth) */}
-            {scrapeResult && (
-              <div className="max-w-4xl mx-auto mt-4 card rounded-2xl p-4 border border-[#333] bg-[#111] text-xs">
-                <div className="uppercase tracking-[1px] text-[#888] mb-1">SCRAPE TRANCHE (free • action=scrape_pursue_tranche)</div>
-                <div>Tranche: {scrapeResult.tranche?.release || '03'} • Standouts: {(scrapeResult.standouts || []).join(', ')} • Evidence: {scrapeResult.evidence_persisted}</div>
-                <div className="text-[#555] mt-1">Next: Decipher Redactions or Break Codes (premium) on D080. Persisted to data/index.json + investigations/ for /truth integration. Canonical /truth at legacy-vault-protocol/app/truth.</div>
-              </div>
-            )}
-
-            {/* Final wiring: Full D080 chain result banner + structure display (all 4 tools) */}
-            {fullChainResult && (
-              <div className="max-w-4xl mx-auto mt-4 card rounded-3xl p-6 border border-[#f55]/40 bg-[#0a0a0a]">
-                <div className="uppercase text-[10px] tracking-[2px] text-[#f55] mb-2">FULL D080 CHAIN — scrape_pursue_tranche + decipher_redactions + break_codes + full_d080_with_decipher (from mcp_server + /api/analyze final wiring)</div>
-                <div className="flex items-baseline justify-between mb-3">
-                  <div className="text-lg font-semibold">{fullChainResult.title || 'D080 Mother Orb + Decipher Packet'}</div>
-                  <div className="font-mono text-sm text-[#f55]">Overall: {Math.round((fullChainResult.confidence_matrix?.overall || fullChainResult.conf || 0.78) * 100)}%</div>
-                </div>
-                <div className="text-xs mb-3">Chaining: {fullChainResult.chaining_ready || 'scrape_pursue_tranche("03") -> decipher_redactions -> break_codes -> full_d080_with_decipher() + auto in analyze_sighting'}</div>
-
-                {fullChainResult.inferences && fullChainResult.inferences.length > 0 && (
-                  <div className="mb-3 text-xs">
-                    <div className="uppercase tracking-widest text-[#888] mb-1">Inferences (redaction + code)</div>
-                    <ul className="list-disc pl-4 text-[#ccc]">
-                      {fullChainResult.inferences.slice(0,4).map((inf: any, i: number) => (
-                        <li key={i}>{inf.field || 'code'}: {inf.inferred || inf} (conf {(inf.confidence||0.7)*100|0}%)</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {fullChainResult.code_breaks && fullChainResult.code_breaks.length > 0 && (
-                  <div className="mb-3 text-xs">
-                    <div className="uppercase tracking-widest text-[#888] mb-1">Code Breaks</div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-                      {fullChainResult.code_breaks.slice(0,4).map((cb: any, i: number) => <div key={i} className="border border-[#333] p-1 rounded bg-black/40">{cb.code || cb.technique}: {cb.decoded || cb.meaning} @{(cb.confidence||0.7)*100|0}%</div>)}
+                {/* Comfy Visuals Panel */}
+                {(comfyPrompt || visualPreviewActive) && (
+                  <div className="p-5 rounded-2xl border border-[#f55]/30 bg-[#0a0a0a]">
+                    <div className="text-[#f55] text-[10px] mb-1.5 font-mono">COMFY VISUAL INTEGRATION (prompt + preview)</div>
+                    <pre className="text-[9px] font-mono whitespace-pre-wrap max-h-24 overflow-auto bg-black p-2 rounded mb-2 border border-[#222] text-[#888]">{comfyPrompt}</pre>
+                    <div className="h-32 bg-[#111] rounded flex items-center justify-center text-xs text-[#666] border border-[#222]">
+                      Simulated Comfy output render area — D080 mother+red baby orbs. Real: POST prompt to Comfy endpoint.
                     </div>
                   </div>
                 )}
-
-                <div className="text-[10px] text-[#666] border-t border-[#222] pt-2">
-                  Evidence: {(fullChainResult.evidence_board_paths || []).join(' | ') || fullChainResult.evidence_persisted || 'investigations/...'} • Onchain: {(fullChainResult.onchain_hooks || []).slice(0,1).join(' ')}
-                  <div>MCP: full_d080_with_decipher() + analyze_sighting auto (imports from scraper.py / redaction_decipher.py). HYPOTHESES ONLY.</div>
-                </div>
               </div>
-            )}
-
-          </div>
-        )}
-
-        {/* COMFY VISUALS PANEL + FINAL NOTES (production) */}
-        {(comfyPrompt || visualPreviewActive) && (
-          <div className="max-w-4xl mx-auto mt-6 p-5 rounded-3xl border border-[#f55]/30 bg-[#0a0a0a]">
-            <div className="text-[#f55] text-xs mb-1">COMFY VISUAL INTEGRATION (prompt + preview)</div>
-            <pre className="text-[10px] whitespace-pre-wrap max-h-28 overflow-auto bg-black p-2 rounded mb-2 border border-[#222]">{comfyPrompt}</pre>
-            <div className="h-40 bg-[#111] rounded flex items-center justify-center text-xs text-[#666] border border-[#333]">Simulated Comfy output render area — D080 mother+red baby orbs + redaction fills + thermal. Real: POST prompt to Comfy endpoint / MCP tool.</div>
+            </div>
           </div>
         )}
 

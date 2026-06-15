@@ -6,8 +6,8 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FTHTrading | UFO Anomaly Intelligence Ring",
-  description: "FTHTrading UFO Truth Surface — interactive public catalog for PURSUE releases, Stargate, Gateway. Seeded videos & cool imagery (site down workaround). Clean, scalable demo of the sovereign agentic system. Full backend for real-time decipher, code breaks, and signed PDF downloads.",
+  title: "GMIIE | UFO Truth Surface",
+  description: "GMIIE UFO Truth Surface — interactive public catalog for PURSUE releases, Stargate, Gateway. Seeded videos & cool imagery (site down workaround). Clean, scalable demo of the sovereign agentic system. Full backend for real-time decipher, code breaks, and signed PDF downloads.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "FTHTrading UFO",
+    title: "GMIIE UFO",
   },
 };
 

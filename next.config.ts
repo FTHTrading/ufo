@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/ufo',
-  assetPrefix: '/ufo/',
   images: {
     unoptimized: true,
   },
@@ -12,8 +10,7 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "2mb",
     },
   },
-  // Static GitHub Pages build for FTHTrading/ufo public demo (Web3 hybrid).
-  // Image refs use /ufo/images/... . Full agentic backend runs sovereign-side.
+  // Static export build. Full agentic backend runs sovereign-side.
 };
 
 export default nextConfig;
