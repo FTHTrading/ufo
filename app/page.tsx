@@ -180,13 +180,17 @@ const getProgramColor = (program: string = 'uap') => {
   return { bg: 'bg-red-950', text: 'text-red-400', border: 'border-red-800', label: 'VIDEO' };
 };
 
+const PAYMENTS_ENABLED = false;
+const FREE_MODE = true;
+const DEMO_BACKEND = true;
+
 export default function GMIIETruthSurface() {
   const [currentMode, setCurrentMode] = useState<'research' | 'explorer' | 'premium'>('research');
   const [showAllDocs, setShowAllDocs] = useState<boolean>(false);
   const [query, setQuery] = useState("Explain the mother orb D080 incident near the sensitive site and any defense stock, stablecoin, or great reset implications");
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [paid, setPaid] = useState(false);
+  const [paid, setPaid] = useState(FREE_MODE);
 
   // NEW: Decipher Redactions state (PURSUE R03 D080/D077 focus, feeds directly from MCP decipher_redactions + redaction_decipher.py)
   const [decipherResult, setDecipherResult] = useState<any>(null);
@@ -588,9 +592,69 @@ Defense & Geo-political implications:
         window.location.hostname.includes('github.io') || 
         window.location.hostname.includes('xxxiii.io')
       );
-      if (isStaticDemo) {
-        throw new Error('Sovereign Demo Mode');
+
+      if (isStaticDemo || DEMO_BACKEND) {
+        // Direct simulation
+        await new Promise(r => setTimeout(r, 1200));
+        
+        const isStargate = targetDoc.includes('stargate');
+        const isGateway = targetDoc.includes('gateway');
+        
+        const mockDecipher = isStargate ? {
+          doc_id: targetDoc,
+          redaction_map: [
+            { redacted_text: "██████", inferred_text: "Siberian RV Installation", explanation: "Target geolocation code-name" },
+            { redacted_text: "████", inferred_text: "Viewer 001", explanation: "Operational viewer ID code" },
+            { redacted_text: "█████████", inferred_text: "Soviet Psychotronic Lab", explanation: "Research facility designation" }
+          ],
+          code_breaks: [
+            { code_symbol: "SUN-STREAK-09", interpretation: "Operational target 09 (Semyatachik active volcano)", confidence: 0.88 },
+            { code_symbol: "GRILL-FLAME-COORD", interpretation: "Coordinates: 54.12N, 159.9E", confidence: 0.89 }
+          ],
+          inferred: "Verified remote viewing coordinates for Soviet strategic military installations and psychotronic research facilities.",
+          ethics_note: "Declassified under FOIA. General context is safe for public disclosure.",
+          confidence_overall: 0.89,
+          voice_script_inferred: "This is Agent Cipher. We have decrypted the Stargate session files. Viewer 001 targeted a Siberian technical installation. The Soviet psychotronic lab coordinates are verified, and the on-chain registry has recorded the proof."
+        } : (isGateway ? {
+          doc_id: targetDoc,
+          redaction_map: [
+            { redacted_text: "██████", inferred_text: "Binaural Beat Frequencies", explanation: "Acoustic audio protocols" },
+            { redacted_text: "████", inferred_text: "Focus 21", explanation: "State of spacetime transition" },
+            { redacted_text: "███████████", inferred_text: "Out of Body Exploration", explanation: "Operational objective" }
+          ],
+          code_breaks: [
+            { code_symbol: "HEMI-SYNC-01", interpretation: "Binaural synchronisation frequency threshold", confidence: 0.82 },
+            { code_symbol: "CLICK-OUT-PREVENT", interpretation: "Preventing consciousness detachment limits", confidence: 0.77 }
+          ],
+          inferred: "Monroe Institute binaural Hemi-Sync audio tapes used for deep mental alteration and consciousness detachment experiments.",
+          ethics_note: "FOIA release, military study context.",
+          confidence_overall: 0.83,
+          voice_script_inferred: "This is Agent Cipher. We have deciphered the Gateway Hemi-Sync protocols. The binaural frequencies map to focus level twenty one, representing the state of spacetime transition."
+        } : {
+          doc_id: targetDoc,
+          redaction_map: [
+            { redacted_text: "████████", inferred_text: "Groom Lake Base", explanation: "Experimental flight test installation" },
+            { redacted_text: "████", inferred_text: "D080 Mother Orb", explanation: "Primary anomaly classification" },
+            { redacted_text: "████████████", inferred_text: "Defense Stock Hedging", explanation: "Market volatility strategy" }
+          ],
+          code_breaks: [
+            { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Three sub-entity separation cycles", confidence: 0.79 },
+            { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+          ],
+          inferred: "Observed luminous orange mother orb expelling smaller red baby orbs in coordinated patterns over sensitive Nevada aerospace facility.",
+          ethics_note: "AARO unresolved case study.",
+          confidence_overall: 0.81,
+          voice_script_inferred: "This is Agent Cipher. We have deciphered the D080 Western UAP narrative. The orange mother-orb expelling red baby-orbs exhibits coordinated loitering, with telemetry anchored to the blockchain."
+        });
+        
+        setDecipherResult(mockDecipher);
+        toast.success('Redaction decipher complete', {
+          description: `${mockDecipher.redaction_map.length} spans • ${mockDecipher.code_breaks.length} code leads • conf ${Math.round(mockDecipher.confidence_overall * 100)}%`,
+        });
+        setIsDeciphering(false);
+        return;
       }
+
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -743,9 +807,39 @@ Defense & Geo-political implications:
         window.location.hostname.includes('github.io') || 
         window.location.hostname.includes('xxxiii.io')
       );
-      if (isStaticDemo) {
-        throw new Error('Sovereign Demo Mode');
+
+      if (isStaticDemo || DEMO_BACKEND) {
+        // Direct simulation
+        await new Promise(r => setTimeout(r, 1200)); // Cool loading delay
+        
+        const mockCodeBreaks = [
+          { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+          { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+        ];
+        
+        setDecipherResult((prev: any) => ({
+          ...(prev || {
+            doc_id: targetDoc,
+            redaction_map: [
+              { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+              { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" }
+            ],
+            inferred: "Luminous orange mother orb observed ejecting smaller red baby orbs in coordinated patterns.",
+            ethics_note: "Hypotheses only.",
+          }),
+          code_breaks: mockCodeBreaks,
+          code_break_results: mockCodeBreaks,
+          voice_script_inferred: "This is Agent Cipher. We have successfully broken the steganographic grammar on document D080. The mother-baby orb cycle shows a verified correlation with Base stablecoin transactions, indicating an on-chain provenance trail.",
+          conf: 0.81,
+        }));
+        
+        toast.success(PAYMENTS_ENABLED ? 'Break Codes complete (premium)' : 'Break Codes complete', {
+          description: `2 code leads • conf 81%. voice_script_inferred ready for narrate.`,
+        });
+        setIsBreaking(false);
+        return;
       }
+
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -780,7 +874,7 @@ Defense & Geo-political implications:
         voice_script_inferred: br.voice_script_inferred || prev?.voice_script_inferred,
         conf: br.conf || br.overall_confidence,
       }));
-      toast.success('Break Codes complete (premium)', {
+      toast.success(PAYMENTS_ENABLED ? 'Break Codes complete (premium)' : 'Break Codes complete', {
         description: `${(br.code_breaks || []).length} code leads • conf ${Math.round((br.conf || br.overall_confidence || 0.75) * 100)}%. voice_script_inferred ready for narrate.`,
       });
     } catch (e) {
@@ -827,9 +921,55 @@ Defense & Geo-political implications:
         window.location.hostname.includes('github.io') || 
         window.location.hostname.includes('xxxiii.io')
       );
-      if (isStaticDemo) {
-        throw new Error('Sovereign Demo Mode');
+
+      if (isStaticDemo || DEMO_BACKEND) {
+        // Direct simulation
+        await new Promise(r => setTimeout(r, 1500)); // Cool loading delay
+        const mockChainData = {
+          ok: true,
+          action: 'full_d080_with_decipher',
+          doc_id: targetDoc,
+          tranche: '03',
+          chaining_ready: "scrape_pursue_tranche(release=\"03\") -> decipher_redactions(doc_id, file_path) -> break_codes(file_path) -> full_d080_with_decipher() [exact] -> analyze_sighting auto-decipher + investigations/ evidence + x402 premium export/voice/Comfy",
+          evidence_board_paths: ["investigations/gmiie-anomaly-intelligence-D080-full-with-decipher/06_ANOMALY_ANALYSIS_full_d080_with_decipher_*.md"],
+          premium: true,
+          paid: true,
+          code_breaks: [
+            { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+            { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+          ],
+          redaction_map: [
+            { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+            { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" }
+          ],
+          inferences: [
+            { field: "target_location", inferred: "Groom Lake Area 51 base perimeter", confidence: 0.88 },
+            { field: "anomaly_nature", inferred: "Plasma sphere replication cycle", confidence: 0.79 },
+            { field: "macro_trigger", inferred: "Stablecoin market liquidity correlation", confidence: 0.81 }
+          ],
+          confidence_matrix: { overall: 0.82 },
+          voice_script_inferred: "This is Agent Oracle. The full D080 chain analysis has completed. The Groom Lake test range coordinates match the primary mother orb sighting. Coordinated baby orb cycles are confirmed, and base stablecoin transaction logs show an on-chain correlation."
+        };
+        
+        setFullChainResult(mockChainData);
+        setDecipherResult((prev: any) => ({
+          ...(prev || {}),
+          ...mockChainData,
+          code_breaks: mockChainData.code_breaks,
+          inferences: mockChainData.inferences,
+          confidence_matrix: mockChainData.confidence_matrix,
+          voice_script_inferred: mockChainData.voice_script_inferred,
+        }));
+        setBreakthroughHighlights(mockChainData.inferences);
+        setShowBreakthrough(true);
+        toast.success('Full Chain + BREAKTHROUGH HIDDEN complete', {
+          description: `Overall conf 82% • Inferences highlighted. Scroll to panel.`,
+        });
+        setIsFullChaining(false);
+        setTimeout(() => document.getElementById('breakdown-panel')?.scrollIntoView({ behavior: 'smooth' }), 120);
+        return;
       }
+
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -1065,6 +1205,28 @@ Defense & Geo-political implications:
     setIsDownloading(true);
     setActiveDocId(doc.id);
     try {
+      const isStaticDemo = typeof window !== 'undefined' && (
+        window.location.hostname.includes('github.io') || 
+        window.location.hostname.includes('xxxiii.io')
+      );
+
+      if (isStaticDemo || DEMO_BACKEND) {
+        // Direct simulation
+        const reportContent = `GMIIE UFO Anomaly Intelligence Ring — Demo Report\n\nDoc: ${doc.id} — ${doc.title}\n\n${result?.explanation || 'Seeded video / imagery reference.'}\n\nDecipher / Code Breaks (demo): MOTHER-3-BABY-CYCLE @0.79 for orb events. Stargate RV protocols / Gateway Focus levels as applicable.\n\nEthics: HYPOTHESES ONLY. Full signed PDF factory + real x402 requires the sovereign Ring backend (local or MCP-connected).\n\nEvidence: investigations/ufo-pursue-r03 + seeded from user-provided IDs (war.gov down).`;
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${doc.id}-gmiie-ufo-demo-report.txt`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+        toast.success(PAYMENTS_ENABLED ? 'Demo report downloaded (static GitHub Pages)' : 'Demo report downloaded', { description: 'Seeded intelligence demo report downloaded successfully.' });
+        setIsDownloading(false);
+        return;
+      }
+
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -1102,7 +1264,7 @@ Defense & Geo-political implications:
       a.remove();
       window.URL.revokeObjectURL(url);
 
-      toast.success('Download complete (x402 gated)', { description: `${doc.title} — real PDF with deciphered content embedded.` });
+      toast.success(PAYMENTS_ENABLED ? 'Download complete (x402 gated)' : 'Download complete', { description: `${doc.title} — real PDF with deciphered content embedded.` });
     } catch (e) {
       // Static Pages demo: client-side report so "all downloads work"
       const reportContent = `GMIIE UFO Anomaly Intelligence Ring — Demo Report\n\nDoc: ${doc.id} — ${doc.title}\n\n${result?.explanation || 'Seeded video / imagery reference.'}\n\nDecipher / Code Breaks (demo): MOTHER-3-BABY-CYCLE @0.79 for orb events. Stargate RV protocols / Gateway Focus levels as applicable.\n\nEthics: HYPOTHESES ONLY. Full signed PDF factory + real x402 requires the sovereign Ring backend (local or MCP-connected).\n\nEvidence: investigations/ufo-pursue-r03 + seeded from user-provided IDs (war.gov down).`;
@@ -1267,9 +1429,15 @@ cloudflared tunnel --url http://localhost:3005
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#ddd]">
       {/* Persistent Demo Mode Banner */}
-      <div className="w-full bg-[#f55]/10 border-b border-[#f55]/20 px-6 py-1.5 text-center text-[10px] font-mono text-[#f55]/90 flex items-center justify-center gap-2">
-        <AlertTriangle className="w-3.5 h-3.5" />
-        <span>SOVEREIGN DEMO MODE ACTIVE: Real-time API endpoints are running in simulated client-side mode. Connect a mock wallet to test all premium features.</span>
+      <div className="w-full bg-[#f55]/10 border-b border-[#f55]/20 px-6 py-1.5 text-center text-[10px] font-mono text-[#f55]/90 flex flex-col md:flex-row items-center justify-center gap-2">
+        <div className="flex items-center gap-2">
+          <AlertTriangle className="w-3.5 h-3.5" />
+          <span>SOVEREIGN DEMO MODE ACTIVE: Real-time API endpoints are running in simulated client-side mode.</span>
+        </div>
+        <span className="hidden md:inline text-[#f55]/40">|</span>
+        <div className="bg-[#f55]/20 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-white">
+          FREE MODE — payments disabled while systems are being finalized. Everything unlocked.
+        </div>
       </div>
 
       <header className="border-b border-[#222] bg-black/80 backdrop-blur sticky top-0 z-50">
@@ -1340,7 +1508,7 @@ cloudflared tunnel --url http://localhost:3005
 
           {/* Secondary Technical Metadata Strip */}
           <div className="flex justify-center items-center gap-4 text-[10px] text-[#555] font-mono border-t border-[#1a1a1a] pt-4 max-w-md mx-auto">
-            <span>x402 Micropayments (CDP + USDC)</span>
+            <span>{PAYMENTS_ENABLED ? 'x402 Micropayments (CDP + USDC)' : 'Free Access (Micropayments Paused)'}</span>
             <span>•</span>
             <span>IPFS Vault Storage</span>
             <span>•</span>
@@ -1391,7 +1559,11 @@ cloudflared tunnel --url http://localhost:3005
               Reset
             </button>
           </div>
-          <div className="text-[10px] text-center mt-2 text-[#666]">Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + validation.</div>
+          <div className="text-[10px] text-center mt-2 text-[#f55] font-semibold font-mono">
+            {PAYMENTS_ENABLED 
+              ? "Free tier: basic patterns. Premium (x402): full RAG + finance cross-ref + voice + visuals + validation." 
+              : "All features unlocked (free) during build-out. Payments are temporarily disabled."}
+          </div>
           
           {isLoading && (
             <div className="mt-4 p-6 border border-[#f55]/20 bg-black/40 rounded-3xl animate-pulse flex flex-col items-center justify-center text-center">
@@ -1723,14 +1895,14 @@ cloudflared tunnel --url http://localhost:3005
                   disabled={isDeciphering}
                   className="px-3 py-1.5 rounded-lg border border-[#f55]/40 text-[#f55] text-xs hover:bg-[#f55]/10 transition disabled:opacity-50"
                 >
-                  {isDeciphering ? 'Deciphering...' : 'Trigger Decipher (x402)'}
+                  {isDeciphering ? 'Deciphering...' : `Trigger Decipher ${PAYMENTS_ENABLED ? '(x402)' : '(Free)'}`}
                 </button>
                 <button 
                   onClick={runBreakCodes} 
                   disabled={isBreaking}
                   className="px-3 py-1.5 rounded-lg border border-[#f55] text-[#f55] text-xs hover:bg-[#f55]/10 transition disabled:opacity-50"
                 >
-                  {isBreaking ? 'Breaking...' : 'Break Codes (x402)'}
+                  {isBreaking ? 'Breaking...' : `Break Codes ${PAYMENTS_ENABLED ? '(x402)' : '(Free)'}`}
                 </button>
                 <button 
                   onClick={runFullD080Chain} 
@@ -2188,7 +2360,7 @@ cloudflared tunnel --url http://localhost:3005
 
                     {/* Premium Actions */}
                     <div className="mt-6 pt-4 border-t border-[#222] flex flex-wrap gap-2">
-                      {!result.paid && (
+                      {PAYMENTS_ENABLED && !result.paid && (
                         <button onClick={() => handlePayment({ amount: "0.01", asset: "USDC", network: "solana", payTo: "FTH-treasury-solana-or-base" })} 
                                 className="px-4 py-1.5 text-xs rounded-xl bg-[#f55] text-black font-semibold flex items-center gap-1.5 hover:bg-white transition">
                           <Coins className="w-3.5 h-3.5" /> Pay 0.01 USDC (x402 / CDP)
@@ -2208,7 +2380,7 @@ cloudflared tunnel --url http://localhost:3005
                         disabled={isDeciphering}
                         className="px-4 py-1.5 text-xs rounded-xl border border-[#f55]/60 text-[#f55] flex items-center gap-1.5 hover:bg-[#1a0a0a] disabled:opacity-60 transition"
                       >
-                        {isDeciphering ? <><Loader2 className="w-3 h-3 animate-spin" /> Deciphering...</> : <><Shield className="w-3 h-3" /> Decipher (x402)</>}
+                        {isDeciphering ? <><Loader2 className="w-3 h-3 animate-spin" /> Deciphering...</> : <><Shield className="w-3 h-3" /> Decipher {PAYMENTS_ENABLED ? '(x402)' : '(Free)'}</>}
                       </button>
 
                       <button
@@ -2252,7 +2424,7 @@ cloudflared tunnel --url http://localhost:3005
                       )}
                     </div>
 
-                    {!result.paid && <div className="mt-3 text-[9px] text-[#f55]/70 flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> Premium features (RAG, voice, visuals, ZK proofs) require x402 payment.</div>}
+                    {PAYMENTS_ENABLED && !result.paid && <div className="mt-3 text-[9px] text-[#f55]/70 flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> Premium features (RAG, voice, visuals, ZK proofs) require x402 payment.</div>}
                   </div>
                 )}
 
@@ -2500,7 +2672,7 @@ cloudflared tunnel --url http://localhost:3005
         )}
 
         <div className="max-w-3xl mx-auto mt-10 text-[11px] text-[#666] text-center">
-          Polished: Full catalog table+grid of ALL docs from enhanced manifest/index (released_docs). Filters (release, type, status), search, missing indicators. Status + actions: View Analysis, Decipher (premium), Generate PDF (/api/generate), Download x402 gated (/api/download — generates PDF embedding deciphered if not present). Comfy visuals + voice integrated per-item. Real deciphered content access. TROPTIONS mint UI removed. Production x402 flows + new endpoints. Calls ufo APIs + generate/download. Canonical /truth at adk_build/legacy-vault-protocol.
+          Polished: Full catalog table+grid of ALL docs from enhanced manifest/index (released_docs). Filters (release, type, status), search, missing indicators. Status + actions: View Analysis, Decipher {PAYMENTS_ENABLED ? '(premium)' : '(free)'}, Generate PDF, Download {PAYMENTS_ENABLED ? 'x402 gated' : '(free)'}. Comfy visuals + voice integrated per-item. Real deciphered content access. TROPTIONS mint UI removed. Production x402 flows {PAYMENTS_ENABLED ? 'active' : 'paused'}. Canonical /truth at adk_build/legacy-vault-protocol.
         </div>
       </div>
     </div>
