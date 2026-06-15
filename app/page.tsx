@@ -232,6 +232,7 @@ export default function GMIIETruthSurface() {
   const [walletAddress, setWalletAddress] = useState<string>('');
   const [ipfsCIDs, setIpfsCIDs] = useState<Record<string, string>>({});
   const [onchainProofs, setOnchainProofs] = useState<Record<string, any>>({});
+  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
 
   const connectWallet = async () => {
     if ((window as any).ethereum) {
@@ -243,7 +244,7 @@ export default function GMIIETruthSurface() {
         toast.error('Wallet connection failed. Use MetaMask or compatible.');
       }
     } else {
-      toast.error('No Ethereum wallet detected. Install MetaMask for full Web3 features (IPFS publish, on-chain registry, x402 payments).');
+      setIsWalletModalOpen(true);
     }
   };
 
@@ -334,8 +335,33 @@ export default function GMIIETruthSurface() {
 
   const runAnalysis = async (docId?: string, forcePremium = false) => {
     setIsLoading(true);
-    const finalQuery = docId 
-      ? `Analyze ${docId} in detail with market, stablecoin, defense contractor, and GMIIE reset implications` 
+    let targetDocId = docId;
+    
+    // Auto-detect target doc based on query input if no docId is specified
+    if (!targetDocId) {
+      const q = query.toLowerCase();
+      if (q.includes('stargate') || q.includes('remote viewing') || q.includes('grill flame') || q.includes('sun streak') || q.includes('center lane')) {
+        targetDocId = 'stargate-cia-grill-flame-rv-protocols-001';
+      } else if (q.includes('gateway') || q.includes('monroe') || q.includes('hemi-sync') || q.includes('focus') || q.includes('click out') || q.includes('audio')) {
+        targetDocId = 'gateway-monroe-hemi-sync-focus-levels-001';
+      } else if (q.includes('potato') || q.includes('cloaking') || q.includes('colorado')) {
+        targetDocId = 'uap-fbi-d002-colorado-springs-2022';
+      } else if (q.includes('apollo') || q.includes('cooper') || q.includes('starbase') || q.includes('lunar') || q.includes('cronkite')) {
+        targetDocId = 'historical-apollo-16-audio-1962';
+      } else if (q.includes('video') || q.includes('orb cluster') || q.includes('pond')) {
+        targetDocId = 'video-19fc9fa6-bf82-485b-a390-9f391e1936f7';
+      } else {
+        targetDocId = 'uap-d080-mother-orb-western';
+      }
+      setActiveDocId(targetDocId);
+    } else {
+      setActiveDocId(targetDocId);
+    }
+
+    setIsDrawerOpen(true); // Open the drawer immediately so they see the result inline
+
+    const finalQuery = targetDocId 
+      ? `Analyze ${targetDocId} in detail with market, stablecoin, defense contractor, and GMIIE reset implications` 
       : query;
 
     try {
@@ -351,7 +377,7 @@ export default function GMIIETruthSurface() {
         method: 'POST',
         headers,
         body: JSON.stringify({
-          doc_id: docId || 'D080-mother-orb-western-sensitive',
+          doc_id: targetDocId || 'uap-d080-mother-orb-western',
           query: finalQuery,
           tranche: '03',
         }),
@@ -379,7 +405,7 @@ export default function GMIIETruthSurface() {
       });
     } catch (e: any) {
       // Static / Pages demo fallback — rich client-side packet so the UI feels alive and "all links/downloads work"
-      const demo = getDemoResult(docId || activeDocId || 'uap-d080-mother-orb-western-sensitive', finalQuery);
+      const demo = getDemoResult(targetDocId || 'uap-d080-mother-orb-western', finalQuery);
       setResult(demo);
       toast.success('Demo Ring Analysis (static GitHub Pages)', {
         description: 'Full agentic backend (real scrape, CV/OCR, MCP, signed PDFs) runs locally or on sovereign. This is a rich public demo with seeded videos + imagery.',
@@ -415,7 +441,7 @@ export default function GMIIETruthSurface() {
     if (!result && !decipherResult) return;
     toast.loading('Fetching D080 packet (prefers voice_script_inferred from decipher/break)...', { id: 'voice' });
 
-    let narrative: string;
+    let narrative = "";
 
     // Make the narrate use the voice_script_inferred (from DecipherResult / Break Codes dispatch) when available.
     // Falls back to dedicated /api/voice for base packet. This enables narration of redacted/inferred fills.
@@ -426,22 +452,33 @@ export default function GMIIETruthSurface() {
         const vres = await fetch('/api/voice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ doc_id: (result?.doc_id || decipherResult.doc_id || 'D080-mother-orb-western-sensitive') }),
+          body: JSON.stringify({ doc_id: (result?.doc_id || decipherResult.doc_id || 'uap-d080-mother-orb-western') }),
         });
-        const vdata = await vres.json();
-        if (vdata.full_narrative) {
-          narrative = narrative + "\n\n[BASE VISIBLE PACKET]\n" + vdata.full_narrative;
+        if (vres.ok) {
+          const vdata = await vres.json();
+          if (vdata.full_narrative) {
+            narrative = narrative + "\n\n[BASE VISIBLE PACKET]\n" + vdata.full_narrative;
+          }
         }
       } catch {}
     } else {
-      // Call dedicated voice API for the full accurate packet (D080 mechanics + GMIIE angles)
-      const res = await fetch('/api/voice', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ doc_id: result!.doc_id }),
-      });
-      const voiceData = await res.json();
-      narrative = voiceData.full_narrative;
+      try {
+        // Call dedicated voice API for the full accurate packet (D080 mechanics + GMIIE angles)
+        const res = await fetch('/api/voice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ doc_id: result!.doc_id }),
+        });
+        if (res.ok) {
+          const voiceData = await res.json();
+          narrative = voiceData.full_narrative;
+        } else {
+          throw new Error("No voice backend");
+        }
+      } catch {
+        const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
+        narrative = `Declassified Intelligence Report for document ${targetDoc}. Location: ${result?.location_tag || 'Western sensitive facility'}. Sighting details: ${result?.explanation || 'Coordinated sub-entity deployment cycle detected.'}`;
+      }
     }
 
     // Real Deepgram Aura TTS via /api/voice (x402 if paid, server-side key only, aura-2-luna-en).
@@ -455,7 +492,7 @@ export default function GMIIETruthSurface() {
         method: 'POST',
         headers,
         body: JSON.stringify({
-          doc_id: (result?.doc_id || decipherResult?.doc_id || 'D080-mother-orb-western-sensitive'),
+          doc_id: (result?.doc_id || decipherResult?.doc_id || 'uap-d080-mother-orb-western'),
           voice_script_inferred: narrative,
           tts: true,
         }),
@@ -469,6 +506,8 @@ export default function GMIIETruthSurface() {
         window.speechSynthesis.speak(utterance);
         return;
       }
+
+      if (!vres.ok) throw new Error("No backend");
 
       const ctype = vres.headers.get('content-type') || '';
       if (ctype.includes('audio/mpeg') || ctype.includes('audio')) {
@@ -496,13 +535,11 @@ export default function GMIIETruthSurface() {
       const utterance = new SpeechSynthesisUtterance(narrative);
       utterance.rate = 0.92;
       window.speechSynthesis.speak(utterance);
-      toast.error('Narration error - browser speech fallback', { description: String(e) });
+      toast.success('Narrating (browser demo speech)', { 
+        id: 'voice', 
+        description: 'Using browser SpeechSynthesis to read inferred/redacted script.' 
+      });
     }
-
-    toast.success('D080 packet narrating (browser demo, voice_script_inferred preferred)', { 
-      id: 'voice',
-      description: (decipherResult?.voice_script_inferred ? 'Using inferred redaction/code script + base. ' : 'Base packet. ') + 'Prod: Deepgram Aura (aura-2-luna-en) or ElevenLabs via legacy-vault/lib/voice. Server-side key only. Length: ' + narrative.length + ' chars.' 
-    });
   };
 
   const generateVisualPrompt = () => {
@@ -511,18 +548,15 @@ export default function GMIIETruthSurface() {
     navigator.clipboard.writeText(prompt);
     toast.success('D080-specific ComfyUI prompt copied', { description: 'Exact mechanics from DOW-UAP-D080 Narrative + D077 AARO. Paste into ComfyUI/Gradio. Hook to MCP tool in prod for auto-recon.' });
   };
-
-  // NEW: Decipher Redactions (D080 cycle). Calls /api/analyze with action=decipher_redactions (x402 premium gate).
-  // Displays structured output from redaction_decipher.py (via MCP tool or route) + TS runRedactionDecipher shape.
-  // Directly supports batch tranche + feeds analyze_sighting.
   const runDecipherRedactions = async () => {
     if (!result && !query) {
       toast.error('Run a D080 analysis first to target the correct doc');
       return;
     }
     setIsDeciphering(true);
+    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
+    
     try {
-      const targetDoc = result?.doc_id || 'D080-mother-orb-western-sensitive';
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -540,8 +574,11 @@ export default function GMIIETruthSurface() {
       if (res.status === 402) {
         const p = await res.json();
         toast.error('Premium x402 required for decipher (code-break + inference)', { description: `${p.x402?.amount} ${p.x402?.asset}` });
+        setIsDeciphering(false);
         return;
       }
+
+      if (!res.ok) throw new Error('No backend');
 
       const data = await res.json();
       const dec = data.decipher_result || data;
@@ -550,7 +587,63 @@ export default function GMIIETruthSurface() {
         description: `${dec.redaction_map?.length || dec.code_breaks?.length || 0} spans • ${(dec.code_break_results || dec.code_breaks)?.length || 0} code leads • conf ${Math.round((dec.confidence_overall || dec.conf || 0.5) * 100)}%`,
       });
     } catch (e) {
-      toast.error('Decipher failed', { description: String(e) });
+      // Client-side simulation fallback
+      await new Promise(r => setTimeout(r, 1200)); // Cool loading delay
+      
+      const isStargate = targetDoc.includes('stargate');
+      const isGateway = targetDoc.includes('gateway');
+      
+      const mockDecipher = isStargate ? {
+        doc_id: targetDoc,
+        redaction_map: [
+          { redacted_text: "██████", inferred_text: "Siberian RV Installation", explanation: "Target geolocation code-name" },
+          { redacted_text: "████", inferred_text: "Viewer 001", explanation: "Operational viewer ID code" },
+          { redacted_text: "█████████", inferred_text: "Soviet Psychotronic Lab", explanation: "Research facility designation" }
+        ],
+        code_breaks: [
+          { code_symbol: "SUN-STREAK-09", interpretation: "Operational target 09 (Semyatachik active volcano)", confidence: 0.88 },
+          { code_symbol: "GRILL-FLAME-COORD", interpretation: "Coordinates: 54.12N, 159.9E", confidence: 0.89 }
+        ],
+        inferred: "Verified remote viewing coordinates for Soviet strategic military installations and psychotronic research facilities.",
+        ethics_note: "Declassified under FOIA. General context is safe for public disclosure.",
+        confidence_overall: 0.89,
+        voice_script_inferred: "This is Agent Cipher. We have decrypted the Stargate session files. Viewer 001 targeted a Siberian technical installation. The Soviet psychotronic lab coordinates are verified, and the on-chain registry has recorded the proof."
+      } : (isGateway ? {
+        doc_id: targetDoc,
+        redaction_map: [
+          { redacted_text: "██████", inferred_text: "Binaural Beat Frequencies", explanation: "Acoustic audio protocols" },
+          { redacted_text: "████", inferred_text: "Focus 21", explanation: "State of spacetime transition" },
+          { redacted_text: "███████████", inferred_text: "Out of Body Exploration", explanation: "Operational objective" }
+        ],
+        code_breaks: [
+          { code_symbol: "FOCUS-21-CLICK", interpretation: "State of transition outside spacetime boundaries", confidence: 0.89 },
+          { code_symbol: "HEMI-SYNC-TRANS", interpretation: "Frequency carrier wave: 4Hz delta", confidence: 0.91 }
+        ],
+        inferred: "Monroe Institute Gateway Experience audio frequencies and Hemi-Sync protocols for consciousness expansion.",
+        ethics_note: "Declassified Monroe Institute manuals. Safe for public research.",
+        confidence_overall: 0.91,
+        voice_script_inferred: "This is Agent Cipher. The Gateway audio protocol decryptions are complete. The binaural beat frequencies are mapped to Focus 21 click-out states. Spacetime transcendence protocols are verified."
+      } : {
+        doc_id: targetDoc,
+        redaction_map: [
+          { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+          { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" },
+          { redacted_text: "██████", inferred_text: "Baby Orbs", explanation: "Expelled sub-anomalies" }
+        ],
+        code_breaks: [
+          { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+          { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+        ],
+        inferred: "Luminous orange mother orb observed ejecting smaller red baby orbs in coordinated patterns over sensitive security facilities.",
+        ethics_note: "Hypotheses only. Simulated agentic output for public demo.",
+        confidence_overall: 0.81,
+        voice_script_inferred: "This is Agent Cipher. Deciphering complete for the D080 narrative. The Groom Lake test range coordinates match the primary mother orb sighting. Coordinated baby orb cycles are confirmed."
+      });
+
+      setDecipherResult(mockDecipher);
+      toast.success('Redaction decipher complete (simulated demo)', {
+        description: `${mockDecipher.redaction_map.length} spans • ${mockDecipher.code_breaks.length} code leads • conf ${Math.round(mockDecipher.confidence_overall * 100)}%`,
+      });
     } finally {
       setIsDeciphering(false);
     }
@@ -559,8 +652,8 @@ export default function GMIIETruthSurface() {
   // NEW: Scrape button handler — dispatches action=scrape (free tier). Updates index/manifest for downstream decipher/break. Feeds legacy /truth + investigations/.
   const runScrape = async () => {
     setIsScraping(true);
+    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
-      const targetDoc = result?.doc_id || 'D080-mother-orb-western-sensitive';
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -571,13 +664,25 @@ export default function GMIIETruthSurface() {
           tranche: '03',
         }),
       });
+      if (!res.ok) throw new Error('No backend');
       const data = await res.json();
       setScrapeResult(data);
       toast.success('Scrape complete (free)', {
         description: `${data.sightings_count || 4} assets • ${data.scrape_delta?.new_signals || 0} new signals. Ready for Decipher/Break Codes.`,
       });
     } catch (e) {
-      toast.error('Scrape failed', { description: String(e) });
+      // Client-side simulation fallback
+      await new Promise(r => setTimeout(r, 1000)); // Cool loading delay
+      const mockScrape = {
+        ok: true,
+        sightings_count: 4,
+        scrape_delta: { new_signals: 3, updated_docs: [targetDoc] },
+        evidence_persisted: `investigations/gmiie-anomaly-intelligence-tranche-03/06_ANOMALY_ANALYSIS_scrape_${targetDoc}.md`
+      };
+      setScrapeResult(mockScrape);
+      toast.success('Scrape complete (simulated demo)', {
+        description: `4 assets • 3 new signals. Ready for Decipher/Break Codes.`,
+      });
     } finally {
       setIsScraping(false);
     }
@@ -591,8 +696,8 @@ export default function GMIIETruthSurface() {
       return;
     }
     setIsBreaking(true);
+    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
-      const targetDoc = result?.doc_id || 'D080-mother-orb-western-sensitive';
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -610,8 +715,11 @@ export default function GMIIETruthSurface() {
       if (res.status === 402) {
         const p = await res.json();
         toast.error('Premium x402 required for Break Codes', { description: `${p.x402?.amount || '0.05'} ${p.x402?.asset || 'USDC'}` , action: { label: 'Pay & Unlock', onClick: () => handlePayment(p) } });
+        setIsBreaking(false);
         return;
       }
+
+      if (!res.ok) throw new Error('No backend');
 
       const data = await res.json();
       const br = data; // full structure at top for this action (code_breaks + voice_script_inferred etc)
@@ -628,7 +736,33 @@ export default function GMIIETruthSurface() {
         description: `${(br.code_breaks || []).length} code leads • conf ${Math.round((br.conf || br.overall_confidence || 0.75) * 100)}%. voice_script_inferred ready for narrate.`,
       });
     } catch (e) {
-      toast.error('Break Codes failed', { description: String(e) });
+      // Client-side simulation fallback
+      await new Promise(r => setTimeout(r, 1200)); // Cool loading delay
+      
+      const mockCodeBreaks = [
+        { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+        { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+      ];
+      
+      setDecipherResult((prev: any) => ({
+        ...(prev || {
+          doc_id: targetDoc,
+          redaction_map: [
+            { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+            { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" }
+          ],
+          inferred: "Luminous orange mother orb observed ejecting smaller red baby orbs in coordinated patterns.",
+          ethics_note: "Hypotheses only.",
+        }),
+        code_breaks: mockCodeBreaks,
+        code_break_results: mockCodeBreaks,
+        voice_script_inferred: "This is Agent Cipher. We have successfully broken the steganographic grammar on document D080. The mother-baby orb cycle shows a verified correlation with Base stablecoin transactions, indicating an on-chain provenance trail.",
+        conf: 0.81,
+      }));
+      
+      toast.success('Break Codes complete (simulated demo)', {
+        description: `2 code leads • conf 81%. voice_script_inferred ready for narrate.`,
+      });
     } finally {
       setIsBreaking(false);
     }
@@ -639,8 +773,8 @@ export default function GMIIETruthSurface() {
   // Mirrors mcp_server full_d080_with_decipher + analyze auto-chain for D080.
   const runFullD080Chain = async () => {
     setIsFullChaining(true);
+    const targetDoc = result?.doc_id || activeDocId || 'uap-d080-mother-orb-western';
     try {
-      const targetDoc = result?.doc_id || activeDocId || 'D080-mother-orb-western-sensitive';
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (paid) headers['X-PAYMENT'] = 'demo-receipt-cdp-usdc-001';
 
@@ -658,8 +792,11 @@ export default function GMIIETruthSurface() {
       if (res.status === 402) {
         const p = await res.json();
         toast.error('Premium x402 required for Full D080 Chain', { description: `${p.x402?.amount || '0.05'} ${p.x402?.asset || 'USDC'}`, action: { label: 'Pay & Unlock', onClick: () => handlePayment(p) } });
+        setIsFullChaining(false);
         return;
       }
+
+      if (!res.ok) throw new Error('No backend');
 
       const data = await res.json();
       setFullChainResult(data);
@@ -681,7 +818,49 @@ export default function GMIIETruthSurface() {
       // Auto scroll to breakdown
       setTimeout(() => document.getElementById('breakdown-panel')?.scrollIntoView({ behavior: 'smooth' }), 120);
     } catch (e) {
-      toast.error('Full D080 chain failed', { description: String(e) });
+      // Client-side simulation fallback
+      await new Promise(r => setTimeout(r, 1500)); // Cool loading delay
+      const mockChainData = {
+        ok: true,
+        action: 'full_d080_with_decipher',
+        doc_id: targetDoc,
+        tranche: '03',
+        chaining_ready: "scrape_pursue_tranche(release=\"03\") -> decipher_redactions(doc_id, file_path) -> break_codes(file_path) -> full_d080_with_decipher() [exact] -> analyze_sighting auto-decipher + investigations/ evidence + x402 premium export/voice/Comfy",
+        evidence_board_paths: ["investigations/gmiie-anomaly-intelligence-D080-full-with-decipher/06_ANOMALY_ANALYSIS_full_d080_with_decipher_*.md"],
+        premium: true,
+        paid: true,
+        code_breaks: [
+          { code_symbol: "MOTHER-3-BABY-CYCLE", interpretation: "Coordinated sub-entity deployment cycle", confidence: 0.79 },
+          { code_symbol: "ORB-RESET-HOOK", interpretation: "Correlation with global stablecoin macro indicators", confidence: 0.81 }
+        ],
+        redaction_map: [
+          { redacted_text: "███████", inferred_text: "Groom Lake Test Range", explanation: "Sensitive facility location code" },
+          { redacted_text: "████", inferred_text: "Mother Orb", explanation: "Primary anomaly classification" }
+        ],
+        inferences: [
+          { field: "target_location", inferred: "Groom Lake Area 51 base perimeter", confidence: 0.88 },
+          { field: "anomaly_nature", inferred: "Plasma sphere replication cycle", confidence: 0.79 },
+          { field: "macro_trigger", inferred: "Stablecoin market liquidity correlation", confidence: 0.81 }
+        ],
+        confidence_matrix: { overall: 0.82 },
+        voice_script_inferred: "This is Agent Oracle. The full D080 chain analysis has completed. The Groom Lake test range coordinates match the primary mother orb sighting. Coordinated baby orb cycles are confirmed, and base stablecoin transaction logs show an on-chain correlation."
+      };
+      
+      setFullChainResult(mockChainData);
+      setDecipherResult((prev: any) => ({
+        ...(prev || {}),
+        ...mockChainData,
+        code_breaks: mockChainData.code_breaks,
+        inferences: mockChainData.inferences,
+        confidence_matrix: mockChainData.confidence_matrix,
+        voice_script_inferred: mockChainData.voice_script_inferred,
+      }));
+      setBreakthroughHighlights(mockChainData.inferences);
+      setShowBreakthrough(true);
+      toast.success('Full Chain complete (simulated demo)', {
+        description: `Overall conf 82% • Inferences highlighted. Scroll to panel.`,
+      });
+      setTimeout(() => document.getElementById('breakdown-panel')?.scrollIntoView({ behavior: 'smooth' }), 120);
     } finally {
       setIsFullChaining(false);
     }
@@ -994,6 +1173,12 @@ cloudflared tunnel --url http://localhost:3005
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#ddd]">
+      {/* Persistent Demo Mode Banner */}
+      <div className="w-full bg-[#f55]/10 border-b border-[#f55]/20 px-6 py-1.5 text-center text-[10px] font-mono text-[#f55]/90 flex items-center justify-center gap-2">
+        <AlertTriangle className="w-3.5 h-3.5" />
+        <span>SOVEREIGN DEMO MODE ACTIVE: Real-time API endpoints are running in simulated client-side mode. Connect a mock wallet to test all premium features.</span>
+      </div>
+
       <header className="border-b border-[#222] bg-black/80 backdrop-blur sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -1528,6 +1713,25 @@ cloudflared tunnel --url http://localhost:3005
             </div>
           </div>
 
+          {/* Glossary / Conceptual Guide */}
+          <div className="mb-6 p-6 border border-[#222] rounded-3xl bg-black/30">
+            <div className="text-xs uppercase tracking-[2px] text-[#666] mb-3 font-mono">Conceptual Glossary & Quick Reference</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#888] leading-relaxed">
+              <div>
+                <span className="text-[#f55] font-semibold block mb-1">PURSUE Tranches</span>
+                Declassified anomaly tranches (Tranches 01–03) released through public truth channels, containing raw sensor records, video logs, and witness statements.
+              </div>
+              <div>
+                <span className="text-[#f55] font-semibold block mb-1">x402 Protocol & CDP</span>
+                An agentic micropayment standard facilitating split-second settlements in USDC via the Coinbase Developer Platform (CDP) for pay-to-unlock decryption.
+              </div>
+              <div>
+                <span className="text-[#f55] font-semibold block mb-1">Stargate & Gateway</span>
+                Stargate is the historical CIA/military remote viewing program; Gateway refers to the Monroe Institute Hemi-Sync binaural audio protocols used to train viewers.
+              </div>
+            </div>
+          </div>
+
           {/* Granular Release Catalog Explorer */}
           {(currentMode === 'explorer' || currentMode === 'premium') && (
             <div className="mb-10 border border-[#222] rounded-3xl p-5 bg-[#0a0a0a]/60 animate-fade-in">
@@ -2038,6 +2242,61 @@ cloudflared tunnel --url http://localhost:3005
                     </div>
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Web3 Wallet Connection Modal */}
+        {isWalletModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+            <div className="relative w-full max-w-md p-6 rounded-3xl border border-[#333] bg-[#0c0c0c] text-white shadow-2xl animate-in fade-in zoom-in duration-200">
+              <button
+                onClick={() => setIsWalletModalOpen(false)}
+                className="absolute top-4 right-4 text-xs font-mono text-[#888] hover:text-white transition"
+              >
+                ✕ CLOSE
+              </button>
+              
+              <div className="flex items-center gap-3 mb-4 border-b border-[#222] pb-3">
+                <Shield className="w-6 h-6 text-[#f55]" />
+                <div>
+                  <h3 className="font-bold text-base leading-tight">Web3 Wallet Connection</h3>
+                  <div className="text-[9px] text-[#666] font-mono">CONNECTION REQUIRED</div>
+                </div>
+              </div>
+
+              <div className="text-xs text-[#aaa] leading-relaxed mb-6 space-y-3">
+                <p>
+                  A Web3 Wallet is required to publish truth metadata to IPFS, register provenance proofs on-chain, and settle premium <span className="text-white font-semibold">x402 USDC micropayments</span>.
+                </p>
+                <div className="p-3 rounded-xl border border-[#222] bg-[#111]/40 font-mono text-[10px]">
+                  <span className="text-[#f55] font-bold">Network:</span> Base Mainnet / Solana<br />
+                  <span className="text-[#f55] font-bold">Facilitator:</span> CDP Agentic Gateway
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <a
+                  href="https://metamask.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl border border-[#444] hover:bg-[#111] font-semibold text-xs transition flex items-center justify-center gap-2 text-center"
+                >
+                  Install MetaMask Browser Extension
+                </a>
+                <button
+                  onClick={() => {
+                    setWalletAddress('0x65519e78d2390e061af4e1e7cfbfd38cf115230c');
+                    setIsWalletModalOpen(false);
+                    toast.success('Sovereign wallet mock connection established', {
+                      description: 'Address: 0x6551...230c. Web3 simulation enabled.',
+                    });
+                  }}
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#f55] text-black hover:bg-white font-bold text-xs transition flex items-center justify-center gap-2"
+                >
+                  Sovereign Demo Mode (Simulate Connect)
+                </button>
               </div>
             </div>
           </div>
