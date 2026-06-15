@@ -248,7 +248,7 @@ export default function GMIIETruthSurface() {
 
   // (duplicate catalog state vars removed during polish; canonical filters + useMemo above drive the full catalog grid/table)
 
-  // Demo fallback for static GitHub Pages build (FTHTrading/ufo). 
+  // Demo fallback for static GitHub Pages build (GMIIE/ufo). 
   // Real agentic calls (scrape, CV/OCR decipher, MCP full chain, Python PDF factory) require the local Ring or sovereign backend.
   const getDemoResult = (docId: string, q: string): AnalysisResult => {
     const isVideo = docId.includes('video');
@@ -790,7 +790,7 @@ export default function GMIIETruthSurface() {
       toast.success('Download complete (x402 gated)', { description: `${doc.title} — real PDF with deciphered content embedded.` });
     } catch (e) {
       // Static Pages demo: client-side report so "all downloads work"
-      const reportContent = `FTHTrading UFO Anomaly Intelligence Ring — Demo Report\n\nDoc: ${doc.id} — ${doc.title}\n\n${result?.explanation || 'Seeded video / imagery reference.'}\n\nDecipher / Code Breaks (demo): MOTHER-3-BABY-CYCLE @0.79 for orb events. Stargate RV protocols / Gateway Focus levels as applicable.\n\nEthics: HYPOTHESES ONLY. Full signed PDF factory + real x402 requires the sovereign Ring backend (local or MCP-connected).\n\nEvidence: investigations/ufo-pursue-r03 + seeded from user-provided IDs (war.gov down).`;
+      const reportContent = `GMIIE UFO Anomaly Intelligence Ring — Demo Report\n\nDoc: ${doc.id} — ${doc.title}\n\n${result?.explanation || 'Seeded video / imagery reference.'}\n\nDecipher / Code Breaks (demo): MOTHER-3-BABY-CYCLE @0.79 for orb events. Stargate RV protocols / Gateway Focus levels as applicable.\n\nEthics: HYPOTHESES ONLY. Full signed PDF factory + real x402 requires the sovereign Ring backend (local or MCP-connected).\n\nEvidence: investigations/ufo-pursue-r03 + seeded from user-provided IDs (war.gov down).`;
       const blob = new Blob([reportContent], { type: 'text/plain' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -945,8 +945,8 @@ cloudflared tunnel --url http://localhost:3005
           <div className="flex items-center gap-3">
             <Shield className="w-6 h-6 text-[#f55]" />
             <div>
-              <div className="font-semibold tracking-tight cyber-text">FTHTrading | UFO Anomaly Intelligence Ring</div>
-              <div className="text-[10px] text-[#888] -mt-1">PUBLIC TRUTH SURFACE • FTHTrading</div>
+              <div className="font-semibold tracking-tight cyber-text">GMIIE | UFO Anomaly Intelligence Ring</div>
+              <div className="text-[10px] text-[#888] -mt-1">PUBLIC TRUTH SURFACE • GMIIE</div>
             </div>
           </div>
           <div className="flex items-center gap-3 text-sm">
@@ -967,7 +967,7 @@ cloudflared tunnel --url http://localhost:3005
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#111] border border-[#222] text-xs mb-4">
             <Zap className="w-3.5 h-3.5 text-[#f55]" /> ANOMALY INTELLIGENCE TERMINAL
           </div>
-          <h1 className="text-5xl font-bold tracking-tighter mb-4 cyber-text">FTHTrading UFO Truth Surface</h1>
+          <h1 className="text-5xl font-bold tracking-tighter mb-4 cyber-text">GMIIE UFO Truth Surface</h1>
           <p className="max-w-2xl mx-auto text-lg text-[#aaa] mb-6">
             A secure, decentralized portal deciphering PURSUE tranches, Stargate remote viewing records, and Gateway experience anomalies.
           </p>
@@ -1358,7 +1358,7 @@ cloudflared tunnel --url http://localhost:3005
           {/* About section - tightened, premium value proposition */}
           <div className="mb-6 p-6 border border-[#222] rounded-3xl bg-[#111]/20">
             <div className="text-xs uppercase tracking-[2px] text-[#666] mb-3 font-mono">System Specification</div>
-            <h3 className="text-lg font-bold mb-4 text-[#eee]">FTHTrading UFO Anomaly Intelligence Ring</h3>
+            <h3 className="text-lg font-bold mb-4 text-[#eee]">GMIIE UFO Anomaly Intelligence Ring</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
               <div className="p-4 rounded-xl bg-black/40 border border-[#222]/80 animate-fade-in">
